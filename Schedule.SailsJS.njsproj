@@ -18,9 +18,13 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="assets\js\dependencies\jquery\jquery.min.map" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Compile Include="api\controllers\ScheduleController.js" />
     <Compile Include="app.js" />
+    <Compile Include="assets\js\dependencies\jquery\jquery.js" />
+    <Compile Include="assets\js\dependencies\jquery\jquery.min.js" />
     <Compile Include="Gruntfile.js" />
     <Content Include="assets\robots.txt" />
     <Content Include="assets\favicon.ico" />
@@ -49,6 +53,7 @@
     <Content Include="views\dashboard.ejs" />
     <Content Include="views\home.ejs" />
     <Content Include="views\layout.ejs" />
+    <Content Include="views\schedule\index.ejs" />
     <Content Include="views\_footer.ejs" />
     <Content Include="views\_nav_authorized.ejs" />
     <Compile Include="api\controllers\AuthController.js" />
@@ -158,6 +163,7 @@
     <Folder Include="assets\js\dependencies\angular" />
     <Folder Include="assets\js\dependencies\angular\directives" />
     <Folder Include="assets\js\dependencies\angular\modules" />
+    <Folder Include="assets\js\dependencies\jquery\" />
     <Folder Include="assets\js\private" />
     <Folder Include="assets\js\private\admin" />
     <Folder Include="assets\js\public" />
@@ -181,6 +187,7 @@
     <Folder Include="views\admin" />
     <Folder Include="views\admin\user" />
     <Folder Include="views\auth" />
+    <Folder Include="views\schedule\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <!--Do not delete the following Import Project.  While this appears to do nothing it is a marker for setting TypeScript properties before our import that depends on them.-->

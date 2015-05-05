@@ -59,9 +59,9 @@ module.exports.routes = {
   'POST   /adminpanel/users/update': 'admin/UserController.update',
   'DELETE /adminpanel/users/destroy/:id': 'admin/UserController.destroy',
   'POST   /adminpanel/users/password': 'admin/UserController.password',
-
   'GET /adminpanel/roles': 'admin/UserController.roles',
 
+  'GET /schedule': 'ScheduleController.index'
 
   /***************************************************************************
   *                                                                          *
