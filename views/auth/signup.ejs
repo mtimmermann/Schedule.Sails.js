@@ -1,0 +1,89 @@
+    <nav class="navbar navbar-default navbar-inverse">
+      <!-- Mechanism for the collapse button -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+        <!-- The lines in the image when the nav collapse -->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/#"> My App</a>
+
+      <!-- Login form -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+<%- partial ('./_login_form.ejs') %>
+      </div>
+    </nav>
+
+    <!-- Signup Form --> 
+    <form ng-submit="submitSignupForm()" id="sign-up-form" class="form-signin" name="signup">
+      <h2 class="form-signin-heading">Create an account</h2>
+      <div class="row">
+
+        <!-- Username -->
+        <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.username.$invalid && signup.username.$dirty}">
+          <label>User Name</label>
+          <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="signupForm.username" ng-maxlength="50" required />
+          <span class="help-block has-error" ng-if="signup.username.$dirty">
+            <span ng-show="signup.username.$error.required">User Name is required.</span>
+            <span ng-show="signup.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
+          </span>
+        </div>
+
+        <!-- Email -->
+        <div class="control-group form-group col-md-12"
+        ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
+          <label>Your email address</label>
+          <input type="email" class="form-control" placeholder="john.doe@domain.com" name="email" ng-model="signupForm.email" required />
+          <span class="help-block has-error" ng-if="signup.email.$dirty">
+            <span ng-show="signup.email.$error.required">Email address is required.</span>
+            <span ng-show="signup.email.$error.email">Not a valid email address.</span>
+          </span>
+        </div>
+
+        <!-- Password -->
+        <div class="control-group form-group col-md-6" ng-class="{'has-error':signup.password.$error.required && signup.password.$dirty}">
+          <label>Choose a password</label>
+          <input type="password" class="form-control" placeholder="at least 8 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="8" compare-to="signupForm.confirmPassword" />
+          <span class="help-block has-error" ng-if="signup.password.$dirty">
+            <span ng-show="signup.password.$error.required">Password is required.</span>
+            <span ng-show="signup.password.$error.minlength">Password must be at least 8 characters.</span>
+          </span>
+        </div>
+
+        <!-- Confirm  Password -->
+        <div class="control-group form-group col-md-6" ng-class="{'has-error': signup.confirmation.$dirty && (signup.confirmation.$invalid || signup.password.$error.compareTo) }">
+          <label>Re-enter your password</label>
+          <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required>
+          <span class="help-block has-error" ng-if="signup.confirmation.$dirty">
+            <span ng-show="signup.password.$error.compareTo">Password must match.</span>
+            <span ng-show="signup.confirmation.$error.required">Confirmation password is required.</span>
+          </span>
+        </div>
+      </div>
+
+      <br/>
+
+      <!-- Disable signup button until the form has no errors -->
+      <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="signup.$invalid">
+        <span ng-show="!signupForm.loading">Create Account</span>
+        <span class="overlord-loading-spinner fa fa-spinner" ng-show="signupForm.loading" ></span>
+        <span ng-show="signupForm.loading">Preparing your new account...</span>
+      </button>
+
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+    </form>
+
+<%- partial ('../_footer.ejs') %>
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.min.js"></script>
+    <script src="/js/dependencies/angular/modules/compareTo.module.js"></script>
+    <script src="/js/dependencies/angular/directives/angular-toastr.js"></script>
+    <script src="/js/public/utils.js"></script>
+    <!--SCRIPTS END-->
+    <script src="/js/public/auth/SignupModule.js"></script>
+    <script src="/js/public/auth/LoginService.js"></script>
+    <script src="/js/public/auth/SignupController.js"></script>
+

@@ -1,0 +1,38 @@
+    <nav class="navbar navbar-default navbar-inverse">
+      <!-- Mechanism for collapse button -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+        <!-- The lines in the image when the nav collapse -->
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/#"> My App</a>
+
+      <!-- Login form -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+<%- partial ('./auth/_login_form') %>
+      </div>
+    </nav>
+
+    <div class="col-md-8 col-md-offset-2">
+      <div class="jumbotron">
+        <h1>My App</h1>
+        <a href="/signup" class="btn btn-lg btn-success">Sign up now!</a>
+        <br /><br />
+        <a href="/forgotpassword">Forgot Password?</a>
+      </div>
+    </div>
+
+<%- partial ('./_footer.ejs') %>
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.min.js"></script>
+    <script src="/js/dependencies/angular/modules/compareTo.module.js"></script>
+    <script src="/js/dependencies/angular/directives/angular-toastr.js"></script>
+    <script src="/js/public/utils.js"></script>
+    <!--SCRIPTS END-->
+
+    <script src="/js/public/home/HomeModule.js"></script>
+    <script src="/js/public/auth/LoginService.js"></script>
+    <script src="/js/public/home/HomeController.js"></script>

@@ -1,0 +1,73 @@
+﻿<div class="view">
+  <div class="container">
+    <div class="row">
+      <nav class="navbar navbar-default" role="navigation">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="#/"><i class="glyphicon glyphicon-th-large"></i> User List </a>
+        </div>
+      </nav>
+      <header>
+        <h3>{{title}}</h3>
+      </header>
+      <div class="col-md-12">
+
+        <form role="form" name="myForm" ng-submit="saveUser()" class="form-horizontal">
+
+          <div class="row">
+            <div class="control-group form-group" ng-class="{'has-error':myForm.username.$invalid && myForm.username.$dirty}">
+              <label class="col-md-2">User Name</label>
+              <div class="col-md-4">
+                <input name="username" ng-model="user.username" type="text" class="form-control" placeholder="User Name" ng-maxlength="50" required />
+                <span class="help-block has-error" ng-if="myForm.username.$dirty">
+                  <span ng-show="myForm.username.$error.required">User Name is required.</span>
+                  <span ng-show="myForm.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="control-group form-group" ng-class="{'has-error':myForm.email.$invalid && myForm.email.$dirty}">
+              <label class="col-md-2">Email</label>
+              <div class="col-md-4">
+                <input name="email" ng-model="user.email" type="email" class="form-control" placeholder="Email" required />
+                <span class="help-block has-error" ng-if="myForm.email.$dirty">
+                  <span ng-show="myForm.email.$error.required">Email address is required.</span>
+                  <span ng-show="myForm.email.$error.email">Not a valid email address.</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="control-group form-group">
+              <label class="col-md-2">User Role</label>
+              <div class="col-md-4">
+                <select ng-model="selectedRole"
+                        ng-options="opt as opt.value for opt in roles"
+                        ng-change="onRoleChange()" class="form-control">
+                </select>
+              </div>
+            </div>
+
+            <div class="control-group form-group">
+              <div class="col-md-2"></div>
+              <div class="col-md-2">
+                <a class="btn btn-default btn-xs" href="#/password/{{ user.id }}">
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                  Change Password
+                </a>
+              </div>
+            </div>
+
+            <div class="control-group form-group">
+              <div class="col-md-2">
+                <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="myForm.$invalid">
+                  <span ng-show="!isLoading">Save User</span>
+                  <span class="overlord-loading-spinner fa fa-spinner" ng-show="isLoading"></span>
+                  <span ng-show="isLoading">Saving User...</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

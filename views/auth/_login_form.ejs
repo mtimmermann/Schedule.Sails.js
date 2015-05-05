@@ -1,0 +1,20 @@
+          <form ng-submit="submitLoginForm()" class="navbar-form navbar-right" name="login">
+
+              <!-- Email or User Name -->
+              <div class="form-group">
+                  <input ng-model="loginForm.identifier" type="text" placeholder="User Name or Email" name="identifier" class="form-control" required>
+              </div>
+
+              <!-- Password -->
+              <div class="form-group">
+                  <input ng-model="loginForm.password" type="password" placeholder="Password" name="password" class="form-control" required>
+              </div>
+
+              <!-- Submit -->
+              <button type="submit" class="btn btn-success" ng-disabled="login.$invalid">
+                <span ng-show="!loginForm.loading">Sign in</span>
+                <span ng-show="loginForm.loading" class="fa fa-spinner"></span>
+                <span ng-show="loginForm.loading">Signing in...</span>
+              </button>
+              <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+          </form>

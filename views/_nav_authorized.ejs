@@ -1,0 +1,21 @@
+    <nav class="navbar navbar-default navbar-inverse">
+      <!-- Mechanism for collapse button -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
+      <!-- The lines in the image when the nav collapse -->
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      </button>
+
+      <a class="navbar-brand" href="/#/"> Home</a>
+
+      <!-- This is what the above collapse button points to when the mark-up below is collapsed -->
+      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
+        <!-- This is what "styles" the li's as navbar items -->
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="/logout">Sign Out</a>
+          </li>
+        </ul>
+      </div>
+    </nav>

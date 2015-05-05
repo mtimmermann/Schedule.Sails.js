@@ -1,0 +1,36 @@
+﻿<div class="view">
+  <div class="container">
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#/"><i class="glyphicon glyphicon-th-large"></i> User List </a>
+      </div>
+    </nav>
+    <header>
+      <h3>{{title}}</h3>
+    </header>
+
+    <div class="row">
+      <label class="col-md-2">User Name</label>
+      <div class="col-md-4">{{user.username}}</div>
+    </div>
+    <div class="row">
+      <label class="col-md-2">Email</label>
+      <div class="col-md-4">{{user.email}}</div>
+    </div>
+    <div class="row">
+      <label class="col-md-2">Role</label>
+      <div class="col-md-4">{{user.role}}</div>
+    </div>
+
+    <div class="row">
+      <label class="col-md-4"><br />Delete User?</label>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <button class="btn btn-danger" ng-click="delete()">Yes</button>
+        <button class="btn btn-default" ng-click="listUsers()">No</button>
+      </div>
+    </div>
+
+  </div>
+</div>

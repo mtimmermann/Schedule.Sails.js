@@ -1,0 +1,27 @@
+<%- partial ('_nav_authorized.ejs') %>
+
+    <!-- container = Fixed-width container container-fluid = full-width -->
+    <div class="container-fluid">
+
+      <h1>Dashboard</h1>
+
+    </div>
+
+    <script type="text/javascript">
+      window.myApp = window.myApp || {};
+      window.myApp.locals = window.myApp.locals || {};
+      window.myApp.locals.user = <%- JSON.stringify(user) %>;
+    </script>
+
+    <!--SCRIPTS-->
+    <script src="/js/dependencies/sails.io.js"></script>
+    <script src="/js/dependencies/angular.min.js"></script>
+    <script src="/js/dependencies/angular/modules/compareTo.module.js"></script>
+    <script src="/js/dependencies/angular/directives/angular-toastr.js"></script>
+    <script src="/js/public/utils.js"></script>
+    <!--SCRIPTS END-->
+
+    <script type="text/javascript">
+      angular.module('DashboardModule', []);
+      angular.module('DashboardModule').controller('DashboardController', [function(){}]);
+    </script>
