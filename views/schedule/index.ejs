@@ -1,1 +1,19 @@
-﻿<h2>Schedule</h2>
+<%- partial ('../_nav_authorized.ejs') %>
+
+  <div class="container-fluid">
+    <div data-ng-view="" id="ng-view"></div>
+  </div>
+
+<%- partial ('../_footer.ejs') %>
+
+  <script src="/js/dependencies/jquery/jquery.min.js"></script>
+
+  <!--SCRIPTS-->
+  <script src="/js/dependencies/sails.io.js"></script>
+  <script src="/js/dependencies/angular.min.js"></script>
+  <script src="/js/dependencies/angular/modules/compareTo.module.js"></script>
+  <script src="/js/dependencies/angular/directives/angular-toastr.js"></script>
+  <script src="/js/public/utils.js"></script>
+  <!--SCRIPTS END-->
+  
+  <script src="/js/dependencies/angular/angular-route.min.js"></script>
