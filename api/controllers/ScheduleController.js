@@ -9,7 +9,7 @@ var ScheduleController = {
       title: 'Schedule',
       //bodyAttr: 'ng-app="UserModule" ng-cloak',
       bodyAttr: '',
-      layout: 'layout'
+      layout: false
     });
   }
 };

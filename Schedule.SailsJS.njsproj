@@ -18,13 +18,21 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.css" />
+    <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.min.css" />
+    <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.print.css" />
     <Content Include="assets\js\dependencies\jquery\jquery.min.map" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Compile Include="api\controllers\ScheduleController.js" />
     <Compile Include="app.js" />
+    <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
+    <Compile Include="assets\js\dependencies\fullcalendar\fullcalendar.js" />
+    <Compile Include="assets\js\dependencies\fullcalendar\fullcalendar.min.js" />
+    <Compile Include="assets\js\dependencies\fullcalendar\gcal.js" />
     <Compile Include="assets\js\dependencies\jquery\jquery.js" />
     <Compile Include="assets\js\dependencies\jquery\jquery.min.js" />
+    <Compile Include="assets\js\dependencies\moment\moment.min.js" />
     <Compile Include="Gruntfile.js" />
     <Content Include="assets\robots.txt" />
     <Content Include="assets\favicon.ico" />
@@ -164,6 +172,8 @@
     <Folder Include="assets\js\dependencies\angular\directives" />
     <Folder Include="assets\js\dependencies\angular\modules" />
     <Folder Include="assets\js\dependencies\jquery\" />
+    <Folder Include="assets\js\dependencies\fullcalendar\" />
+    <Folder Include="assets\js\dependencies\moment\" />
     <Folder Include="assets\js\private" />
     <Folder Include="assets\js\private\admin" />
     <Folder Include="assets\js\public" />
