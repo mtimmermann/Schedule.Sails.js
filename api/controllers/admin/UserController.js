@@ -43,7 +43,7 @@ var UserController = {
   },
 
   /**
-   * Return list of users
+   * Return list of users if a json request, else return user table view
    *
    * Optionally add CSRF-protection as outlined in the documentation:
    * http://sailsjs.org/#!/documentation/concepts/Security/CSRF.html

@@ -24,7 +24,8 @@
     <Content Include="assets\js\dependencies\jquery\jquery.min.map" />
     <Content Include="package.json" />
     <Content Include="README.md" />
-    <Compile Include="api\controllers\ScheduleController.js" />
+    <Compile Include="api\controllers\EventController.js" />
+    <Compile Include="api\models\Event.js" />
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
     <Compile Include="assets\js\dependencies\bootstrap\ui-bootstrap-tpls-0.13.0.js" />

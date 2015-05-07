@@ -56,12 +56,14 @@ module.exports.routes = {
    */
   'GET    /adminpanel/users': 'admin/UserController.list',
   'GET    /adminpanel/users/:id': 'admin/UserController.find',
-  'POST   /adminpanel/users/update': 'admin/UserController.update',
+  'PUT    /adminpanel/users/update': 'admin/UserController.update',
   'DELETE /adminpanel/users/destroy/:id': 'admin/UserController.destroy',
-  'POST   /adminpanel/users/password': 'admin/UserController.password',
-  'GET /adminpanel/roles': 'admin/UserController.roles',
+  'PUT    /adminpanel/users/password': 'admin/UserController.password',
+  'GET    /adminpanel/roles': 'admin/UserController.roles',
 
-  'GET /schedule': 'ScheduleController.index'
+  'GET /schedule': 'EventController.list',
+  'GET /api/events': 'EventController.list',
+  'PUT /api/events': 'EventController.create'
 
   /***************************************************************************
   *                                                                          *

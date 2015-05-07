@@ -17,7 +17,7 @@ angular.module('UserModule').factory("userService", ['$http', function($http) {
     },
 
     updateUser: function (user) {
-      return $http.post(serviceBase + 'update', { user: user });
+      return $http.put(serviceBase + 'update', { user: user });
     },
 
     deleteUser: function (userId) {
@@ -25,7 +25,7 @@ angular.module('UserModule').factory("userService", ['$http', function($http) {
     },
 
     updatePassword: function (userId, password) {
-      return $http.post(serviceBase + 'password', { id: userId, password: password });
+      return $http.put(serviceBase + 'password', { id: userId, password: password });
     },
 
     getRoles: function () {
