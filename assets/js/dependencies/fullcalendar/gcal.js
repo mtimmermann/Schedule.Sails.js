@@ -47,6 +47,7 @@ function transformOptions(sourceOptions, start, end, timezone) {
 
 	return $.extend({}, sourceOptions, {
 		url: sourceOptions.url.replace(/\/basic$/, '/full') + '?alt=json-in-script&callback=?',
+    //url: sourceOptions.url + '?alt=json-in-script&callback=?',
 		dataType: 'jsonp',
 		data: data,
 		timezoneParam: 'ctz',
