@@ -44,18 +44,21 @@
         </div>
       </div>
     </section>
-  </div>
 
-  <!--<button popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" class="btn btn-default">Popover With Template</button>-->
-  <!--
-  <script type="text/ng-template" id="myPopoverTemplate.html">
-      <div>{{dynamicPopover.content}}</div>
-      <div class="form-group">
-        <label>Popup Title:</label>
-        <input type="text" ng-model="dynamicPopover.title" class="form-control">
-      </div>
-  </script>
-  -->
+    <!-- 
+    https://angular-ui.github.io/bootstrap/#/modal
+    http://plnkr.co/edit/?p=preview
+    -->
+    <button popover-placement="top" popover="On the Top!" class="btn btn-default">Top</button>
+    <button popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" class="btn btn-default">Popover With Template</button>
+    <script type="text/ng-template" id="myPopoverTemplate.html">
+        <div>{{dynamicPopover.content}}</div>
+        <div class="form-group">
+          <label>Popup Title:</label>
+          <input type="text" ng-model="dynamicPopover.title" class="form-control">
+        </div>
+    </script>
+  </div>
 
 <%- partial ('../_footer.ejs') %>
 
@@ -71,7 +74,7 @@
   
   <!--<script src="/js/dependencies/angular/angular-route.min.js"></script>-->
   <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>-->
-  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.13.0.js"></script>
   <script src="/js/dependencies/moment/moment.min.js"></script>
   <script src="/js/dependencies/fullcalendar/fullcalendar.js"></script>
   <script src="/js/dependencies/fullcalendar/gcal.js"></script>
