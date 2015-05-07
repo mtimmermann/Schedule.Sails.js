@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="CalendarModule">
   <head>
     <title><%= title %></title>
 
@@ -28,7 +28,9 @@
 <%- partial ('../_nav_authorized.ejs') %>
 
   <div class="container-fluid">
-    <div data-ng-view="" id="ng-view"></div>
+    <!--<div data-ng-view="" id="ng-view"></div>-->
+    <section id="directives-calendar" ng-controller="CalendarController">
+    </section>
   </div>
 
 <%- partial ('../_footer.ejs') %>
@@ -45,10 +47,12 @@
   
   <!--<script src="/js/dependencies/angular/angular-route.min.js"></script>-->
   <!--<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>-->
-  <script src="/js/dependencies/moment/moment.js"></script>
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.9.0.js"></script>
+  <script src="/js/dependencies/moment/moment.min.js"></script>
   <script src="/js/dependencies/fullcalendar/fullcalendar.js"></script>
   <script src="/js/dependencies/fullcalendar/gcal.js"></script>
   <script src="/js/dependencies/angular/directives/calendar.js"></script>
+  <script src="/js/private/schedule/Calendar.js"></script>
 
   </body>
 </html>

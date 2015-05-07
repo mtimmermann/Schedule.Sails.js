@@ -33,6 +33,7 @@
     <Compile Include="assets\js\dependencies\jquery\jquery.js" />
     <Compile Include="assets\js\dependencies\jquery\jquery.min.js" />
     <Compile Include="assets\js\dependencies\moment\moment.min.js" />
+    <Compile Include="assets\js\private\schedule\Calendar.js" />
     <Compile Include="Gruntfile.js" />
     <Content Include="assets\robots.txt" />
     <Content Include="assets\favicon.ico" />
@@ -176,6 +177,7 @@
     <Folder Include="assets\js\dependencies\moment\" />
     <Folder Include="assets\js\private" />
     <Folder Include="assets\js\private\admin" />
+    <Folder Include="assets\js\private\schedule\" />
     <Folder Include="assets\js\public" />
     <Folder Include="assets\js\public\auth" />
     <Folder Include="assets\js\public\home" />
