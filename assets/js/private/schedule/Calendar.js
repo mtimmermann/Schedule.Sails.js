@@ -6,14 +6,6 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     var m = date.getMonth();
     var y = date.getFullYear();
 
-    //$scope.changeTo = 'Hungarian';
-    /* event source that pulls from google.com */
-    //$scope.eventSource = {
-    //        url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
-    //        className: 'gcal-event',           // an option!
-    //        currentTimezone: 'America/Chicago' // an option!
-    //};
-
     $scope.selectedEvent = null;
 
     /* event source that contains custom events on the scope */
@@ -58,12 +50,12 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
           windowClass: 'modal',
           controller: function ($scope, $modalInstance, $log, selectedEvent) {
             $scope.selectedEvent = selectedEvent;
-            $scope.submit = function () {
+            $scope.submit = function() {
               $log.log('Updating event.');
               uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
               $modalInstance.dismiss('cancel');
             }
-            $scope.cancel = function () {
+            $scope.cancel = function() {
               $modalInstance.dismiss('cancel');
             };
             $scope.delete = function() {
@@ -162,15 +154,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
       }
     };
 
-    //$scope.changeLang = function() {
-    //    $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    //    $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    //    //$scope.changeTo = 'Hungarian';
-    //};
-    /* event sources array*/
-    //$scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources = [$scope.events, $scope.eventsF];
-    //$scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
     $scope.dynamicPopover = {
       content: 'Hello, World!',
