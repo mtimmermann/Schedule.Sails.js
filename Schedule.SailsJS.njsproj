@@ -36,7 +36,9 @@
     <Compile Include="assets\js\dependencies\jquery\jquery.js" />
     <Compile Include="assets\js\dependencies\jquery\jquery.min.js" />
     <Compile Include="assets\js\dependencies\moment\moment.min.js" />
-    <Compile Include="assets\js\private\schedule\Calendar.js" />
+    <Compile Include="assets\js\private\schedule\CalendarController.js" />
+    <Compile Include="assets\js\private\schedule\CalendarModule.js" />
+    <Compile Include="assets\js\private\schedule\EventService.js" />
     <Compile Include="Gruntfile.js" />
     <Content Include="assets\robots.txt" />
     <Content Include="assets\favicon.ico" />

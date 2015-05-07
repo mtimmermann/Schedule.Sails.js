@@ -27,7 +27,7 @@ var EventController = {
   },
 
   /**
-   * Create a new user's event
+   * Create a new event
    *
    * POST /api/events
    *

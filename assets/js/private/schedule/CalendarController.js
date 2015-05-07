@@ -1,6 +1,4 @@
-﻿angular.module('CalendarModule', ['ui.calendar', 'ui.bootstrap']);
-
-angular.module('CalendarModule').controller('CalendarController', ['$scope', '$compile', 'uiCalendarConfig', '$modal', function($scope, $compile, uiCalendarConfig, $modal) {
+﻿angular.module('CalendarModule').controller('CalendarController', ['$scope', 'eventService', '$compile', 'uiCalendarConfig', '$modal', function($scope, eventService, $compile, uiCalendarConfig, $modal) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
