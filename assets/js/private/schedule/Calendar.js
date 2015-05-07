@@ -48,24 +48,26 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     /* alert on eventClick */
     $scope.alertOnEventClick = function(date, jsEvent, view) {
         $scope.alertMessage = (date.title + ' was clicked ');
-        var originalSelectedEvent = angular.copy(date);
-        //angular.copy(date, originalSelectedEvent);
-        $scope.selectedEvent = date;
-        var selectedEvent = date;
+
+        $scope.selectedEvent = angular.copy(date);
+        var selectedEvent = $scope.selectedEvent
         // http://plnkr.co/edit/bfpma2?p=preview
         $modal.open({
-          templateUrl: 'myModalContent.html',
+          templateUrl: 'editEventModal.html',
           backdrop: true,
           windowClass: 'modal',
-          controller: function ($scope, $modalInstance, $log, selectedEvent) {//, originalSelectedEvent) {
+          controller: function ($scope, $modalInstance, $log, selectedEvent) {
             $scope.selectedEvent = selectedEvent;
             $scope.submit = function () {
               $log.log('Updating event.');
-              $log.log(date.title);
+              uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
               $modalInstance.dismiss('cancel');
             }
             $scope.cancel = function () {
-              $scope.selectedEvent = originalSelectedEvent;
+              $modalInstance.dismiss('cancel');
+            };
+            $scope.delete = function() {
+              uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ $scope.selectedEvent._id ] );
               $modalInstance.dismiss('cancel');
             };
           },
@@ -168,7 +170,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     /* event sources array*/
     //$scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources = [$scope.events, $scope.eventsF];
-    $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+    //$scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
     $scope.dynamicPopover = {
       content: 'Hello, World!',

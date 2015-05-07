@@ -27,6 +27,8 @@
     <Compile Include="api\controllers\ScheduleController.js" />
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
+    <Compile Include="assets\js\dependencies\bootstrap\ui-bootstrap-tpls-0.13.0.js" />
+    <Compile Include="assets\js\dependencies\bootstrap\ui-bootstrap-tpls-0.13.0.min.js" />
     <Compile Include="assets\js\dependencies\fullcalendar\fullcalendar.js" />
     <Compile Include="assets\js\dependencies\fullcalendar\fullcalendar.min.js" />
     <Compile Include="assets\js\dependencies\fullcalendar\gcal.js" />
@@ -175,6 +177,7 @@
     <Folder Include="assets\js\dependencies\jquery\" />
     <Folder Include="assets\js\dependencies\fullcalendar\" />
     <Folder Include="assets\js\dependencies\moment\" />
+    <Folder Include="assets\js\dependencies\bootstrap\" />
     <Folder Include="assets\js\private" />
     <Folder Include="assets\js\private\admin" />
     <Folder Include="assets\js\private\schedule\" />
