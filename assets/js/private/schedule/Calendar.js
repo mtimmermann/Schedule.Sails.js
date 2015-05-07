@@ -48,6 +48,8 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     /* alert on eventClick */
     $scope.alertOnEventClick = function(date, jsEvent, view) {
         $scope.alertMessage = (date.title + ' was clicked ');
+        var originalSelectedEvent = angular.copy(date);
+        //angular.copy(date, originalSelectedEvent);
         $scope.selectedEvent = date;
         var selectedEvent = date;
         // http://plnkr.co/edit/bfpma2?p=preview
@@ -55,9 +57,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
           templateUrl: 'myModalContent.html',
           backdrop: true,
           windowClass: 'modal',
-          //controller: function ($scope, $modalInstance, $log, user) {
-          controller: function ($scope, $modalInstance, $log, selectedEvent) {
-            //$scope.user = user;
+          controller: function ($scope, $modalInstance, $log, selectedEvent) {//, originalSelectedEvent) {
             $scope.selectedEvent = selectedEvent;
             $scope.submit = function () {
               $log.log('Updating event.');
@@ -65,6 +65,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
               $modalInstance.dismiss('cancel');
             }
             $scope.cancel = function () {
+              $scope.selectedEvent = originalSelectedEvent;
               $modalInstance.dismiss('cancel');
             };
           },
@@ -72,9 +73,6 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
             selectedEvent: function() {
               return $scope.selectedEvent;
             }
-            //user: function () {
-            //  return $scope.user;
-            //}
           }
         });
     };
