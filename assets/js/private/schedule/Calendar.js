@@ -21,7 +21,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false},
       {id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false},
       {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
-      {title: 'Test Red',start: new Date(y, m, d + 2, 19, 0),end: new Date(y, m, d + 2, 22, 30),allDay: false, color: '#f00'},
+      //{title: 'Test Red',start: new Date(y, m, d + 2, 19, 0),end: new Date(y, m, d + 2, 22, 30),allDay: false, color: '#f00'},
       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
     ];
     /* event source that calls a function on every view switch */
@@ -130,20 +130,21 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
       }
     };
 
-    $scope.changeLang = function() {
-      if($scope.changeTo === 'Hungarian'){
-        $scope.uiConfig.calendar.dayNames = ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"];
-        $scope.uiConfig.calendar.dayNamesShort = ["Vas", "Hét", "Kedd", "Sze", "Csüt", "Pén", "Szo"];
-        $scope.changeTo= 'English';
-      } else {
-        $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-        $scope.changeTo = 'Hungarian';
-      }
-    };
+    //$scope.changeLang = function() {
+    //    $scope.uiConfig.calendar.dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    //    $scope.uiConfig.calendar.dayNamesShort = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    //    //$scope.changeTo = 'Hungarian';
+    //};
     /* event sources array*/
-    $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+    //$scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
+    $scope.eventSources = [$scope.events, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+
+    $scope.dynamicPopover = {
+      content: 'Hello, World!',
+      templateUrl: 'myPopoverTemplate.html',
+      title: 'Title'
+    };
 
     // Initialize
     $scope.renderCalender('myCalendar1');
