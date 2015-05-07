@@ -61,9 +61,9 @@ module.exports.routes = {
   'PUT    /adminpanel/users/password': 'admin/UserController.password',
   'GET    /adminpanel/roles': 'admin/UserController.roles',
 
-  'GET /schedule': 'EventController.list',
-  'GET /api/events': 'EventController.list',
-  'PUT /api/events': 'EventController.create'
+  'GET  /schedule': 'EventController.list',
+  'GET  /api/events': 'EventController.list',
+  'POST /api/events': 'EventController.create'
 
   /***************************************************************************
   *                                                                          *

@@ -1,4 +1,4 @@
-﻿angular.module('CalendarModule').controller('CalendarController', ['$scope', 'eventService', '$compile', 'uiCalendarConfig', '$modal', function($scope, eventService, $compile, uiCalendarConfig, $modal) {
+﻿angular.module('CalendarModule').controller('CalendarController', ['$scope', 'eventService', '$compile', 'uiCalendarConfig', '$modal', 'toastr', function($scope, eventService, $compile, uiCalendarConfig, $modal, toastr) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -128,9 +128,25 @@
           start: start,
           end: end
         };
+
+        eventService.createEvent(eventData)
+        .then(function onSuccess(result) {
+          toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
+        })
+        .catch(function onError(resp) {
+          if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+            toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+          } else {
+            toastr.error('Error saving evnt', 'Error', window.myApp.locals.toastrOptions);
+          }
+        })
+        .finally(function eitherWay() {
+          $('#calendar').fullCalendar('unselect');
+        });
+
         $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
       }
-      $('#calendar').fullCalendar('unselect');
+      //$('#calendar').fullCalendar('unselect');
     };
     /* config object */
     $scope.uiConfig = {

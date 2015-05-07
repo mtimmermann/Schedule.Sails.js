@@ -8,7 +8,7 @@ angular.module('CalendarModule').factory("eventService", ['$http', function($htt
     },
 
     createEvent: function(event) {
-      return $http.post(serviceBase, { id: userId, password: password });
+      return $http.post(serviceBase, { event: event });
     }
   };
 }]);

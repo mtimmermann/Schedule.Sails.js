@@ -5,8 +5,8 @@
   attributes: {
     user: { model: 'User', required: true },
     title: { type: 'string', required: true },
-    start: { type: 'string', required: true },
-    end: { type: 'string' },
+    start: { type: 'date', required: true },
+    end: { type: 'date' },
     color: { type: 'string' },
     textColor: { type: 'string' },
     allDay: { type: 'boolean'}

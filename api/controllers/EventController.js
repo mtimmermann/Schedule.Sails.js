@@ -35,6 +35,19 @@ var EventController = {
    * @param {Object} res
    */
   create: function(req, res) {
+    var event = typeof req.param('event') === 'object' ? req.param('event') : {};
+    if (!event.title || !event.start) {
+      return res.send(409, 'event.title and event.start are required');
+    }
+
+    // 5539a77d674f4d4c1c4a5e13
+    Event.create({ user: '5539a77d674f4d4c1c4a5e13', title: event.title, start: event.start })
+    .exec(function(err, data) {
+      if (err) { return res.negotiate(err); }
+
+      return res.json({});
+    });
+
   }
 };
 

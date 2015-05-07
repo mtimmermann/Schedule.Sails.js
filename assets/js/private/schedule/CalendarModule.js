@@ -1,1 +1,1 @@
-﻿angular.module('CalendarModule', ['ui.calendar', 'ui.bootstrap']);
+﻿angular.module('CalendarModule', ['ui.calendar', 'ui.bootstrap', 'toastr']);
