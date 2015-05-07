@@ -24,6 +24,16 @@ var EventController = {
       });
     }
 
+    Event.find({ user: '5539a77d674f4d4c1c4a5e13' })
+    .exec(function(err, data) {
+      if (err) { return res.negotiate(err); }
+
+      return res.json({
+        Items: data,
+        Count: data.length
+      });
+    });
+
   },
 
   /**
@@ -40,8 +50,10 @@ var EventController = {
       return res.send(409, 'event.title and event.start are required');
     }
 
+    //return res.json({});
+
     // 5539a77d674f4d4c1c4a5e13
-    Event.create({ user: '5539a77d674f4d4c1c4a5e13', title: event.title, start: event.start })
+    Event.create({ user: '5539a77d674f4d4c1c4a5e13', title: event.title, start: event.start, end: event.end })
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
 

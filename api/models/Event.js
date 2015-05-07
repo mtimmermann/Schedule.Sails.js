@@ -5,8 +5,10 @@
   attributes: {
     user: { model: 'User', required: true },
     title: { type: 'string', required: true },
-    start: { type: 'date', required: true },
-    end: { type: 'date' },
+    //start: { type: 'date', required: true },
+    //end: { type: 'date' },
+    start: { type: 'string', required: true },
+    end: { type: 'string' },
     color: { type: 'string' },
     textColor: { type: 'string' },
     allDay: { type: 'boolean'}

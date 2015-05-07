@@ -131,6 +131,7 @@
 
         eventService.createEvent(eventData)
         .then(function onSuccess(result) {
+          $scope.events.push(eventData);
           toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
         })
         .catch(function onError(resp) {
@@ -176,6 +177,33 @@
       title: 'Title'
     };
 
-    // Initialize
-    $scope.renderCalender('myCalendar1');
+    function init() {
+      eventService.getEvents()
+      .then(function (result) {
+        //var events = result.Items;
+        angular.forEach(result.data.Items, function(value, key) {
+          var event = {
+            id: value._id,
+            title: value.title,
+            //start: new Date(value.start)
+            start: moment(value.start)
+            //start: moment.utc(value.start).local()
+            //start: new Date(moment.utc(value.start).format())
+          };
+          if (value.end) {
+            //event.end = new Date(value.end);
+            event.end = new moment(value.end);
+            //event.end = moment.utc(value.end).local()
+            //event.end = new Date(moment.utc(value.end).format());
+          }
+          $scope.events.push(event);
+        });
+      })
+      .finally(function eitherWay() {
+        $scope.renderCalender('myCalendar1');
+      });
+    }
+
+    init();
+
 }]);
