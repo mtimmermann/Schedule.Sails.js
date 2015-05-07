@@ -1,6 +1,6 @@
 ﻿angular.module('CalendarModule', ['ui.calendar', 'ui.bootstrap']);
 
-angular.module('CalendarModule').controller('CalendarController', ['$scope', '$compile', 'uiCalendarConfig', function($scope, $compile, uiCalendarConfig) {
+angular.module('CalendarModule').controller('CalendarController', ['$scope', '$compile', 'uiCalendarConfig', '$modal', function($scope, $compile, uiCalendarConfig, $modal) {
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
@@ -13,6 +13,9 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     //        className: 'gcal-event',           // an option!
     //        currentTimezone: 'America/Chicago' // an option!
     //};
+
+    $scope.selectedEvent = null;
+
     /* event source that contains custom events on the scope */
     $scope.events = [
       //{title: 'All Day Event',start: new Date(y, m, 1)},
@@ -43,8 +46,37 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
         ]
     };
     /* alert on eventClick */
-    $scope.alertOnEventClick = function( date, jsEvent, view){
+    $scope.alertOnEventClick = function(date, jsEvent, view) {
         $scope.alertMessage = (date.title + ' was clicked ');
+        $scope.selectedEvent = date;
+        var selectedEvent = date;
+        // http://plnkr.co/edit/bfpma2?p=preview
+        $modal.open({
+          templateUrl: 'myModalContent.html',
+          backdrop: true,
+          windowClass: 'modal',
+          //controller: function ($scope, $modalInstance, $log, user) {
+          controller: function ($scope, $modalInstance, $log, selectedEvent) {
+            //$scope.user = user;
+            $scope.selectedEvent = selectedEvent;
+            $scope.submit = function () {
+              $log.log('Updating event.');
+              $log.log(date.title);
+              $modalInstance.dismiss('cancel');
+            }
+            $scope.cancel = function () {
+              $modalInstance.dismiss('cancel');
+            };
+          },
+          resolve: {
+            selectedEvent: function() {
+              return $scope.selectedEvent;
+            }
+            //user: function () {
+            //  return $scope.user;
+            //}
+          }
+        });
     };
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
