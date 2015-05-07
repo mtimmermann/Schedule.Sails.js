@@ -5,7 +5,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
-    
+
     $scope.changeTo = 'Hungarian';
     /* event source that pulls from google.com */
     $scope.eventSource = {
@@ -142,4 +142,7 @@ angular.module('CalendarModule').controller('CalendarController', ['$scope', '$c
     /* event sources array*/
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
+
+    // Initialize
+    $scope.renderCalender('myCalendar1');
 }]);

@@ -27,9 +27,22 @@
 
 <%- partial ('../_nav_authorized.ejs') %>
 
-  <div class="container-fluid">
+  <div class="container">
     <!--<div data-ng-view="" id="ng-view"></div>-->
     <section id="directives-calendar" ng-controller="CalendarController">
+      <div class="row-fluid">
+        <div class="col-md-8">
+          <div class="btn-toolbar">
+            <p class="pull-right lead">Calendar One View Options</p>
+            <div class="btn-group">
+              <button class="btn btn-success" ng-click="changeView('agendaDay', 'myCalendar1')">AgendaDay</button>
+              <button class="btn btn-success" ng-click="changeView('agendaWeek', 'myCalendar1')">AgendaWeek</button>
+              <button class="btn btn-success" ng-click="changeView('month', 'myCalendar1')">Month</button>
+            </div>
+          </div>
+          <div class="calendar" ng-model="eventSources" calendar="myCalendar1" ui-calendar="uiConfig.calendar"></div>
+        </div>
+      </div>
     </section>
   </div>
 
