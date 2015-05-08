@@ -57,7 +57,7 @@ var EventController = {
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
 
-      return res.json({});
+      return res.json(data);
     });
 
   },

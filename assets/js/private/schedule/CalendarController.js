@@ -123,11 +123,17 @@
 
 
     function saveEvent(event) {
+      var isNew = event.id ? false : true;
       eventService.saveEvent(event)
       .then(function onSuccess(result) {
-        //$scope.events.push(event);
-        //$('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
         toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
+        if (isNew) {
+          event.id = result.data.id;
+          $scope.events.push(event);
+        } else {
+          uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', event);
+        }
+        //$('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
       })
       .catch(function onError(resp) {
         if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
