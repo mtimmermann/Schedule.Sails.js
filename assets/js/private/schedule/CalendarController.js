@@ -9,11 +9,13 @@
     // The calendar event source wire-up
     // http://fullcalendar.io/docs/event_data/events_function/
     $scope.events = function(start, end, timezone, callback) {
-      console.log('getEvents: start['+ start.local().format() +'] end['+ end.local().format() +']');
+      //console.log('getEvents: start['+ start.local().format() +'] end['+ end.local().format() +']');
       //console.log('getEvents: start['+ start.format() +'] end['+ end.format() +']');
+      console.log('getEvents: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
       // http://stackoverflow.com/questions/23527136/cant-find-records-in-waterline-by-date-time
 
-      eventService.getEvents(start.format(), end.format())
+      //eventService.getEvents(start.format(), end.format()) toISOString
+      eventService.getEvents(start.toISOString(), end.toISOString())
       .then(function (result) {
         var events = [];
         angular.forEach(result.data.Items, function(value, key) {

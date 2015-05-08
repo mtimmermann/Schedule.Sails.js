@@ -71,8 +71,7 @@ var EventController = {
       title: event.title,
       start: event.start,
       startTimeStamp: event.start,
-      end: event.end,
-      endTimeStamp: event.end
+      end: event.end
      })
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
@@ -97,10 +96,6 @@ var EventController = {
     }
 
     event.startTimeStamp = event.startTimeStamp;
-    if (event.end) {
-      event.endTimeStamp = event.end;
-    }
-
     Event.update({ id: event.id, user: '5539a77d674f4d4c1c4a5e13' }, event)
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
