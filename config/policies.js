@@ -29,17 +29,20 @@ module.exports.policies = {
   // '*': true,
   '*': ['passport'],
 
+  'EventController': {
+    'list': ['passport', 'sessionAuth'],
+    'create': ['passport', 'sessionAuth'],
+    'update': ['passport', 'sessionAuth'],
+    'destroy': ['passport', 'sessionAuth']
+  },
+
   'admin/UserController': {
     '*': ['passport', 'isSiteAdmin']
   },
 
-  //'admin/ScheduleInviteController': {
-  //  '*': ['passport', 'isAdmin']
-  //},
-
-  //'EventController': {
-  //  '*': ['passport', 'sessionAuth']
-  //}
+  'admin/ScheduleInviteController': {
+    '*': ['passport', 'isAdmin']
+  }
 
   /***************************************************************************
   *                                                                          *
