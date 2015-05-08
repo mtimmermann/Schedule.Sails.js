@@ -49,74 +49,12 @@
         end: end,
         color: '#3a87ad' // Default Bold Blue
       };
-
-      $scope.selectedEvent = angular.copy(event);
-      var selectedEvent = $scope.selectedEvent
-
-      // Angular JS Bootstrap modal
-      // https://angular-ui.github.io/bootstrap/
-      // http://plnkr.co/edit/bfpma2?p=preview
-      $modal.open({
-        templateUrl: 'editEventModal.html',
-        backdrop: true,
-        windowClass: 'modal',
-        controller: function ($scope, $modalInstance, $log, selectedEvent) {
-          $scope.selectedEvent = selectedEvent;
-          $scope.submit = function() {
-            saveEvent($scope.selectedEvent);
-            $modalInstance.dismiss('cancel');
-          }
-          $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-          }
-          $modalInstance.rendered.then(function() {
-            // Init the jquery simple color picker
-            $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
-          });
-        },
-        resolve: {
-          selectedEvent: function() {
-            return $scope.selectedEvent;
-          }
-        }
-      });
+      openEditModal(event);
     };
 
     // Edit event on eventClick
     $scope.alertOnEventClick = function(date, jsEvent, view) {
-        $scope.selectedEvent = angular.copy(date);
-        var selectedEvent = $scope.selectedEvent
-        // Angular JS Bootstrap modal
-        // https://angular-ui.github.io/bootstrap/
-        // http://plnkr.co/edit/bfpma2?p=preview
-        $modal.open({
-          templateUrl: 'editEventModal.html',
-          backdrop: true,
-          windowClass: 'modal',
-          controller: function ($scope, $modalInstance, $log, selectedEvent) {
-            $scope.selectedEvent = selectedEvent;
-            $scope.submit = function() {
-              saveEvent($scope.selectedEvent);
-              $modalInstance.dismiss('cancel');
-            }
-            $scope.cancel = function() {
-              $modalInstance.dismiss('cancel');
-            }
-            $scope.delete = function() {
-              deleteEvent($scope.selectedEvent);
-              $modalInstance.dismiss('cancel');
-            }
-            $modalInstance.rendered.then(function() {
-              // Init the jquery simple color picker
-              $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
-            });
-          },
-          resolve: {
-            selectedEvent: function() {
-              return $scope.selectedEvent;
-            }
-          }
-        });
+      openEditModal(date);
     };
 
     /* alert on Drop */
@@ -234,4 +172,36 @@
       });
     }
 
+    function openEditModal(event) {
+      $scope.selectedEvent = angular.copy(event);
+      var selectedEvent = $scope.selectedEvent
+
+      // Angular JS Bootstrap modal
+      // https://angular-ui.github.io/bootstrap/
+      // http://plnkr.co/edit/bfpma2?p=preview
+      $modal.open({
+        templateUrl: 'editEventModal.html',
+        backdrop: true,
+        windowClass: 'modal',
+        controller: function ($scope, $modalInstance, $log, selectedEvent) {
+          $scope.selectedEvent = selectedEvent;
+          $scope.submit = function() {
+            saveEvent($scope.selectedEvent);
+            $modalInstance.dismiss('cancel');
+          }
+          $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+          }
+          $modalInstance.rendered.then(function() {
+            // Init the jquery simple color picker
+            $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+          });
+        },
+        resolve: {
+          selectedEvent: function() {
+            return $scope.selectedEvent;
+          }
+        }
+      });
+    }
 }]);
