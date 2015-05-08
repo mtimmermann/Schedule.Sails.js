@@ -35,7 +35,8 @@
           {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
         ]
     };
-    /* alert on eventClick */
+
+    // Edit event on eventClick
     $scope.alertOnEventClick = function(date, jsEvent, view) {
         $scope.alertMessage = (date.title + ' was clicked ');
 
@@ -118,20 +119,25 @@
                       'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
+
+    // Create an event
     $scope.select = function(start, end) {
       console.log('select: start['+ start +'] end['+ end +']');
-      var title = prompt('Event Title:');
-      var eventData;
-      if (title) {
-        eventData = {
-          title: title,
-          start: start,
-          end: end
-        };
 
-        eventService.createEvent(eventData)
+      var event = {
+        title: '',
+        start: start,
+        end: end
+      };
+
+      $scope.selectedEvent = angular.copy(event);
+      var selectedEvent = $scope.selectedEvent
+
+      var addEvent = function() {
+        eventService.createEvent($scope.selectedEvent)
         .then(function onSuccess(result) {
-          $scope.events.push(eventData);
+          $scope.events.push($scope.selectedEvent);
+          //$('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
           toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
         })
         .catch(function onError(resp) {
@@ -144,10 +150,30 @@
         .finally(function eitherWay() {
           $('#calendar').fullCalendar('unselect');
         });
-
-        $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-      }
-      //$('#calendar').fullCalendar('unselect');
+      };
+      $modal.open({
+        templateUrl: 'editEventModal.html',
+        backdrop: true,
+        windowClass: 'modal',
+        controller: function ($scope, $modalInstance, $log, selectedEvent) {
+          $scope.selectedEvent = selectedEvent;
+          $scope.submit = function() {
+            $log.log('Updating event.');
+            //$scope.events.push($scope.selectedEvent);
+            //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
+            addEvent();
+            $modalInstance.dismiss('cancel');
+          }
+          $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+          };
+        },
+        resolve: {
+          selectedEvent: function() {
+            return $scope.selectedEvent;
+          }
+        }
+      });
     };
     /* config object */
     $scope.uiConfig = {
@@ -180,18 +206,15 @@
     function init() {
       eventService.getEvents()
       .then(function (result) {
-        //var events = result.Items;
         angular.forEach(result.data.Items, function(value, key) {
           var event = {
-            id: value._id,
+            id: value.id,
             title: value.title,
-            //start: new Date(value.start)
             start: moment(value.start)
             //start: moment.utc(value.start).local()
             //start: new Date(moment.utc(value.start).format())
           };
           if (value.end) {
-            //event.end = new Date(value.end);
             event.end = new moment(value.end);
             //event.end = moment.utc(value.end).local()
             //event.end = new Date(moment.utc(value.end).format());

@@ -45,35 +45,28 @@
       </div>
     </section>
 
-    <!-- 
-    https://angular-ui.github.io/bootstrap/#/modal
-    http://plnkr.co/edit/?p=preview
-    -->
-    <button popover-placement="top" popover="On the Top!" class="btn btn-default">Top</button>
-    <button popover-template="dynamicPopover.templateUrl" popover-title="{{dynamicPopover.title}}" class="btn btn-default">Popover With Template</button>
-    <script type="text/ng-template" id="myPopoverTemplate.html">
-        <div>{{dynamicPopover.content}}</div>
-        <div class="form-group">
-          <label>Popup Title:</label>
-          <input type="text" ng-model="dynamicPopover.title" class="form-control">
-        </div>
-    </script>
-
     <script type="text/ng-template" id="editEventModal.html">
         <div class="modal-header">
             <h3>Edit: {{selectedEvent.title}}</h3>
         </div>
-        <form ng-submit="submit()">
+        <form ng-submit="submit()" name="createEventForm">
           <div class="modal-body">
-            <label>Title</label>
-            <input type="text" ng-model="selectedEvent.title" />
-            <label>Password</label>
-            <input type="password" ng-model="user.password" />
+            <div class="row">
+              <div class="control-group form-group" ng-class="{'has-error':createEventForm.title.$invalid && createEventForm.title.$dirty}">
+                <label class="col-md-2">Title</label>
+                <div class="col-md-4">
+                  <input type="text" name="title" class="form-control" ng-model="selectedEvent.title" required />
+                  <span class="help-block has-error" ng-if="createEventForm.title.$dirty">
+                    <span ng-show="createEventForm.title.$error.required">Title is required.</span>
+                  </span>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
-              <button class="btn btn-danger" type="button" ng-click="delete()">Delete</button>
-              <input type="submit" class="btn primary-btn" value="Save" />
+              <button class="btn btn-danger" type="button" ng-hide="!selectedEvent.id" ng-click="delete()">Delete</button>
+              <input type="submit" class="btn primary-btn" ng-disabled="createEventForm.$invalid" value="Save" />
           </div>
         </form>
     </script>

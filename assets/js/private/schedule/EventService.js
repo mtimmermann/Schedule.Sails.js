@@ -10,9 +10,7 @@ angular.module('CalendarModule').factory("eventService", ['$http', function($htt
 
     createEvent: function(event) {
       event.start = event.start.format();
-      if (event.end) {
-        event.end = event.end.format();
-      }
+      if (event.end) event.end = event.end.format();
       return $http.post(serviceBase, { event: event });
     }
   };
