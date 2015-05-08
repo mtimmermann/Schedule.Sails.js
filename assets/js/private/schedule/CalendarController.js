@@ -9,6 +9,10 @@
     // The calendar event source wire-up
     // http://fullcalendar.io/docs/event_data/events_function/
     $scope.events = function(start, end, timezone, callback) {
+      console.log('getEvents: start['+ start.local().format() +'] end['+ end.local().format() +']');
+      //console.log('getEvents: start['+ start.format() +'] end['+ end.format() +']');
+      // http://stackoverflow.com/questions/23527136/cant-find-records-in-waterline-by-date-time
+
       eventService.getEvents()
       .then(function (result) {
         var events = [];
@@ -143,10 +147,8 @@
       });
     };
 
-    // Render calendar on month change or view change
     $scope.renderCalender = function(calendar) {
       console.log('renderCalender');
-      //getEvents(calendar);
 
       if (uiCalendarConfig.calendars[calendar]) {
         uiCalendarConfig.calendars[calendar].fullCalendar('render');
@@ -172,39 +174,6 @@
       }
     };
 
-
-    //function init() {
-    //  //getEvents();
-    //}
-
-    //function getEvents(calendar) {
-    //  eventService.getEvents()
-    //  .then(function (result) {
-    //    angular.forEach(result.data.Items, function(value, key) {
-    //      var event = {
-    //        id: value.id,
-    //        title: value.title,
-    //        start: moment(value.start)
-    //        //start: moment.utc(value.start).local()
-    //        //start: new Date(moment.utc(value.start).format())
-    //      };
-    //      if (value.end) {
-    //        event.end = new moment(value.end);
-    //        //event.end = moment.utc(value.end).local()
-    //        //event.end = new Date(moment.utc(value.end).format());
-    //      }
-    //      $scope.events.push(event);
-    //    });
-    //  })
-    //  .finally(function eitherWay() {
-    //    if (calendar && uiCalendarConfig.calendars[calendar]) {
-    //      uiCalendarConfig.calendars[calendar].fullCalendar('render');
-    //    } else {
-    //      $scope.renderCalender('myCalendar1');
-    //    }
-    //  });
-    //}
-
     // Create event or update existing event
     function saveEvent(event) {
       var isNew = event.id ? false : true;
@@ -228,7 +197,7 @@
         }
       })
       .finally(function eitherWay() {
-        //$('#calendar').fullCalendar('unselect');
+        $('#calendar').fullCalendar('unselect');
       });
     }
 
