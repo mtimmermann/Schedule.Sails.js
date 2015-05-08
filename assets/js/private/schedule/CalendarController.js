@@ -41,8 +41,7 @@
 
     // Create an event
     $scope.select = function(start, end) {
-      console.log('select: start['+ start +'] end['+ end +']');
-
+      console.log('select: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
       var event = {
         title: '',
         start: start,
@@ -69,27 +68,7 @@
        saveEvent(event);
     };
 
-    // Add and removes an event source of choice
-    $scope.addRemoveEventSource = function(sources,source) {
-      console.log('addRemoveEventSource');
-      var canAdd = 0;
-      angular.forEach(sources,function(value, key){
-        if(sources[key] === source){
-          sources.splice(key,1);
-          canAdd = 1;
-        }
-      });
-      if(canAdd === 0){
-        sources.push(source);
-      }
-    };
-
-    /* remove event */
-    $scope.remove = function(index) {
-      console.log('remove');
-      $scope.events.splice(index,1);
-    };
-    /* Change View */
+    // Change View
     $scope.changeView = function(view,calendar) {
       console.log('chaneView');
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
@@ -104,7 +83,6 @@
 
     $scope.renderCalender = function(calendar) {
       console.log('renderCalender');
-
       if (uiCalendarConfig.calendars[calendar]) {
         uiCalendarConfig.calendars[calendar].fullCalendar('render');
       }
@@ -190,6 +168,10 @@
           $scope.selectedEvent = selectedEvent;
           $scope.submit = function() {
             saveEvent($scope.selectedEvent);
+            $modalInstance.dismiss('cancel');
+          }
+          $scope.delete = function() {
+            deleteEvent($scope.selectedEvent);
             $modalInstance.dismiss('cancel');
           }
           $scope.cancel = function() {
