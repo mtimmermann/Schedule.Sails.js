@@ -15,6 +15,13 @@ var EventController = {
    * @param {Object} res
    */
   list: function(req, res) {
+
+    if (!req.session.authenticated) {
+      var email = typeof req.param('email') === 'string' ? req.param('email') : null;
+      var inviteId = typeof req.param('id') === 'string' ? req.param('id') : null;
+      if (!email || !inviteId) return res.forbidden('You are not permitted to perform this action.');
+    }
+
     if (!req.wantsJSON) {
       return res.view('schedule/index', {
         title: 'Schedule',

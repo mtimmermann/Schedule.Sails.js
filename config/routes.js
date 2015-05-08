@@ -73,7 +73,8 @@ module.exports.routes = {
   /**
    * ScheduleInvite Controller
    */
-  'GET /schedule/invite': 'admin/ScheduleInviteController.invite'
+  'GET /schedule/invite': 'admin/ScheduleInviteController.invite',
+  'GET /showschedule':    'admin/ScheduleInviteController.authInvite'
 
   /***************************************************************************
   *                                                                          *

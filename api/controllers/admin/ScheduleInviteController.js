@@ -7,6 +7,36 @@
 var ScheduleInviteController = {
 
   /**
+   * Authorize a user invite to view a schedule
+   *
+   * GET /showschedule
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  authInvite: function(req, res) {
+    if (!req.session.authenticated) {
+      var email = typeof req.param('email') === 'string' ? req.param('email') : null;
+      var inviteId = typeof req.param('id') === 'string' ? req.param('id') : null;
+      if (!email || !inviteId) return res.forbidden('You are not permitted to perform this action.');
+
+      ScheduleInvite.findOne({ email: email, id: inviteId })
+      .exec(function(err, data) {
+        if (err) return res.negotiate(err);
+        if (data) {
+          return res.json({});
+        } else {
+          return res.forbidden('You are not permitted to perform this action.');
+        }
+      });
+
+
+    } else {
+      return res.redirect('/schedule');
+    }
+  },
+
+  /**
    * Create a user invite and email with an auth url for the calendar
    *
    * GET /schedule/invite  user's calandar view
