@@ -57,18 +57,19 @@
       openEditModal(date);
     };
 
-    /* alert on Drop */
+    // On event drop to another date spot
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-       $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
        console.log('Event Droped to make dayDelta ' + delta);
+       saveEvent(event);
     };
-    /* alert on Resize */
+
+    // On event time resize
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-       //$scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
        console.log('alertOnResize');
        saveEvent(event);
     };
-    /* add and removes an event source of choice */
+
+    // Add and removes an event source of choice
     $scope.addRemoveEventSource = function(sources,source) {
       console.log('addRemoveEventSource');
       var canAdd = 0;
