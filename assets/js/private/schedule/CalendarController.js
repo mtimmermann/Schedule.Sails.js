@@ -64,7 +64,9 @@
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+       //$scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
+       console.log('alertOnResize');
+       saveEvent(event);
     };
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
