@@ -19,23 +19,23 @@
     //  {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
     //];
     /* event source that calls a function on every view switch */
-    $scope.eventsF = function (start, end, timezone, callback) {
-      var s = new Date(start).getTime() / 1000;
-      var e = new Date(end).getTime() / 1000;
-      var m = new Date(start).getMonth();
-      var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
-      callback(events);
-    };
+    //$scope.eventsF = function (start, end, timezone, callback) {
+    //  var s = new Date(start).getTime() / 1000;
+    //  var e = new Date(end).getTime() / 1000;
+    //  var m = new Date(start).getMonth();
+    //  var events = [{title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed']}];
+    //  callback(events);
+    //};
 
-    $scope.calEventsExt = {
-       color: '#f00',
-       textColor: 'yellow',
-       events: [ 
-          {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
-          {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
-          {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
-        ]
-    };
+    //$scope.calEventsExt = {
+    //   color: '#f00',
+    //   textColor: 'yellow',
+    //   events: [ 
+    //      {type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+    //      {type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false},
+    //      {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
+    //    ]
+    //};
 
     // Edit event on eventClick
     $scope.alertOnEventClick = function(date, jsEvent, view) {
@@ -57,7 +57,6 @@
             };
             $scope.delete = function() {
               deleteEvent($scope.selectedEvent);
-              //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ $scope.selectedEvent._id ] );
               $modalInstance.dismiss('cancel');
             };
           },
@@ -68,9 +67,11 @@
           }
         });
     };
+
     /* alert on Drop */
      $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
        $scope.alertMessage = ('Event Droped to make dayDelta ' + delta);
+       console.log('Event Droped to make dayDelta ' + delta);
     };
     /* alert on Resize */
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
@@ -78,6 +79,7 @@
     };
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
+      console.log('addRemoveEventSource');
       var canAdd = 0;
       angular.forEach(sources,function(value, key){
         if(sources[key] === source){
@@ -92,10 +94,12 @@
 
     /* remove event */
     $scope.remove = function(index) {
+      console.log('remove');
       $scope.events.splice(index,1);
     };
     /* Change View */
     $scope.changeView = function(view,calendar) {
+      console.log('chaneView');
       uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
     };
     /* Change View */
@@ -111,50 +115,6 @@
                       'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
-
-    function deleteEvent(event) {
-      eventService.deleteEvent(event.id)
-      .then(function onSuccess(result) {
-        toastr.success('Event removed', 'Success', window.myApp.locals.toastrOptions);
-        uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ event._id ] );
-      })
-      .catch(function onError(resp) {
-        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
-        } else {
-          toastr.error('Error removing event', 'Error', window.myApp.locals.toastrOptions);
-        }
-      })
-      .finally(function eitherWay() {
-        $('#calendar').fullCalendar('unselect');
-      });
-    }
-
-    // Create event or update existing event
-    function saveEvent(event) {
-      var isNew = event.id ? false : true;
-      eventService.saveEvent(event)
-      .then(function onSuccess(result) {
-        toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
-        if (isNew) {
-          event.id = result.data.id;
-          $scope.events.push(event);
-        } else {
-          uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', event);
-        }
-        //$('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
-      })
-      .catch(function onError(resp) {
-        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
-        } else {
-          toastr.error('Error saving event', 'Error', window.myApp.locals.toastrOptions);
-        }
-      })
-      .finally(function eitherWay() {
-        $('#calendar').fullCalendar('unselect');
-      });
-    }
 
     // Create an event
     $scope.select = function(start, end) {
@@ -193,7 +153,7 @@
         }
       });
     };
-    /* config object */
+
     $scope.uiConfig = {
       calendar:{
         height: 450,
@@ -213,9 +173,14 @@
       }
     };
 
-    $scope.eventSources = [$scope.events, $scope.eventsF];
+    //$scope.eventSources = [$scope.events, $scope.eventsF];
+    $scope.eventSources = [$scope.events];
 
     function init() {
+      getEvents();
+    }
+
+    function getEvents() {
       eventService.getEvents()
       .then(function (result) {
         angular.forEach(result.data.Items, function(value, key) {
@@ -236,6 +201,50 @@
       })
       .finally(function eitherWay() {
         $scope.renderCalender('myCalendar1');
+      });
+    }
+
+    // Create event or update existing event
+    function saveEvent(event) {
+      var isNew = event.id ? false : true;
+      eventService.saveEvent(event)
+      .then(function onSuccess(result) {
+        toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
+        if (isNew) {
+          event.id = result.data.id;
+          $scope.events.push(event);
+        } else {
+          uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', event);
+        }
+      })
+      .catch(function onError(resp) {
+        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        } else {
+          toastr.error('Error saving event', 'Error', window.myApp.locals.toastrOptions);
+        }
+      })
+      .finally(function eitherWay() {
+        $('#calendar').fullCalendar('unselect');
+      });
+    }
+
+    // Delete an existing event
+    function deleteEvent(event) {
+      eventService.deleteEvent(event.id)
+      .then(function onSuccess(result) {
+        toastr.success('Event removed', 'Success', window.myApp.locals.toastrOptions);
+        uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ event._id ] );
+      })
+      .catch(function onError(resp) {
+        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        } else {
+          toastr.error('Error removing event', 'Error', window.myApp.locals.toastrOptions);
+        }
+      })
+      .finally(function eitherWay() {
+        $('#calendar').fullCalendar('unselect');
       });
     }
 
