@@ -46,7 +46,7 @@
         title: '',
         start: start,
         end: end,
-        color: '#3a87ad' // Default Bold Blue
+        color: '#5484ed' // Default Bold Blue
       };
       openEditModal(event);
     };
