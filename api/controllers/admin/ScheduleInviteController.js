@@ -1,4 +1,5 @@
 ﻿var Q = require('q');
+var Roles = require('../../enums/Roles');
 
 /**
  * ScheduleInvite Controller
@@ -20,17 +21,24 @@ var ScheduleInviteController = {
       var inviteId = typeof req.param('id') === 'string' ? req.param('id') : null;
       if (!email || !inviteId) return res.forbidden('You are not permitted to perform this action.');
 
-      ScheduleInvite.findOne({ email: email, id: inviteId })
-      .exec(function(err, data) {
-        if (err) return res.negotiate(err);
-        if (data) {
-          return res.json({});
-        } else {
-          return res.forbidden('You are not permitted to perform this action.');
-        }
+      Q.all([
+        User.findOne({ email: email }),
+        ScheduleInvite.findOne({ email: email, id: inviteId })
+      ]).spread(function (user, invite) {
+        if (!user) return res.send(409, 'Email not found');
+        if (!invite) return res.send(409, 'Email invite not found');
+
+        //user.role = Roles.user;
+        req.session.authenticated = true;
+        //req.passport.user = user;
+        //req.user = user;
+
+        //return res.json({});
+        return res.redirect('/schedule');
+
+      }).catch(function(err) {
+        return res.negotiate(err);
       });
-
-
     } else {
       return res.redirect('/schedule');
     }

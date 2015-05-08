@@ -12,7 +12,7 @@ module.exports = function isASitedmin (req, res, next) {
 
   // User is allowed, proceed to the next policy, 
   // or if this is the last policy, the controller
-  if (req.session.authenticated && req.user.role === Roles.siteAdmin) {
+  if (req.session.authenticated && req.user && req.user.role === Roles.siteAdmin) {
     return next();
   }
 
