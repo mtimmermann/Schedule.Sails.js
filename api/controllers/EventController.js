@@ -60,6 +60,31 @@ var EventController = {
       return res.json({});
     });
 
+  },
+
+  /**
+   * Update an existing event
+   *
+   * PUT /api/events
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  update: function(req, res) {
+    var event = typeof req.param('event') === 'object' ? req.param('event') : {};
+    if (!event.id || !event.title || !event.start) {
+      return res.send(409, 'event.id, event.title and event.start are required');
+    }
+
+    Event.update({ id: event.id, user: '5539a77d674f4d4c1c4a5e13' }, event)
+    .exec(function(err, data) {
+      if (err) { return res.negotiate(err); }
+      if (data.length == 0) {
+        return res.send(409, 'Event not found');
+      }
+
+      return res.json(data[0]);
+    });
   }
 };
 

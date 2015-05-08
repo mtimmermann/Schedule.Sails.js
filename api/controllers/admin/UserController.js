@@ -141,7 +141,10 @@ var UserController = {
           }
           return res.negotiate(err);
         }
-        return res.json(data);
+        if (data.length == 0) {
+          return res.send(409, 'Event not found');
+        }
+        return res.json(data[0]);
       });
     }).catch(function(err) {
       return res.negotiate(err);

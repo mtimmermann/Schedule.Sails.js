@@ -50,8 +50,9 @@
           controller: function ($scope, $modalInstance, $log, selectedEvent) {
             $scope.selectedEvent = selectedEvent;
             $scope.submit = function() {
-              $log.log('Updating event.');
-              uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
+              //$log.log('Updating event.');
+              saveEvent($scope.selectedEvent);
+              //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
               $modalInstance.dismiss('cancel');
             }
             $scope.cancel = function() {
@@ -90,15 +91,15 @@
         sources.push(source);
       }
     };
-    /* add custom event*/
-    $scope.addEvent = function() {
-      $scope.events.push({
-        title: 'Open Sesame',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        className: ['openSesame']
-      });
-    };
+    ///* add custom event*/
+    //$scope.addEvent = function() {
+    //  $scope.events.push({
+    //    title: 'Open Sesame',
+    //    start: new Date(y, m, 28),
+    //    end: new Date(y, m, 29),
+    //    className: ['openSesame']
+    //  });
+    //};
     /* remove event */
     $scope.remove = function(index) {
       $scope.events.splice(index,1);
@@ -120,6 +121,26 @@
         $compile(element)($scope);
     };
 
+
+    function saveEvent(event) {
+      eventService.saveEvent(event)
+      .then(function onSuccess(result) {
+        //$scope.events.push(event);
+        //$('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
+        toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
+      })
+      .catch(function onError(resp) {
+        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        } else {
+          toastr.error('Error saving evnt', 'Error', window.myApp.locals.toastrOptions);
+        }
+      })
+      .finally(function eitherWay() {
+        $('#calendar').fullCalendar('unselect');
+      });
+    }
+
     // Create an event
     $scope.select = function(start, end) {
       console.log('select: start['+ start +'] end['+ end +']');
@@ -133,24 +154,6 @@
       $scope.selectedEvent = angular.copy(event);
       var selectedEvent = $scope.selectedEvent
 
-      var addEvent = function() {
-        eventService.createEvent($scope.selectedEvent)
-        .then(function onSuccess(result) {
-          $scope.events.push($scope.selectedEvent);
-          //$('#calendar').fullCalendar('renderEvent', event, true); // stick? = true
-          toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
-        })
-        .catch(function onError(resp) {
-          if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-            toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
-          } else {
-            toastr.error('Error saving evnt', 'Error', window.myApp.locals.toastrOptions);
-          }
-        })
-        .finally(function eitherWay() {
-          $('#calendar').fullCalendar('unselect');
-        });
-      };
       $modal.open({
         templateUrl: 'editEventModal.html',
         backdrop: true,
@@ -161,7 +164,7 @@
             $log.log('Updating event.');
             //$scope.events.push($scope.selectedEvent);
             //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
-            addEvent();
+            saveEvent($scope.selectedEvent);
             $modalInstance.dismiss('cancel');
           }
           $scope.cancel = function() {
@@ -196,12 +199,6 @@
     };
 
     $scope.eventSources = [$scope.events, $scope.eventsF];
-
-    $scope.dynamicPopover = {
-      content: 'Hello, World!',
-      templateUrl: 'myPopoverTemplate.html',
-      title: 'Title'
-    };
 
     function init() {
       eventService.getEvents()

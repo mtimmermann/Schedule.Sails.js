@@ -8,10 +8,14 @@ angular.module('CalendarModule').factory("eventService", ['$http', function($htt
       return $http.get(serviceBase);
     },
 
-    createEvent: function(event) {
+    saveEvent: function(event) {
       event.start = event.start.format();
       if (event.end) event.end = event.end.format();
-      return $http.post(serviceBase, { event: event });
+      if (event.id) {
+        return $http.put(serviceBase, { event: event });
+      } else {
+        return $http.post(serviceBase, { event: event });
+      }
     }
   };
 }]);

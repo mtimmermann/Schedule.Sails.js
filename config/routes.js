@@ -37,33 +37,37 @@ module.exports.routes = {
   /**
    * Auth Controller
    */
-  'GET  /signup': 'AuthController.signup',
-  'GET  /logout': 'AuthController.logout',
-  'GET  /forgotpassword': 'AuthController.forgotpassword',
+  'GET  /signup':              'AuthController.signup',
+  'GET  /logout':              'AuthController.logout',
+  'GET  /forgotpassword':      'AuthController.forgotpassword',
   'POST /auth/forgotpassword': 'AuthController.postForgotPassword',
-  'GET  /resetpassword': 'AuthController.resetPassword',
-  'POST /auth/resetpassword': 'AuthController.postResetPassword',
+  'GET  /resetpassword':       'AuthController.resetPassword',
+  'POST /auth/resetpassword':  'AuthController.postResetPassword',
 
-  'POST /auth/local': 'AuthController.callback',
+  'POST /auth/local':         'AuthController.callback',
   'POST /auth/local/:action': 'AuthController.callback',
 
-  'GET /auth/:provider': 'AuthController.provider',
+  'GET /auth/:provider':          'AuthController.provider',
   'GET /auth/:provider/callback': 'AuthController.callback',
 
 
   /**
    * User Controller - Admin
    */
-  'GET    /adminpanel/users': 'admin/UserController.list',
-  'GET    /adminpanel/users/:id': 'admin/UserController.find',
-  'PUT    /adminpanel/users/update': 'admin/UserController.update',
+  'GET    /adminpanel/users':             'admin/UserController.list',
+  'GET    /adminpanel/users/:id':         'admin/UserController.find',
+  'PUT    /adminpanel/users/update':      'admin/UserController.update',
   'DELETE /adminpanel/users/destroy/:id': 'admin/UserController.destroy',
-  'PUT    /adminpanel/users/password': 'admin/UserController.password',
-  'GET    /adminpanel/roles': 'admin/UserController.roles',
+  'PUT    /adminpanel/users/password':    'admin/UserController.password',
+  'GET    /adminpanel/roles':             'admin/UserController.roles',
 
-  'GET  /schedule': 'EventController.list',
+  /**
+   * Event Controller
+   */
+  'GET  /schedule':   'EventController.list',
   'GET  /api/events': 'EventController.list',
-  'POST /api/events': 'EventController.create'
+  'POST /api/events': 'EventController.create',
+  'PUT  /api/events': 'EventController.update'
 
   /***************************************************************************
   *                                                                          *
