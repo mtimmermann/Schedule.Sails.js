@@ -15,7 +15,6 @@ var EventController = {
    * @param {Object} res
    */
   list: function(req, res) {
-
     if (!req.wantsJSON) {
       return res.view('schedule/index', {
         title: 'Schedule',
@@ -24,7 +23,21 @@ var EventController = {
       });
     }
 
-    Event.find({ user: '5539a77d674f4d4c1c4a5e13' })
+    // Setup filter search params
+    var start = req.param('start');
+    var end = req.param('end');
+    var findOptions = {};
+    if (start && end) {
+      start = new Date(start);
+      end = new Date(end);
+      // https://github.com/balderdashy/waterline/issues/110
+      findOptions = {
+        startTimeStamp: { '>=': start, '<': end }
+      };
+    }
+    findOptions.user = '5539a77d674f4d4c1c4a5e13';
+
+    Event.find(findOptions)
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
 
@@ -53,7 +66,14 @@ var EventController = {
     //return res.json({});
 
     // 5539a77d674f4d4c1c4a5e13
-    Event.create({ user: '5539a77d674f4d4c1c4a5e13', title: event.title, start: event.start, end: event.end })
+    Event.create({
+      user: '5539a77d674f4d4c1c4a5e13',
+      title: event.title,
+      start: event.start,
+      startTimeStamp: event.start,
+      end: event.end,
+      endTimeStamp: event.end
+     })
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
 
@@ -74,6 +94,11 @@ var EventController = {
     var event = typeof req.param('event') === 'object' ? req.param('event') : {};
     if (!event.id || !event.title || !event.start) {
       return res.send(409, 'event.id, event.title and event.start are required');
+    }
+
+    event.startTimeStamp = event.startTimeStamp;
+    if (event.end) {
+      event.endTimeStamp = event.end;
     }
 
     Event.update({ id: event.id, user: '5539a77d674f4d4c1c4a5e13' }, event)

@@ -13,7 +13,7 @@
       //console.log('getEvents: start['+ start.format() +'] end['+ end.format() +']');
       // http://stackoverflow.com/questions/23527136/cant-find-records-in-waterline-by-date-time
 
-      eventService.getEvents()
+      eventService.getEvents(start.format(), end.format())
       .then(function (result) {
         var events = [];
         angular.forEach(result.data.Items, function(value, key) {

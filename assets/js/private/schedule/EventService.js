@@ -4,8 +4,9 @@ angular.module('CalendarModule').factory("eventService", ['$http', function($htt
   var serviceBase = '/api/events/';
 
   return {
-    getEvents: function() {
-      return $http.get(serviceBase);
+    getEvents: function(start, end) {
+      var query = start && end ? '?start='+ start +'&end='+ end : '';
+      return $http.get(serviceBase + query);
     },
 
     saveEvent: function(event) {

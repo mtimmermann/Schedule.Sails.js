@@ -9,6 +9,8 @@
     //end: { type: 'date' },
     start: { type: 'string', required: true },
     end: { type: 'string' },
+    startTimeStamp: { type: 'date' },
+    endTimeSTamp: { type: 'date' },
     color: { type: 'string' },
     textColor: { type: 'string' },
     allDay: { type: 'boolean'}
