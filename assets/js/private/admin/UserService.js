@@ -17,11 +17,11 @@ angular.module('UserModule').factory("userService", ['$http', function($http) {
     },
 
     updateUser: function (user) {
-      return $http.put(serviceBase + 'update', { user: user });
+      return $http.put(serviceBase, { user: user });
     },
 
     deleteUser: function (userId) {
-      return $http.delete(serviceBase + 'destroy/' + userId);
+      return $http.delete(serviceBase + userId);
     },
 
     updatePassword: function (userId, password) {

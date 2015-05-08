@@ -56,8 +56,8 @@ module.exports.routes = {
    */
   'GET    /adminpanel/users':             'admin/UserController.list',
   'GET    /adminpanel/users/:id':         'admin/UserController.find',
-  'PUT    /adminpanel/users/update':      'admin/UserController.update',
-  'DELETE /adminpanel/users/destroy/:id': 'admin/UserController.destroy',
+  'PUT    /adminpanel/users':      'admin/UserController.update',
+  'DELETE /adminpanel/users/:id': 'admin/UserController.destroy',
   'PUT    /adminpanel/users/password':    'admin/UserController.password',
   'GET    /adminpanel/roles':             'admin/UserController.roles',
 
