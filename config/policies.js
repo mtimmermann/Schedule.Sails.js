@@ -31,7 +31,15 @@ module.exports.policies = {
 
   'admin/UserController': {
     '*': ['passport', 'isSiteAdmin']
-  }
+  },
+
+  //'admin/ScheduleInviteController': {
+  //  '*': ['passport', 'isAdmin']
+  //},
+
+  //'EventController': {
+  //  '*': ['passport', 'sessionAuth']
+  //}
 
   /***************************************************************************
   *                                                                          *

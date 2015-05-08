@@ -125,9 +125,6 @@ var EventController = {
 
       return res.json(result);
     });
-  },
-
-  createCalendarInvite: function(req, res) {
   }
 };
 
