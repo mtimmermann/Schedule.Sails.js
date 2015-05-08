@@ -5,6 +5,9 @@
     var y = date.getFullYear();
 
     $scope.selectedEvent = null;
+    //$scope.editModel = {
+    //  selectedEvent: null,
+    //};
 
     // The calendar event source wire-up
     // http://fullcalendar.io/docs/event_data/events_function/
@@ -14,7 +17,6 @@
       console.log('getEvents: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
       // http://stackoverflow.com/questions/23527136/cant-find-records-in-waterline-by-date-time
 
-      //eventService.getEvents(start.format(), end.format()) toISOString
       eventService.getEvents(start.toISOString(), end.toISOString())
       .then(function (result) {
         var events = [];
@@ -22,11 +24,10 @@
           var event = {
             id: value.id,
             title: value.title,
-            start: moment(value.start)
+            start: moment(value.start),
+            end: value.end ? moment(value.end) : null,
+            color: value.color || null
           };
-          if (value.end) {
-            event.end = new moment(value.end);
-          }
           events.push(event);
         });
         callback(events);
@@ -38,10 +39,55 @@
 
     $scope.eventSources = [$scope.events];
 
+    // Create an event
+    $scope.select = function(start, end) {
+      console.log('select: start['+ start +'] end['+ end +']');
+
+      var event = {
+        title: '',
+        start: start,
+        end: end,
+        color: '#3a87ad' // Default Bold Blue
+      };
+
+      $scope.selectedEvent = angular.copy(event);
+      var selectedEvent = $scope.selectedEvent
+
+      // Angular JS Bootstrap modal
+      // https://angular-ui.github.io/bootstrap/
+      // http://plnkr.co/edit/bfpma2?p=preview
+      $modal.open({
+        templateUrl: 'editEventModal.html',
+        backdrop: true,
+        windowClass: 'modal',
+        controller: function ($scope, $modalInstance, $log, selectedEvent) {
+          $scope.selectedEvent = selectedEvent;
+          $scope.submit = function() {
+            saveEvent($scope.selectedEvent);
+            $modalInstance.dismiss('cancel');
+          }
+          $scope.cancel = function() {
+            $modalInstance.dismiss('cancel');
+          }
+          $modalInstance.rendered.then(function() {
+            // Init the jquery simple color picker
+            $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+          });
+        },
+        resolve: {
+          selectedEvent: function() {
+            return $scope.selectedEvent;
+          }
+        }
+      });
+    };
+
     // Edit event on eventClick
     $scope.alertOnEventClick = function(date, jsEvent, view) {
         $scope.selectedEvent = angular.copy(date);
         var selectedEvent = $scope.selectedEvent
+        // Angular JS Bootstrap modal
+        // https://angular-ui.github.io/bootstrap/
         // http://plnkr.co/edit/bfpma2?p=preview
         $modal.open({
           templateUrl: 'editEventModal.html',
@@ -55,11 +101,15 @@
             }
             $scope.cancel = function() {
               $modalInstance.dismiss('cancel');
-            };
+            }
             $scope.delete = function() {
               deleteEvent($scope.selectedEvent);
               $modalInstance.dismiss('cancel');
-            };
+            }
+            $modalInstance.rendered.then(function() {
+              // Init the jquery simple color picker
+              $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+            });
           },
           resolve: {
             selectedEvent: function() {
@@ -109,44 +159,6 @@
         element.attr({'tooltip': event.title,
                       'tooltip-append-to-body': true});
         $compile(element)($scope);
-    };
-
-    // Create an event
-    $scope.select = function(start, end) {
-      console.log('select: start['+ start +'] end['+ end +']');
-
-      var event = {
-        title: '',
-        start: start,
-        end: end
-      };
-
-      $scope.selectedEvent = angular.copy(event);
-      var selectedEvent = $scope.selectedEvent
-
-      $modal.open({
-        templateUrl: 'editEventModal.html',
-        backdrop: true,
-        windowClass: 'modal',
-        controller: function ($scope, $modalInstance, $log, selectedEvent) {
-          $scope.selectedEvent = selectedEvent;
-          $scope.submit = function() {
-            $log.log('Updating event.');
-            //$scope.events.push($scope.selectedEvent);
-            //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
-            saveEvent($scope.selectedEvent);
-            $modalInstance.dismiss('cancel');
-          }
-          $scope.cancel = function() {
-            $modalInstance.dismiss('cancel');
-          };
-        },
-        resolve: {
-          selectedEvent: function() {
-            return $scope.selectedEvent;
-          }
-        }
-      });
     };
 
     $scope.renderCalender = function(calendar) {
@@ -221,6 +233,5 @@
         $('#calendar').fullCalendar('unselect');
       });
     }
-
 
 }]);

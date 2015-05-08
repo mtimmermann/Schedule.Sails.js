@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="/js/dependencies/fullcalendar/fullcalendar.css">
+    <link rel="stylesheet" href="/js/dependencies/simplecolorpicker/jquery.simplecolorpicker.css">
+    <link rel="stylesheet" href="/js/dependencies/simplecolorpicker/jquery.simplecolorpicker-regularfont.css">
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/angular-toastr.css">
     <link rel="stylesheet" href="/styles/bootstrap.3.1.1.css">
@@ -62,6 +64,27 @@
                 </div>
               </div>
             </div>
+            <div class="row">
+              <div class="control-group form-group">
+                <label class="col-md-2">Event Color</label>
+                <select name="colorpicker-regularfont" class="form-control" ng-model="selectedEvent.color">
+                  <option value="#3a87ad">Bold Blue</option>
+
+                  <option value="#7bd148">Green</option>
+                  <option value="#5484ed">Bold blue</option>
+                  <option value="#a4bdfc">Blue</option>
+                  <option value="#46d6db">Turquoise</option>
+                  <option value="#7ae7bf">Light green</option>
+                  <option value="#51b749">Bold green</option>
+                  <option value="#fbd75b">Yellow</option>
+                  <option value="#ffb878">Orange</option>
+                  <option value="#ff887c">Red</option>
+                  <option value="#dc2127">Bold red</option>
+                  <option value="#dbadff">Purple</option>
+                  <option value="#e1e1e1">Gray</option>
+                </select>
+              </div>
+            </div>
           </div>
           <div class="modal-footer">
               <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
@@ -75,6 +98,7 @@
 <%- partial ('../_footer.ejs') %>
 
   <script src="/js/dependencies/jquery/jquery.min.js"></script>
+  <script src="/js/dependencies/simplecolorpicker/jquery.simplecolorpicker.js"></script>
 
   <!--SCRIPTS-->
   <script src="/js/dependencies/sails.io.js"></script>

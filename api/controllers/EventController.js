@@ -63,16 +63,9 @@ var EventController = {
       return res.send(409, 'event.title and event.start are required');
     }
 
-    //return res.json({});
-
-    // 5539a77d674f4d4c1c4a5e13
-    Event.create({
-      user: '5539a77d674f4d4c1c4a5e13',
-      title: event.title,
-      start: event.start,
-      startTimeStamp: event.start,
-      end: event.end
-     })
+    event.user = '5539a77d674f4d4c1c4a5e13';
+    event.startTimeStamp = event.start;
+    Event.create(event)
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
 
@@ -95,7 +88,9 @@ var EventController = {
       return res.send(409, 'event.id, event.title and event.start are required');
     }
 
-    event.startTimeStamp = event.startTimeStamp;
+    // TODO: Check if auth user matches event user
+
+    event.startTimeStamp = event.start;
     Event.update({ id: event.id, user: '5539a77d674f4d4c1c4a5e13' }, event)
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }

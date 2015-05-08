@@ -22,6 +22,8 @@
     <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.min.css" />
     <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.print.css" />
     <Content Include="assets\js\dependencies\jquery\jquery.min.map" />
+    <Content Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker-regularfont.css" />
+    <Content Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.css" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Compile Include="api\controllers\EventController.js" />
@@ -36,6 +38,7 @@
     <Compile Include="assets\js\dependencies\jquery\jquery.js" />
     <Compile Include="assets\js\dependencies\jquery\jquery.min.js" />
     <Compile Include="assets\js\dependencies\moment\moment.min.js" />
+    <Compile Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.js" />
     <Compile Include="assets\js\private\schedule\CalendarController.js" />
     <Compile Include="assets\js\private\schedule\CalendarModule.js" />
     <Compile Include="assets\js\private\schedule\EventService.js" />
@@ -181,6 +184,7 @@
     <Folder Include="assets\js\dependencies\fullcalendar\" />
     <Folder Include="assets\js\dependencies\moment\" />
     <Folder Include="assets\js\dependencies\bootstrap\" />
+    <Folder Include="assets\js\dependencies\simplecolorpicker\" />
     <Folder Include="assets\js\private" />
     <Folder Include="assets\js\private\admin" />
     <Folder Include="assets\js\private\schedule\" />
