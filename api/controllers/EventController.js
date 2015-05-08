@@ -85,6 +85,31 @@ var EventController = {
 
       return res.json(data[0]);
     });
+  },
+
+  /**
+   * Delete an existing event
+   *
+   * DELETE /api/events
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  destroy: function(req, res) {
+    var id = typeof req.param('id') === 'string' ? req.param('id') : null;
+    if (!id) {
+      return res.send(409, 'id is required');
+    }
+
+    Event.destroy({ user: '5539a77d674f4d4c1c4a5e13', id: id })
+    .exec(function(err, result) {
+      if (err) return res.negotiate(err);
+      if (result.length == 0) {
+        return res.send(409, 'Event not found');
+      }
+
+      return res.json(result);
+    });
   }
 };
 

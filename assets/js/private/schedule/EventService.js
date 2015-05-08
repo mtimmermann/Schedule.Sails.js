@@ -16,6 +16,10 @@ angular.module('CalendarModule').factory("eventService", ['$http', function($htt
       } else {
         return $http.post(serviceBase, { event: event });
       }
+    },
+
+    deleteEvent: function(id) {
+      return $http.delete(serviceBase + id);
     }
   };
 }]);

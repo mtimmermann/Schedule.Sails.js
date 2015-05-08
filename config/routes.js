@@ -64,10 +64,11 @@ module.exports.routes = {
   /**
    * Event Controller
    */
-  'GET  /schedule':   'EventController.list',
-  'GET  /api/events': 'EventController.list',
-  'POST /api/events': 'EventController.create',
-  'PUT  /api/events': 'EventController.update'
+  'GET    /schedule':       'EventController.list',
+  'GET    /api/events':     'EventController.list',
+  'POST   /api/events':     'EventController.create',
+  'PUT    /api/events':     'EventController.update',
+  'DELETE /api/events/:id': 'EventController.destroy'
 
   /***************************************************************************
   *                                                                          *

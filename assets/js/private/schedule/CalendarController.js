@@ -38,8 +38,6 @@
 
     // Edit event on eventClick
     $scope.alertOnEventClick = function(date, jsEvent, view) {
-        $scope.alertMessage = (date.title + ' was clicked ');
-
         $scope.selectedEvent = angular.copy(date);
         var selectedEvent = $scope.selectedEvent
         // http://plnkr.co/edit/bfpma2?p=preview
@@ -50,16 +48,15 @@
           controller: function ($scope, $modalInstance, $log, selectedEvent) {
             $scope.selectedEvent = selectedEvent;
             $scope.submit = function() {
-              //$log.log('Updating event.');
               saveEvent($scope.selectedEvent);
-              //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', $scope.selectedEvent);
               $modalInstance.dismiss('cancel');
             }
             $scope.cancel = function() {
               $modalInstance.dismiss('cancel');
             };
             $scope.delete = function() {
-              uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ $scope.selectedEvent._id ] );
+              deleteEvent($scope.selectedEvent);
+              //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ $scope.selectedEvent._id ] );
               $modalInstance.dismiss('cancel');
             };
           },
@@ -91,15 +88,7 @@
         sources.push(source);
       }
     };
-    ///* add custom event*/
-    //$scope.addEvent = function() {
-    //  $scope.events.push({
-    //    title: 'Open Sesame',
-    //    start: new Date(y, m, 28),
-    //    end: new Date(y, m, 29),
-    //    className: ['openSesame']
-    //  });
-    //};
+
     /* remove event */
     $scope.remove = function(index) {
       $scope.events.splice(index,1);
@@ -114,14 +103,33 @@
         uiCalendarConfig.calendars[calendar].fullCalendar('render');
       }
     };
-     /* Render Tooltip */
+
+    // Render Tooltip
     $scope.eventRender = function( event, element, view ) { 
         element.attr({'tooltip': event.title,
                       'tooltip-append-to-body': true});
         $compile(element)($scope);
     };
 
+    function deleteEvent(event) {
+      eventService.deleteEvent(event.id)
+      .then(function onSuccess(result) {
+        toastr.success('Event removed', 'Success', window.myApp.locals.toastrOptions);
+        uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ event._id ] );
+      })
+      .catch(function onError(resp) {
+        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        } else {
+          toastr.error('Error removing event', 'Error', window.myApp.locals.toastrOptions);
+        }
+      })
+      .finally(function eitherWay() {
+        $('#calendar').fullCalendar('unselect');
+      });
+    }
 
+    // Create event or update existing event
     function saveEvent(event) {
       var isNew = event.id ? false : true;
       eventService.saveEvent(event)
@@ -139,7 +147,7 @@
         if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
           toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
         } else {
-          toastr.error('Error saving evnt', 'Error', window.myApp.locals.toastrOptions);
+          toastr.error('Error saving event', 'Error', window.myApp.locals.toastrOptions);
         }
       })
       .finally(function eitherWay() {
