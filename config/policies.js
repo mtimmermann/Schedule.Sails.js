@@ -36,8 +36,11 @@ module.exports.policies = {
     'destroy': ['passport', 'sessionAuth']
   },
 
+  // UserController - Everthing requires SiteAdmin privledges with the
+  // exception of needing just Admin privledges for the list action
   'admin/UserController': {
-    //'*': ['passport', 'isSiteAdmin']
+    '*': ['passport', 'isSiteAdmin'],
+    'list': ['passport', 'isAdmin'],
   },
 
   'admin/ScheduleInviteController': {
