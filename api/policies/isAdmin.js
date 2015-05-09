@@ -12,9 +12,7 @@ module.exports = function isAdmin (req, res, next) {
 
   // User is allowed, proceed to the next policy, 
   // or if this is the last policy, the controller
-  var role = '';
-  if (req.session.role) role = req.session.role;
-  else if (req.user && req.user.role) role = req.user.role;
+  var role = req.session.role || '';
 
   if (req.session.authenticated && (role === Roles.admin || role === Roles.siteAdmin))  {
     return next();
