@@ -5,17 +5,16 @@ var transporter = null; // Reusable nodemailer transporter object using SMTP tra
 /**
  * ScheduleInvite Controller
  */
-
 var ScheduleInviteController = {
 
   /**
-   * Create a user invite and email with an auth url for the calendar
-   *
-   * GET /schedule/invite  user's calandar view
-   *
-   * @param {Object} req
-   * @param {Object} res
-   */
+    * Create a user invite and email with an auth url for the calendar
+    *
+    * GET /schedule/invite  user's calandar view
+    *
+    * @param {Object} req
+    * @param {Object} res
+    */
   invite: function(req, res) {
     var email = typeof req.param('email') === 'string' ? req.param('email') : null;
     if (!email) {
@@ -28,7 +27,7 @@ var ScheduleInviteController = {
     ]).spread(function (user, invite) {
       if (!user) return res.send(409, 'Email not found');
 
-      var inviteDeferred = Q.defer();
+      inviteDeferred = Q.defer();
       inviteDeferred.promise.then(function(error, result) {
         if (error) return res.negotiate(error);
         return res.json(data);
@@ -43,32 +42,39 @@ var ScheduleInviteController = {
           }
 
           var url = req.baseUrl +'/schedule/show?email='+ email +'&id='+ data.id;
-
-          // Create reusable transporter object using SMTP transport
-          if (!transporter) transporter = nodemailer.createTransport(sails.config.email.transporterSettings);
-          var mailOptions = {
-            from: sails.config.email.senderAddress,
-            to: email,
-            subject: 'Schedule Invite',
-            text: url,
-            html: '<a href="'+ url +'">View your schedule</a>'
-          };
-          transporter.sendMail(mailOptions, function(error, info) {
-            if (error) {
-              sails.log.error('Error sending schedule invite email to: '+ email, error);
-              inviteDeferred.resolve(error, null);
-            } else {
-              inviteDeferred.resolve(null, data);
-            }
-          });
+          sendInviteEmail(email, url, data);
         });
       } else {
-        inviteDeferred.resolve(null, data);
+        var url = req.baseUrl +'/schedule/show?email='+ email +'&id='+ invite.id;
+        sendInviteEmail(email, url, invite);
       }
     }).catch(function(err) {
       return res.negotiate(err);
     });
   }
 };
+
+
+var inviteDeferred = null;
+
+function sendInviteEmail (email, url, inviteData) {
+  // Create reusable transporter object using SMTP transport
+  if (!transporter) transporter = nodemailer.createTransport(sails.config.email.transporterSettings);
+  var mailOptions = {
+    from: sails.config.email.senderAddress,
+    to: email,
+    subject: 'Schedule Invite',
+    text: url,
+    html: '<a href="'+ url +'">View your schedule</a>'
+  };
+  transporter.sendMail(mailOptions, function(error, info) {
+    if (error) {
+      sails.log.error('Error sending schedule invite email to: '+ email, error);
+      inviteDeferred.resolve(error, null);
+    } else {
+      inviteDeferred.resolve(null, inviteData);
+    }
+  });
+}
 
 module.exports = ScheduleInviteController;
