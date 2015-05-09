@@ -26,6 +26,7 @@
     <Content Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.css" />
     <Content Include="package.json" />
     <Content Include="README.md" />
+    <Compile Include="api\controllers\admin\LogController.js" />
     <Compile Include="api\controllers\admin\ScheduleInviteController.js" />
     <Compile Include="api\controllers\EventController.js" />
     <Compile Include="api\models\Event.js" />

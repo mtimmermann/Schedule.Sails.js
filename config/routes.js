@@ -75,6 +75,11 @@ module.exports.routes = {
    */
   'GET /schedule/invite/find': 'admin/ScheduleInviteController.find',
   'GET /schedule/invite':      'admin/ScheduleInviteController.invite',
-  'GET /schedule/show':        'admin/ScheduleInviteController.authInvite'
+  'GET /schedule/show':        'admin/ScheduleInviteController.authInvite',
+
+  /**
+   * Log Controller - Admin
+   */
+  'GET /adminpanel/logs': 'admin/LogController.list'
 
 };
