@@ -35,8 +35,19 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
     getResultsPage($scope.currentPage);
   };
 
-  function sendCalendarInvite(user) {
-    console.log('sendCalendarInvite -> '+ user.id);
+  function sendCalendarInvite(email) {
+    console.log('sendCalendarInvite -> '+ email);
+    userService.sendCalenderInvite(email)
+    .then(function (result) {
+      toastr.success('Calendar invite sent', 'Success', window.myApp.locals.toastrOptions);
+    })
+    .catch(function onError(resp) {
+      if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+      } else {
+        toastr.error('Error sending calendar invite', 'Error', window.myApp.locals.toastrOptions);
+      }
+    });
   }
   $scope.calendarInvite = function(user) {
     $scope.selectedUser = angular.copy(user);
@@ -49,7 +60,7 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
       controller: function ($scope, $modalInstance, $log, selectedUser) {
         $scope.selectedUser = selectedUser;
         $scope.sendInvite = function() {
-          sendCalendarInvite($scope.selectedUser);
+          sendCalendarInvite($scope.selectedUser.email);
           $modalInstance.dismiss('cancel');
         };
         $scope.cancel = function() {
