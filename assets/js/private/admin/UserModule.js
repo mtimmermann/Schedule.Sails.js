@@ -2,7 +2,7 @@
 
 // http://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/
 
-angular.module('UserModule', ['ngRoute', 'angularUtils.directives.dirPagination', 'toastr', 'compareTo']);
+angular.module('UserModule', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'toastr', 'compareTo']);
 
 //angular.module('UserModule').config(function($stateProvider, $httpProvider) {
 angular.module('UserModule').config(function($routeProvider) {

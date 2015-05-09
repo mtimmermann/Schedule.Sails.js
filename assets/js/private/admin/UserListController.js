@@ -1,4 +1,4 @@
-angular.module('UserModule').controller('UserListController', ['$scope', 'userService', 'toastr', function($scope, userService, toastr) {
+angular.module('UserModule').controller('UserListController', ['$scope', 'userService', '$modal', 'toastr', function($scope, userService, $modal, toastr) {
 
   $scope.users = [];
   $scope.currentPage = 1;
@@ -33,6 +33,39 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
 
   $scope.onFilter = function(filter) {
     getResultsPage($scope.currentPage);
+  };
+
+  $scope.calendarInvite = function(id) {
+    console.log('calendarInvite -> '+ id);
+    $modal.open({
+      templateUrl: 'sendInvite.html',
+      backdrop: true,
+      windowClass: 'modal',
+      //controller: function ($scope, $modalInstance, $log, selectedEvent) {
+      controller: function ($scope, $modalInstance, $log) {
+        //$scope.selectedEvent = selectedEvent;
+        $scope.submit = function() {
+          //saveEvent($scope.selectedEvent);
+          $modalInstance.dismiss('cancel');
+        }
+        $scope.delete = function() {
+          //deleteEvent($scope.selectedEvent);
+          $modalInstance.dismiss('cancel');
+        }
+        $scope.cancel = function() {
+          $modalInstance.dismiss('cancel');
+        }
+        $modalInstance.rendered.then(function() {
+          // Init the jquery simple color picker
+          //$('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+        });
+      },
+      resolve: {
+        //selectedEvent: function() {
+        //  return $scope.selectedEvent;
+        //}
+      }
+    });
   };
 
   function getResultsPage(pageNumber) {

@@ -6,6 +6,31 @@
 
 <%- partial ('../../_footer.ejs') %>
 
+  <script type="text/ng-template" id="sendInvite.html">
+    <div class="modal-header">
+      <h3>Send Invite to: {{user.id}}</h3>
+    </div>
+    <form ng-submit="submit()" name="createEventForm">
+      <div class="modal-body">
+        <div class="row">
+          <div class="control-group form-group" ng-class="{'has-error':createEventForm.title.$invalid && createEventForm.title.$dirty}">
+            <label class="col-md-2">Title</label>
+            <div class="col-md-4">
+              <input type="text" name="title" class="form-control" ng-model="selectedEvent.title" required />
+              <span class="help-block has-error" ng-if="createEventForm.title.$dirty">
+                <span ng-show="createEventForm.title.$error.required">Title is required.</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+        <input type="submit" class="btn primary-btn" value="Send" />
+      </div>
+    </form>
+  </script>
+
   <!--SCRIPTS-->
   <script src="/js/dependencies/sails.io.js"></script>
   <script src="/js/dependencies/angular.min.js"></script>
@@ -14,6 +39,7 @@
   <script src="/js/public/utils.js"></script>
   <!--SCRIPTS END-->
   
+  <script src="/js/dependencies/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
   <script src="/js/dependencies/angular/directives/dirPagination.min.js"></script>
   <script src="/js/dependencies/angular/angular-route.min.js"></script>
   <script src="/js/private/admin/UserModule.js"></script>
