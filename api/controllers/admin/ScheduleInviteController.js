@@ -27,20 +27,20 @@ var ScheduleInviteController = {
     ]).spread(function (user, invite) {
       if (!user) return res.send(409, 'Email not found');
 
+      // Defer the sendInvite call
       inviteDeferred = Q.defer();
-      inviteDeferred.promise.then(function(error, result) {
-        if (error) return res.negotiate(error);
-        return res.json(data);
+      inviteDeferred.promise.then(function(result) {
+        return res.json(result);
+      }).fail(function(error) {
+        res.negotiate(error)
       });
-
       if (!invite) {
         ScheduleInvite.create({ user: user.id, email: email })
         .exec(function(err, data) {
           if (err) {
             sails.log.error('Error creating schedule invite for: '+ email, err);
-            inviteDeferred.resolve(error, null);
+            inviteDeferred.reject(error)
           }
-
           var url = req.baseUrl +'/schedule/show?email='+ email +'&id='+ data.id;
           sendInviteEmail(email, url, data);
         });
@@ -48,6 +48,7 @@ var ScheduleInviteController = {
         var url = req.baseUrl +'/schedule/show?email='+ email +'&id='+ invite.id;
         sendInviteEmail(email, url, invite);
       }
+
     }).catch(function(err) {
       return res.negotiate(err);
     });
@@ -70,9 +71,9 @@ function sendInviteEmail (email, url, inviteData) {
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
       sails.log.error('Error sending schedule invite email to: '+ email, error);
-      inviteDeferred.resolve(error, null);
+      inviteDeferred.reject(error);
     } else {
-      inviteDeferred.resolve(null, inviteData);
+      inviteDeferred.resolve(inviteData);
     }
   });
 }
