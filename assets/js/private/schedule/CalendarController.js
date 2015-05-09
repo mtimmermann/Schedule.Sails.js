@@ -215,11 +215,5 @@
     });
   }
 
-  //function init() {
-  //  //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('changeView', 'agendaWeek');
-  //}
-
-  //init();
-
 
 }]);
