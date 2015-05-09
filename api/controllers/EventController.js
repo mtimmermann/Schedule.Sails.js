@@ -1,6 +1,4 @@
-﻿var Q = require('q');
-
-/**
+﻿/**
  * Event Controller
  */
 

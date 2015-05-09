@@ -57,9 +57,9 @@ var AuthController = {
       return res.send(409, 'email is required');
     }
 
-    Q.all([
-      User.findOne({ email: email })
-    ]).spread(function (user) {
+    User.findOne({ email: email })
+    .exec(function(err, user) {
+      if (err) return res.negotiate(err);
       if (!user) return res.send(409, 'User not found');
 
       Passport.findOne({ user: user.id, protocol: 'local'})
@@ -84,7 +84,7 @@ var AuthController = {
           };
           transporter.sendMail(mailOptions, function(error, info) {
             if (error) {
-              sails.log.error('Error sending forgotton password submit to: '+ email);
+              sails.log.error('Error sending forgotton password submit to: '+ email, error);
               return res.send(409, 'Error sending forgotton password email');
             } else {
               return res.json({});
@@ -93,9 +93,6 @@ var AuthController = {
 
         });
       });
-
-    }).catch(function(err) {
-      return res.negotiate(err);
     });
   },
 
