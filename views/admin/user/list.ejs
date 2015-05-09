@@ -13,22 +13,22 @@
     <div class="modal-body">
       <div class="row">
         <label class="col-md-4">User Name</label>
-        <div class="col-md-4">{{selectedUser.username}}</div>
+        <div class="col-md-4"><b>{{selectedUser.username}}</b></div>
       </div>
       <div class="row">
         <label class="col-md-4">Email</label>
-        <div class="col-md-4">{{selectedUser.email}}</div>
+        <div class="col-md-4"><b>{{selectedUser.email}}</b></div>
       </div>
       <div class="row">
         <label class="col-md-4">Invite URL</label>
         <div class="col-md-4" ng-show="selectedUser.inviteUrl">
-          <a href="{{selectedUser.inviteUrl}}">{{selectedUser.inviteUrl}}</a>
+          <b><a href="{{selectedUser.inviteUrl}}">{{selectedUser.inviteUrl}}</a></b>
         </div>
-        <div class="col-md-4" ng-show="selectedUser.inviteNotCreated">
-          An Invite has not yet been created.
+        <div class="col-md-4 text-warning" ng-show="selectedUser.inviteNotCreated">
+          <b>An Invite has not yet been created.</b>
         </div>
-        <div class="col-md-4" ng-show="selectedUser.inviteSearchFailed">
-          Failed to retrieve invite data.
+        <div class="col-md-4 text-danger" ng-show="selectedUser.inviteSearchFailed">
+          <b>Failed to retrieve invite data.</b>
         </div>
       </div>
     </div>
