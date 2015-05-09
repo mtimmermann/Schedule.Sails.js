@@ -39,7 +39,7 @@ var EventController = {
         startTimeStamp: { '>=': start, '<': end }
       };
     }
-    findOptions.user = '5539a77d674f4d4c1c4a5e13';
+    findOptions.user = req.user.id;
 
     Event.find(findOptions)
     .exec(function(err, data) {
@@ -67,7 +67,7 @@ var EventController = {
       return res.send(409, 'event.title and event.start are required');
     }
 
-    event.user = '5539a77d674f4d4c1c4a5e13';
+    event.user = req.user.id;
     event.startTimeStamp = event.start;
     Event.create(event)
     .exec(function(err, data) {
@@ -95,7 +95,7 @@ var EventController = {
     // TODO: Check if auth user matches event user
 
     event.startTimeStamp = event.start;
-    Event.update({ id: event.id, user: '5539a77d674f4d4c1c4a5e13' }, event)
+    Event.update({ id: event.id, user: req.user.id }, event)
     .exec(function(err, data) {
       if (err) { return res.negotiate(err); }
       if (data.length == 0) {
@@ -120,7 +120,7 @@ var EventController = {
       return res.send(409, 'id is required');
     }
 
-    Event.destroy({ user: '5539a77d674f4d4c1c4a5e13', id: id })
+    Event.destroy({ user: req.user.id, id: id })
     .exec(function(err, result) {
       if (err) return res.negotiate(err);
       if (result.length == 0) {
