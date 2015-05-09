@@ -34,6 +34,10 @@ angular.module('UserModule').factory("userService", ['$http', function($http) {
 
     sendCalenderInvite: function(email) {
       return $http.get('/schedule/invite?email='+ email);
+    },
+
+    getInviteData: function(userId, email) {
+      return $http.get('/schedule/invite/find?id='+ userId +'&email='+ email);
     }
   };
 }]);

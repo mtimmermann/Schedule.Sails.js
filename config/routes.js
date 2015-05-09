@@ -74,16 +74,7 @@ module.exports.routes = {
   /**
    * ScheduleInvite Controller
    */
-  'GET /schedule/invite': 'admin/ScheduleInviteController.invite'
-
-  /***************************************************************************
-  *                                                                          *
-  * Custom routes here...                                                    *
-  *                                                                          *
-  *  If a request to a URL doesn't match any of the custom routes above, it  *
-  * is matched against Sails route blueprints. See `config/blueprints.js`    *
-  * for configuration options and examples.                                  *
-  *                                                                          *
-  ***************************************************************************/
+  'GET /schedule/invite/find': 'admin/ScheduleInviteController.find',
+  'GET /schedule/invite':     'admin/ScheduleInviteController.invite'
 
 };

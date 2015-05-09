@@ -8,6 +8,32 @@ var transporter = null; // Reusable nodemailer transporter object using SMTP tra
 var ScheduleInviteController = {
 
   /**
+   * Return an event by User ID and Email
+   *
+   * GET /schedule/invite/find
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  find: function(req, res) {
+    var userId = typeof req.param('id') === 'string' ? req.param('id') : null;
+    var email = typeof req.param('email') === 'string' ? req.param('email') : null;
+    if (!userId || !email) {
+      return res.send(409, 'id and email are required');
+    }
+
+    ScheduleInvite.findOne({ user: userId, email: email })
+    .exec(function(err, data) {
+      if (err) return res.negotiate(error);
+
+      if (data) {
+        data.inviteUrl = req.baseUrl +'/schedule/show?email='+ email +'&id='+ data.id;
+      }
+      return res.json(data);
+    });
+  },
+
+  /**
     * Create a user invite and email with an auth url for the calendar
     *
     * GET /schedule/invite  user's calandar view

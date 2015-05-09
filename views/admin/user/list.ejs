@@ -8,7 +8,7 @@
 
   <script type="text/ng-template" id="sendInvite.html">
     <div class="modal-header">
-      <h3>Send Invite to: {{selectedUser.id}}</h3>
+      <h3>Send Invite</h3>
     </div>
     <div class="modal-body">
       <div class="row">
@@ -18,6 +18,18 @@
       <div class="row">
         <label class="col-md-4">Email</label>
         <div class="col-md-4">{{selectedUser.email}}</div>
+      </div>
+      <div class="row">
+        <label class="col-md-4">Invite URL</label>
+        <div class="col-md-4" ng-show="selectedUser.inviteUrl">
+          <a href="{{selectedUser.inviteUrl}}">{{selectedUser.inviteUrl}}</a>
+        </div>
+        <div class="col-md-4" ng-show="selectedUser.inviteNotCreated">
+          An Invite has not yet been created.
+        </div>
+        <div class="col-md-4" ng-show="selectedUser.inviteSearchFailed">
+          Failed to retrieve invite data.
+        </div>
       </div>
     </div>
     <div class="modal-footer">

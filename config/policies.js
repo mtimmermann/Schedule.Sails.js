@@ -38,14 +38,14 @@ module.exports.policies = {
 
   // UserController - Everthing requires SiteAdmin privledges with the
   // exception of needing just Admin privledges for the list action
-  'admin/UserController': {
-    '*': ['passport', 'isSiteAdmin'],
-    'list': ['passport', 'isAdmin'],
-  },
+  //'admin/UserController': {
+  //  '*': ['passport', 'isSiteAdmin'],
+  //  'list': ['passport', 'isAdmin'],
+  //},
 
-  'admin/ScheduleInviteController': {
-    '*': ['passport', 'isAdmin']
-  }
+  //'admin/ScheduleInviteController': {
+  //  '*': ['passport', 'isAdmin']
+  //}
 
   /***************************************************************************
   *                                                                          *

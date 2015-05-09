@@ -60,6 +60,10 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
       windowClass: 'modal',
       controller: function ($scope, $modalInstance, $log, selectedUser) {
         $scope.selectedUser = selectedUser;
+        $scope.selectedUser.inviteUrl = null;
+        $scope.selectedUser.inviteNotCreated = false;
+        $scope.selectedUser.inviteSearchFailed = false;
+        
         $scope.sendInvite = function() {
           sendCalendarInvite($scope.selectedUser.email);
           $modalInstance.dismiss('cancel');
@@ -67,6 +71,21 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
         $scope.cancel = function() {
           $modalInstance.dismiss('cancel');
         };
+
+        function init() {
+          userService.getInviteData($scope.selectedUser.id, $scope.selectedUser.email)
+          .then(function(result) {
+            if (result.data) {
+              $scope.selectedUser.inviteUrl = result.data.inviteUrl;
+            } else {
+              $scope.selectedUser.inviteNotCreated = true;
+            }
+          })
+          .catch(function onError(resp) {
+            $scope.selectedUser.inviteSearchFailed = true;
+          });
+        }
+        init();
       },
       resolve: {
         selectedUser: function() {
