@@ -69,12 +69,12 @@ module.exports.routes = {
   'PUT    /api/events':     'EventController.update',
   'DELETE /api/events/:id': 'EventController.destroy',
   'GET    /schedule':       'EventController.list',
-  'GET    /schedule/show':  'EventController.authInvite',
 
   /**
    * ScheduleInvite Controller
    */
   'GET /schedule/invite/find': 'admin/ScheduleInviteController.find',
-  'GET /schedule/invite':     'admin/ScheduleInviteController.invite'
+  'GET /schedule/invite':      'admin/ScheduleInviteController.invite',
+  'GET /schedule/show':        'admin/ScheduleInviteController.authInvite'
 
 };

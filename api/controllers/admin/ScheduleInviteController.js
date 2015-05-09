@@ -1,4 +1,5 @@
 ﻿var Q = require('q');
+var Roles = require('../../enums/Roles');
 var nodemailer = require('nodemailer');
 var transporter = null; // Reusable nodemailer transporter object using SMTP transport
 
@@ -74,6 +75,51 @@ var ScheduleInviteController = {
         var url = req.baseUrl +'/schedule/show?email='+ email +'&id='+ invite.id;
         sendInviteEmail(email, url, invite);
       }
+
+    }).catch(function(err) {
+      return res.negotiate(err);
+    });
+  },
+
+  /**
+   * Authorize a user invite to view a schedule
+   *
+   * GET /schedule/show
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  authInvite: function(req, res) {
+
+    if (req.session.authenticated) {
+      req.session.authenticated = false;
+
+      // Null out session role override if it exists
+      req.session.role = null;
+    }
+
+    var email = typeof req.param('email') === 'string' ? req.param('email') : null;
+    var inviteId = typeof req.param('id') === 'string' ? req.param('id') : null;
+    if (!email || !inviteId) return res.forbidden('You are not permitted to perform this action.');
+
+    Q.all([
+      User.findOne({ email: email }),
+      ScheduleInvite.findOne({ email: email, id: inviteId })
+    ]).spread(function (user, invite) {
+      if (!user) return res.send(409, 'Email not found');
+      if (!invite) return res.send(409, 'Email invite not found');
+
+      // Authenticate user
+      req.login(user, function (err) {
+        if (err) return res.negotiate(err);
+
+        req.session.authenticated = true;
+
+        // Override the session role with limited priveleges
+        req.session.role = Roles.user;
+
+        return res.redirect('/schedule');
+      });
 
     }).catch(function(err) {
       return res.negotiate(err);

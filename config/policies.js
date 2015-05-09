@@ -30,12 +30,7 @@ module.exports.policies = {
   '*': ['passport'],
 
   'EventController': {
-    '*': ['passport', 'sessionAuth'],
-    'authInvite': ['passport']
-    //'list': ['passport', 'sessionAuth'],
-    //'create': ['passport', 'sessionAuth'],
-    //'update': ['passport', 'sessionAuth'],
-    //'destroy': ['passport', 'sessionAuth']
+    '*': ['passport', 'sessionAuth']
   },
 
   // UserController - Everthing requires SiteAdmin privledges with the
@@ -46,7 +41,8 @@ module.exports.policies = {
   },
 
   'admin/ScheduleInviteController': {
-    '*': ['passport', 'isAdmin']
+    '*': ['passport', 'isAdmin'],
+    'authInvite': ['passport']
   }
 
   /***************************************************************************
