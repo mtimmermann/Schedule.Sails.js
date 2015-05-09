@@ -16,17 +16,17 @@ var MongoDB = require('winston-mongodb').MongoDB;
 var customLogger = new winston.Logger({
   transports: [
     //new(winston.transports.File)({
-    //  level: 'info',
+    //  level: 'warn',
     //  filename: './myApp.log',
     //  colorize: false,
     //  maxsize: 100000,
     //  maxFiles: 10
     //}),
-    new(MongoDB)({
-      level: 'warn',
-      //db: 'mongodb://user:pass@host:port/dbname'
-      db: 'mongodb://localhost:27017/schedule-sails-logs'
-    }),
+    //new(MongoDB)({
+    //  level: 'warn',
+    //  //db: 'mongodb://user:pass@host:port/dbname'
+    //  db: 'mongodb://localhost:27017/schedule-sails-logs'
+    //}),
     new(winston.transports.Console)({
       level: 'info',
       colorize: true

@@ -4,46 +4,42 @@
  * Log Controller
  */
 var LogController = {
+
+  /**
+   * View and query the database logs
+   *
+   * GET /adminpanel/logs
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
   list: function(req, res) {
 
-    //mongodb.MongoClient.connect(this.db, this.options, function(err, db) {
-    //  if (err) {
-    //    console.error('winston-mongodb: error initialising logger', err);
-    //    return;
-    //  }
-    //  setupDatabaseAndEmptyQueue(db);
-    //});
-
-    http://stackoverflow.com/questions/17755173/querying-winston-logs
-    /*var options = {
-        from:   new Date - 24 * 60 * 60 * 1000,
-        until:  new Date,
-        limit:  10,
-        start:  0,
-        order:  'asc',
-        fields: ['message']
-    };
-    logger.query(options, function (err, result) {
-        if (err) {
-            throw err;
-        }
-
-        console.log(result);
-    });*/
-
+    // https://github.com/winstonjs/winston#querying-logs
     var options = {
-      start: 0,
-      limit: 100,
-      order: 'desc',
-      fields: ['message', 'level']
+      start: req.param('start') || 0,
+      limit: req.param('limit') || 100,
+      order: req.param('order') || 'desc',
+      //fields: ['message', 'level'],
+      //type: 'console'
+      //type: 'mongodb'
     };
+    
+    var fields = typeof req.param('fields') == 'string' ? req.param('fields') : null;
+    if (fields) options.fields = fields.split(',');
 
-    sails.config.log.custom.transports.mongodb.query(options, function (err, result) {
+    var from = req.param('from') ? new Date(req.param('from')) : null;
+    if (from) options.from = from;
+
+    var until = req.param('until') ? new Date(req.param('until')) : null;
+    if (until) options.until = until;
+
+
+    //sails.config.log.custom.transports.mongodb.query(options, function (err, result) {
+    sails.config.log.custom.query(options, function (err, result) {
       if (err) return res.negotiate(err);
       return res.json(result);
     });
-
-    //return res.json({});
   }
 };
 
