@@ -25,7 +25,7 @@ var customLogger = new winston.Logger({
     //new(MongoDB)({
     //  level: 'info',
     //  //db: 'mongodb://user:pass@host:port/dbname'
-    //  db: 'mongodb://localhost:27017/myapp-sails-logs'
+    //  db: 'mongodb://localhost:27017/schedule-sails-logs'
     //}),
     new(winston.transports.Console)({
       level: 'info',
