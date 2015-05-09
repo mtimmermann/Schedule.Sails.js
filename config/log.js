@@ -19,11 +19,11 @@ var customLogger = new winston.Logger({
     //  level: 'info',
     //  filename: './myApp.log',
     //  colorize: false,
-    //  maxsize: 1000,
+    //  maxsize: 100000,
     //  maxFiles: 10
     //}),
     //new(MongoDB)({
-    //  level: 'info',
+    //  level: 'warn',
     //  //db: 'mongodb://user:pass@host:port/dbname'
     //  db: 'mongodb://localhost:27017/schedule-sails-logs'
     //}),
