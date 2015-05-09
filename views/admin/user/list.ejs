@@ -11,26 +11,20 @@
       <h3>Send Invite</h3>
     </div>
     <div class="modal-body">
-      <div class="row">
-        <label class="col-md-4">User Name</label>
-        <div class="col-md-4"><b>{{selectedUser.username}}</b></div>
-      </div>
-      <div class="row">
-        <label class="col-md-4">Email</label>
-        <div class="col-md-4"><b>{{selectedUser.email}}</b></div>
-      </div>
-      <div class="row">
-        <label class="col-md-4">Invite URL</label>
-        <div class="col-md-4" ng-show="selectedUser.inviteUrl">
-          <b><a href="{{selectedUser.inviteUrl}}">{{selectedUser.inviteUrl}}</a></b>
-        </div>
-        <div class="col-md-4 text-warning" ng-show="selectedUser.inviteNotCreated">
-          <b>An Invite has not yet been created.</b>
-        </div>
-        <div class="col-md-4 text-danger" ng-show="selectedUser.inviteSearchFailed">
-          <b>Failed to retrieve invite data.</b>
-        </div>
-      </div>
+      <dl class="dl-horizontal">
+        <dt>User Name</dt>
+        <dd><b>{{selectedUser.username}}</b></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Email</dt>
+        <dd><b>{{selectedUser.email}}</b></dd>
+      </dl>
+      <dl class="dl-horizontal">
+        <dt>Invite URL</dt>
+        <dd ng-show="selectedUser.inviteUrl"><b><a href="{{selectedUser.inviteUrl}}">Schedule URL</a></b></dd>
+        <dd ng-show="selectedUser.inviteNotCreated" class="text-warning"><b>An Invite has not yet been created.</b></dd>
+        <dd ng-show="selectedUser.inviteSearchFailed" class="text-danger"><b>Failed to retrieve invite data.</b></dd>
+      </dl>
     </div>
     <div class="modal-footer">
       <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>

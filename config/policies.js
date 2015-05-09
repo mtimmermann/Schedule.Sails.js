@@ -30,22 +30,24 @@ module.exports.policies = {
   '*': ['passport'],
 
   'EventController': {
-    'list': ['passport', 'sessionAuth'],
-    'create': ['passport', 'sessionAuth'],
-    'update': ['passport', 'sessionAuth'],
-    'destroy': ['passport', 'sessionAuth']
+    '*': ['passport', 'sessionAuth'],
+    'authInvite': ['passport']
+    //'list': ['passport', 'sessionAuth'],
+    //'create': ['passport', 'sessionAuth'],
+    //'update': ['passport', 'sessionAuth'],
+    //'destroy': ['passport', 'sessionAuth']
   },
 
   // UserController - Everthing requires SiteAdmin privledges with the
   // exception of needing just Admin privledges for the list action
-  //'admin/UserController': {
-  //  '*': ['passport', 'isSiteAdmin'],
-  //  'list': ['passport', 'isAdmin'],
-  //},
+  'admin/UserController': {
+    '*': ['passport', 'isSiteAdmin'],
+    'list': ['passport', 'isAdmin'],
+  },
 
-  //'admin/ScheduleInviteController': {
-  //  '*': ['passport', 'isAdmin']
-  //}
+  'admin/ScheduleInviteController': {
+    '*': ['passport', 'isAdmin']
+  }
 
   /***************************************************************************
   *                                                                          *
