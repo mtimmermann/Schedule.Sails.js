@@ -35,35 +35,31 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
     getResultsPage($scope.currentPage);
   };
 
-  $scope.calendarInvite = function(id) {
-    console.log('calendarInvite -> '+ id);
+  function sendCalendarInvite(user) {
+    console.log('sendCalendarInvite -> '+ user.id);
+  }
+  $scope.calendarInvite = function(user) {
+    $scope.selectedUser = angular.copy(user);
+    var selectedUser = $scope.selectedUser
+
     $modal.open({
       templateUrl: 'sendInvite.html',
       backdrop: true,
       windowClass: 'modal',
-      //controller: function ($scope, $modalInstance, $log, selectedEvent) {
-      controller: function ($scope, $modalInstance, $log) {
-        //$scope.selectedEvent = selectedEvent;
-        $scope.submit = function() {
-          //saveEvent($scope.selectedEvent);
+      controller: function ($scope, $modalInstance, $log, selectedUser) {
+        $scope.selectedUser = selectedUser;
+        $scope.sendInvite = function() {
+          sendCalendarInvite($scope.selectedUser);
           $modalInstance.dismiss('cancel');
-        }
-        $scope.delete = function() {
-          //deleteEvent($scope.selectedEvent);
-          $modalInstance.dismiss('cancel');
-        }
+        };
         $scope.cancel = function() {
           $modalInstance.dismiss('cancel');
-        }
-        $modalInstance.rendered.then(function() {
-          // Init the jquery simple color picker
-          //$('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
-        });
+        };
       },
       resolve: {
-        //selectedEvent: function() {
-        //  return $scope.selectedEvent;
-        //}
+        selectedUser: function() {
+          return $scope.selectedUser;
+        }
       }
     });
   };

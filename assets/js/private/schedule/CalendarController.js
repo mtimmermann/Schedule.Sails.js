@@ -201,14 +201,14 @@
         $scope.submit = function() {
           saveEvent($scope.selectedEvent);
           $modalInstance.dismiss('cancel');
-        }
+        };
         $scope.delete = function() {
           deleteEvent($scope.selectedEvent);
           $modalInstance.dismiss('cancel');
-        }
+        };
         $scope.cancel = function() {
           $modalInstance.dismiss('cancel');
-        }
+        };
         $modalInstance.rendered.then(function() {
           // Init the jquery simple color picker
           $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
