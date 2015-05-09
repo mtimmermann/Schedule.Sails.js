@@ -8,11 +8,15 @@ var Roles = require('../enums/Roles');
  *                 Assumes that your login action in one of your controllers sets `req.session.authenticated = true;`
  *
  */
-module.exports = function isASitedmin (req, res, next) {
+module.exports = function isSitedmin (req, res, next) {
 
   // User is allowed, proceed to the next policy, 
   // or if this is the last policy, the controller
-  if (req.session.authenticated && req.user && req.user.role === Roles.siteAdmin) {
+  var role = '';
+  if (req.session.role) role = req.session.role;
+  else if (req.user && req.user.role) role = req.user.role;
+
+  if (req.session.authenticated && role === Roles.siteAdmin) {
     return next();
   }
 

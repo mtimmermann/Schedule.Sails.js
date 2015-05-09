@@ -1,5 +1,5 @@
 ﻿var Q = require('q');
-//var Roles = require('../../enums/Roles');
+var Roles = require('../enums/Roles');
 
 /**
  * Event Controller
@@ -152,13 +152,17 @@ var EventController = {
         if (!user) return res.send(409, 'Email not found');
         if (!invite) return res.send(409, 'Email invite not found');
 
-        //user.role = Roles.user;
-        req.session.authenticated = true;
-        //req.passport.user = user;
-        //req.user = user;
+        // Authenticate user
+        req.login(user, function (err) {
+          if (err) return res.negotiate(err);
 
-        //return res.json({});
-        return res.redirect('/schedule');
+          req.session.authenticated = true;
+
+          // Override the session role with limited priveleges
+          req.session.role = Roles.user;
+
+          return res.redirect('/schedule');
+        });
 
       }).catch(function(err) {
         return res.negotiate(err);

@@ -173,8 +173,11 @@ var AuthController = {
   logout: function (req, res) {
     req.logout();
     
-    // mark the user as logged out for auth purposes
+    // Set user as logged out for auth purposes
     req.session.authenticated = false;
+
+    // Null out session role override if it exists
+    req.session.role = null;
     
     res.redirect('/');
   },
