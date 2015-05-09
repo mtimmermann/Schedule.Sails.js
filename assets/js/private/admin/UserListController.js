@@ -5,6 +5,7 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
   $scope.pageSize = 10;
   $scope.filter = '';
   $scope.pagination = { current: 1 };
+  $scope.isFullView = window.myApp.locals.isFullView;
 
   // http://ng-admin.marmelab.com/#/posts/list?sortField=posts_ListView.id&sortDir=ASC
   $scope.datagrid = {

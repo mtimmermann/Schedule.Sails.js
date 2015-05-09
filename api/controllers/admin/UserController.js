@@ -54,11 +54,12 @@ var UserController = {
    * @param {Object} res
    */
   list: function(req, res) {
-        
+
     if (!req.wantsJSON) {
       return res.view
         ({
             title: 'My App',
+            isFullView: req.session.role === Roles.siteAdmin ? true : false,
             //bodyAttr: 'ng-app="UserModule" ng-controller="UserListController" ng-cloak',
             bodyAttr: 'ng-app="UserModule" ng-cloak',
             layout: 'layout'
