@@ -134,7 +134,7 @@ var EventController = {
   /**
    * Authorize a user invite to view a schedule
    *
-   * GET /showschedule
+   * GET /schedule/show
    *
    * @param {Object} req
    * @param {Object} res
@@ -174,7 +174,7 @@ var EventController = {
     }).catch(function(err) {
       return res.negotiate(err);
     });
-  },
+  }
 };
 
 module.exports = EventController;

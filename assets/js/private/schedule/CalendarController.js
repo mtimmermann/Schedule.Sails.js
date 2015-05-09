@@ -32,6 +32,13 @@
       });
       callback(events);
     })
+    .catch(function onError(resp) {
+      if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+      } else {
+        toastr.error('Error retrieving events', 'Error', window.myApp.locals.toastrOptions);
+      }
+    })
     .finally(function eitherWay() {
       //$scope.renderCalender('myCalendar1');
     });
