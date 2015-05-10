@@ -1,3 +1,5 @@
+var Roles = require('../enums/Roles');
+
 /**
  * PageController
  */
@@ -22,7 +24,7 @@ module.exports = {
       }
 
       if (!user) {
-        sails.log.verbose('Session refers to a non existing user id:['+ req.session.passport.user +']');
+        sails.log.error('Session refers to a non existing user id:['+ req.session.passport.user +']');
         return res.view('home',
           {
             title: 'My App',
@@ -38,7 +40,9 @@ module.exports = {
           email: user.email,
           role: user.role
         },
-        title: 'Dashboard | Welcome back, '+ user.username +'!',
+        isSiteAdmin: req.session.role === Roles.siteAdmin,
+        isAdmin: req.session.role === Roles.admin,
+        title: 'Dashboard | Welcome, '+ user.username +'!',
         bodyAttr: 'ng-app="DashboardModule" ng-controller="DashboardController" ng-cloak',
         layout: 'layout'
       });

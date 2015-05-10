@@ -3,7 +3,25 @@
     <!-- container = Fixed-width container container-fluid = full-width -->
     <div class="container-fluid">
 
-      <h1>Dashboard</h1>
+      <!--<h1>Dashboard</h1>-->
+
+      <dl class="dl-horizontal">
+        <dt>View Calendar</dt>
+        <dd><a href="/schedule">Schedule</a></dd>
+      </dl>
+
+      <% if (isSiteAdmin || isAdmin) { %>
+      <dl class="dl-horizontal">
+        <dt>User Admin</dt>
+        <dd><a href="/adminpanel/users">Users</a></dd>
+      </dl>
+      <% } %>
+      <% if (isSiteAdmin) { %>
+      <dl class="dl-horizontal">
+        <dt>View Logs</dt>
+        <dd><a href="/adminpanel/logs?limit=100&start=0">/adminpanel/logs?limit=100&start=0</a></dd>
+      </dl>
+      <% } %>
 
     </div>
 
