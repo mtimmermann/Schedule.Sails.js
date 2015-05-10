@@ -213,6 +213,9 @@
       windowClass: 'modal',
       controller: function ($scope, $modalInstance, $log, selectedEvent) {
         $scope.selectedEvent = selectedEvent;
+        $scope.data = {
+          start: new Date($scope.selectedEvent.start.format())
+        };
         $scope.submit = function() {
           saveEvent($scope.selectedEvent);
           $modalInstance.dismiss('cancel');

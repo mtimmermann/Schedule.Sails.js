@@ -18,6 +18,7 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <ItemGroup>
+    <Content Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.css" />
     <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.css" />
     <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.min.css" />
     <Content Include="assets\js\dependencies\fullcalendar\fullcalendar.print.css" />
@@ -33,6 +34,9 @@
     <Compile Include="api\models\ScheduleInvite.js" />
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
+    <Compile Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.js" />
+    <Compile Include="assets\js\dependencies\bootstrap\bootstrap.js" />
+    <Compile Include="assets\js\dependencies\bootstrap\bootstrap.min.js" />
     <Compile Include="assets\js\dependencies\bootstrap\ui-bootstrap-tpls-0.13.0.js" />
     <Compile Include="assets\js\dependencies\bootstrap\ui-bootstrap-tpls-0.13.0.min.js" />
     <Compile Include="assets\js\dependencies\fullcalendar\fullcalendar.js" />
@@ -182,6 +186,7 @@
     <Folder Include="assets\js\dependencies" />
     <Folder Include="assets\js\dependencies\angular" />
     <Folder Include="assets\js\dependencies\angular\directives" />
+    <Folder Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\" />
     <Folder Include="assets\js\dependencies\angular\modules" />
     <Folder Include="assets\js\dependencies\jquery\" />
     <Folder Include="assets\js\dependencies\fullcalendar\" />
