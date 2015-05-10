@@ -42,7 +42,7 @@ module.exports = {
         },
         isSiteAdmin: req.session.role === Roles.siteAdmin,
         isAdmin: req.session.role === Roles.admin,
-        title: 'Dashboard | Welcome, '+ user.username +'!',
+        title: 'Dashboard  | Welcome, '+ user.username +'!',
         bodyAttr: 'ng-app="DashboardModule" ng-controller="DashboardController" ng-cloak',
         layout: 'layout'
       });
