@@ -1,4 +1,4 @@
-﻿angular.module('UserModule').controller('UserEditController', ['$scope', '$routeParams', '$q', 'userService', 'toastr', function($scope, $routeParams, $q, userService, toastr) {
+﻿angular.module('UserModule').controller('UserEditController', ['$scope', '$location', '$routeParams', '$q', 'userService', 'toastr', function($scope, $location, $routeParams, $q, userService, toastr) {
   
   $scope.user = {};
   $scope.roles = [];
@@ -24,11 +24,15 @@
     .finally(function eitherWay() {
       $scope.isLoading = false;
     });
-  }
+  };
 
   $scope.onRoleChange = function() {
     $scope.user.role = $scope.selectedRole.value;
-  }
+  };
+
+  $scope.listUsers = function() {
+     $location.path('/');
+  };
 
   function getUser() {
     userService.getUser($routeParams.id)

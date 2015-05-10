@@ -24,11 +24,11 @@
     .finally(function eitherWay() {
       $scope.isLoading = false;
     });
-  }
+  };
 
   $scope.listUsers = function() {
      $location.path('/');
-  }
+  };
 
   function getUser() {
     userService.getUser($routeParams.id)
