@@ -1,5 +1,5 @@
-﻿
-angular.module('CalendarModule').factory("eventService", ['$http', function($http) {
+﻿angular.module('CalendarModule').factory("eventService", ['$http', function($http) {
+  'use strict';
 
   var serviceBase = '/api/events/';
 

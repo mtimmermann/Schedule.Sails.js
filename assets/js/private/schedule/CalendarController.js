@@ -1,7 +1,7 @@
 ﻿angular.module('CalendarModule').controller('CalendarController', ['$scope', 'eventService', '$compile', 'uiCalendarConfig', '$modal', 'toastr', function($scope, eventService, $compile, uiCalendarConfig, $modal, toastr) {
+  'use strict';
 
   var myCalendar1 = null; // Global calendar, using only one calendar
-
 
   // The calendar event source wire-up
   // http://fullcalendar.io/docs/event_data/events_function/
