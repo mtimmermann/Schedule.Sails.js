@@ -58,7 +58,7 @@
               <label class="col-md-2">Title</label>
               <div class="col-md-4">
                 <input type="text" name="title" class="form-control" ng-model="selectedEvent.title" required />
-                <span class="help-block has-error" ng-if="createEventForm.title.$dirty">
+                <span class="help-block has-error" ng-if="createEventForm.title.$invalid && createEventForm.title.$dirty">
                   <span ng-show="createEventForm.title.$error.required">Title is required.</span>
                 </span>
               </div>
