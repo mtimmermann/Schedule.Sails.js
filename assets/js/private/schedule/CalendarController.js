@@ -75,12 +75,6 @@
       saveEvent(event);
   };
 
-  // Change View
-  $scope.changeView = function(view, calendar) {
-    console.log('changeView: '+ view +' '+ calendar);
-    uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
-  };
-
   // Render Tooltip
   $scope.eventRender = function(event, element, view) { 
       element.attr({'tooltip': event.title,
@@ -93,6 +87,12 @@
     if (uiCalendarConfig.calendars[calendar]) {
       uiCalendarConfig.calendars[calendar].fullCalendar('render');
     }
+  };
+
+  // Change View
+  $scope.changeView = function(view, calendar) {
+    console.log('changeView: '+ view +' '+ calendar);
+    uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
   };
 
   // On viewRender, anytime the calendar is rendered
