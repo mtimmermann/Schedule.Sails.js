@@ -47,6 +47,7 @@
   $scope.eventSources = [$scope.events];
 
   // Create an event
+  var holdTempEvent = null; // A holder to remove a temporary event on edit cancel
   $scope.select = function(start, end) {
     console.log('select: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
     var event = {
@@ -55,6 +56,14 @@
       end: end,
       color: '#5484ed' // Default Bold Blue
     };
+
+    // Making the new event sticky - won't dissapear on lost focus when edit modal opens
+    // Temporarily add event to maintain rendered state while edit modal opens.
+    // Set the holdTempEvent, remove it from calendar if edit modal action is a cancel.
+    uiCalendarConfig.calendars['myCalendar1'].fullCalendar('renderEvent', event);
+    var eventList = uiCalendarConfig.calendars['myCalendar1'].fullCalendar('clientEvents');
+    holdTempEvent = eventList[eventList.length-1];
+
     openEditModal(event);
   };
 
@@ -77,13 +86,14 @@
 
   // Render Tooltip
   $scope.eventRender = function(event, element, view) { 
-      element.attr({'tooltip': event.title,
-                    'tooltip-append-to-body': true});
-      $compile(element)($scope);
+    //console.log('eventRender');
+    element.attr({'tooltip': event.title,
+                  'tooltip-append-to-body': true});
+    $compile(element)($scope);
   };
 
   $scope.renderCalender = function(calendar) {
-    console.log('renderCalender');
+    //console.log('renderCalender');
     if (uiCalendarConfig.calendars[calendar]) {
       uiCalendarConfig.calendars[calendar].fullCalendar('render');
     }
@@ -91,13 +101,13 @@
 
   // Change View
   $scope.changeView = function(view, calendar) {
-    console.log('changeView: '+ view +' '+ calendar);
+    //console.log('changeView: '+ view +' '+ calendar);
     uiCalendarConfig.calendars[calendar].fullCalendar('changeView', view);
   };
 
   // On viewRender, anytime the calendar is rendered
   $scope.viewRender = function(view, element) {
-    console.log('viewRender');
+    //console.log('viewRender');
 
     // Limit the available calendar days
     //var minStart = moment().add(-2, 'days');
@@ -212,6 +222,16 @@
         $modalInstance.rendered.then(function() {
           // Init the jquery simple color picker
           $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+        });
+        // http://stackoverflow.com/questions/18962536/angular-ui-modal-after-close-event
+        $modalInstance.result.then(function() {
+          //console.log('modal success'); // never called
+        }, function() {
+          // Remove, unstick temporary event on every edit event modal close
+          if (holdTempEvent) {
+            uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ holdTempEvent._id ] );
+            holdTempEvent = null;
+          }
         });
       },
       resolve: {
