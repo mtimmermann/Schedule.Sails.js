@@ -40,14 +40,13 @@
   // Create an event
   var holdTempEvent = null; // A holder to remove a temporary event on edit cancel
   $scope.select = function(start, end) {
-    console.log('select: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
+    //console.log('select: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
 
-var origStart = angular.copy(start);
     // If in month view, set the times
     if (start.hour() === 0 && end.hour() === 0 && start._ambigTime && end._ambigTime) {
       start._ambigTime = false;
       end._ambigTime = false;
-      start.hour(10);
+      start.hour(10); // Default to 10:00 am
       end.hour(start.hour() + 1);
       end.day(start.day());
     }
