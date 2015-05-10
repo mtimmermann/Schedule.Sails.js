@@ -57,7 +57,7 @@
           <div class="row">
             <div class="control-group form-group" ng-class="{'has-error':createEventForm.title.$invalid && createEventForm.title.$dirty}">
               <label class="col-md-4">Title</label>
-              <div class="col-md-8">
+              <div class="col-md-6">
                 <input type="text" name="title" class="form-control" ng-model="selectedEvent.title" required />
                 <span class="help-block has-error" ng-if="createEventForm.title.$invalid && createEventForm.title.$dirty">
                   <span ng-show="createEventForm.title.$error.required">Title is required.</span>
@@ -66,40 +66,50 @@
             </div>
           </div>
           <div class="row">
-            <div class="control-group form-group">
-              <label class="col-md-4">Start Date:</label>
-              <div class="dropdown col-md-8">
-                {{ data.start | date:'medium' }}
-                <a class="dropdown-toggle" id="dropdown5" role="button" data-toggle="dropdown" data-target="#" href="#">
-                  <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                  Select Start Date
-                </a>
-                <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-                    <datetimepicker data-ng-model="data.start"
-                                    data-datetimepicker-config="{ dropdownSelector: '#dropdown5' }"></datetimepicker>
-                </ul>
-              </div>
+            <label class="col-md-4">Start Date</label>
+            <div class="dropdown col-md-8">
+              {{ data.start | date:'medium' }}
+              <a class="dropdown-toggle" id="dropdown5" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                Select Start Date
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <datetimepicker data-ng-model="data.start"
+                                  data-datetimepicker-config="{ dropdownSelector: '#dropdown5' }"></datetimepicker>
+              </ul>
             </div>
           </div>
           <div class="row">
-            <div class="control-group">
-              <label class="col-md-4">Event Color</label>
-              <div class="col-md-8">
-                <select name="colorpicker-regularfont" class="form-control" ng-model="selectedEvent.color">
-                  <option value="#5484ed">Bold blue</option>
-                  <option value="#7bd148">Green</option>
-                  <option value="#a4bdfc">Blue</option>
-                  <option value="#46d6db">Turquoise</option>
-                  <option value="#7ae7bf">Light green</option>
-                  <option value="#51b749">Bold green</option>
-                  <option value="#fbd75b">Yellow</option>
-                  <option value="#ffb878">Orange</option>
-                  <option value="#ff887c">Red</option>
-                  <option value="#dc2127">Bold red</option>
-                  <option value="#dbadff">Purple</option>
-                  <option value="#e1e1e1">Gray</option>
-                </select>
-              </div>
+            <label class="col-md-4">End Date</label>
+            <div class="dropdown col-md-8">
+              {{ data.end | date:'medium' }}
+              <a class="dropdown-toggle" id="dropdown5" role="button" data-toggle="dropdown" data-target="#" href="#">
+                <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                Select End Date
+              </a>
+              <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                  <datetimepicker data-ng-model="data.end"
+                                  data-datetimepicker-config="{ dropdownSelector: '#dropdown5' }"></datetimepicker>
+              </ul>
+            </div>
+          </div>
+          <div class="row">
+            <label class="col-md-4">Event Color</label>
+            <div class="col-md-8">
+              <select name="colorpicker-regularfont" class="form-control" ng-model="selectedEvent.color">
+                <option value="#5484ed">Bold blue</option>
+                <option value="#7bd148">Green</option>
+                <option value="#a4bdfc">Blue</option>
+                <option value="#46d6db">Turquoise</option>
+                <option value="#7ae7bf">Light green</option>
+                <option value="#51b749">Bold green</option>
+                <option value="#fbd75b">Yellow</option>
+                <option value="#ffb878">Orange</option>
+                <option value="#ff887c">Red</option>
+                <option value="#dc2127">Bold red</option>
+                <option value="#dbadff">Purple</option>
+                <option value="#e1e1e1">Gray</option>
+              </select>
             </div>
           </div>
         </div>

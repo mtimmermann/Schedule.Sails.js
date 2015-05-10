@@ -214,7 +214,8 @@
       controller: function ($scope, $modalInstance, $log, selectedEvent) {
         $scope.selectedEvent = selectedEvent;
         $scope.data = {
-          start: new Date($scope.selectedEvent.start.format())
+          start: new Date($scope.selectedEvent.start.format()),
+          end: new Date($scope.selectedEvent.end.format())
         };
         $scope.submit = function() {
           saveEvent($scope.selectedEvent);
