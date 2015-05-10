@@ -1,21 +1,12 @@
 ﻿angular.module('CalendarModule').controller('CalendarController', ['$scope', 'eventService', '$compile', 'uiCalendarConfig', '$modal', 'toastr', function($scope, eventService, $compile, uiCalendarConfig, $modal, toastr) {
-  var date = new Date();
-  var d = date.getDate();
-  var m = date.getMonth();
-  var y = date.getFullYear();
 
-  $scope.selectedEvent = null;
-  //$scope.editModel = {
-  //  selectedEvent: null,
-  //};
+  var myCalendar1 = null; // Global calendar, using only one calendar
+
 
   // The calendar event source wire-up
   // http://fullcalendar.io/docs/event_data/events_function/
   $scope.events = function(start, end, timezone, callback) {
-    //console.log('getEvents: start['+ start.local().format() +'] end['+ end.local().format() +']');
-    //console.log('getEvents: start['+ start.format() +'] end['+ end.format() +']');
-    console.log('getEvents: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
-    // http://stackoverflow.com/questions/23527136/cant-find-records-in-waterline-by-date-time
+    //console.log('getEvents: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
 
     eventService.getEvents(start.toISOString(), end.toISOString())
     .then(function (result) {
@@ -60,8 +51,8 @@
     // Making the new event sticky - won't dissapear on lost focus when edit modal opens
     // Temporarily add event to maintain rendered state while edit modal opens.
     // Set the holdTempEvent, remove it from calendar if edit modal action is a cancel.
-    uiCalendarConfig.calendars['myCalendar1'].fullCalendar('renderEvent', event);
-    var eventList = uiCalendarConfig.calendars['myCalendar1'].fullCalendar('clientEvents');
+    myCalendar1.fullCalendar('renderEvent', event);
+    var eventList = myCalendar1.fullCalendar('clientEvents');
     holdTempEvent = eventList[eventList.length-1];
 
     openEditModal(event);
@@ -73,15 +64,15 @@
   };
 
   // On event drop to another date spot
-    $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-      console.log('Event Droped to make dayDelta ' + delta);
-      saveEvent(event);
+  $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
+    console.log('Event Droped to make dayDelta ' + delta);
+    saveEvent(event);
   };
 
   // On event time resize
   $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-      console.log('alertOnResize');
-      saveEvent(event);
+    console.log('alertOnResize');
+    saveEvent(event);
   };
 
   // Render Tooltip
@@ -108,6 +99,9 @@
   // On viewRender, anytime the calendar is rendered
   $scope.viewRender = function(view, element) {
     //console.log('viewRender');
+
+    // Set/init the global myCalendar1 object
+    if (!myCalendar1) myCalendar1 = uiCalendarConfig.calendars['myCalendar1'];
 
     // Limit the available calendar days
     //var minStart = moment().add(-2, 'days');
@@ -158,10 +152,10 @@
       if (isNew) {
         event.id = result.data.id;
         //$scope.events.push(event);
-        //uiCalendarConfig.calendars['myCalendar1'].fullCalendar('renderEvent', event, true);
-        uiCalendarConfig.calendars['myCalendar1'].fullCalendar('renderEvent', event);
+        //myCalendar1.fullCalendar('renderEvent', event, true);
+        myCalendar1.fullCalendar('renderEvent', event);
       } else {
-        uiCalendarConfig.calendars['myCalendar1'].fullCalendar('updateEvent', event);
+        myCalendar1.fullCalendar('updateEvent', event);
       }
     })
     .catch(function onError(resp) {
@@ -181,7 +175,7 @@
     eventService.deleteEvent(event.id)
     .then(function onSuccess(result) {
       toastr.success('Event removed', 'Success', window.myApp.locals.toastrOptions);
-      uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ event._id ] );
+      myCalendar1.fullCalendar('removeEvents', [ event._id ] );
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
@@ -229,7 +223,7 @@
         }, function() {
           // Remove, unstick temporary event on every edit event modal close
           if (holdTempEvent) {
-            uiCalendarConfig.calendars['myCalendar1'].fullCalendar('removeEvents', [ holdTempEvent._id ] );
+            myCalendar1.fullCalendar('removeEvents', [ holdTempEvent._id ] );
             holdTempEvent = null;
           }
         });
@@ -241,6 +235,5 @@
       }
     });
   }
-
 
 }]);
