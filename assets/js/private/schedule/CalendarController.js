@@ -218,6 +218,10 @@
           end: new Date($scope.selectedEvent.end.format())
         };
         $scope.submit = function() {
+          setMomentDate($scope.data.start, $scope.selectedEvent.start);
+          setMomentDate($scope.data.end, $scope.selectedEvent.end);
+          $scope.data.start._ambigTime = false; $scope.data.start._ambigZone = true;
+          $scope.data.end._ambigTime = false; $scope.data.end._ambigZone = true;
           saveEvent($scope.selectedEvent);
           $modalInstance.dismiss('cancel');
         };
@@ -242,6 +246,12 @@
             holdTempEvent = null;
           }
         });
+        function setMomentDate(date, mDate) {
+          mDate.year(date.getFullYear());
+          mDate.month(date.getMonth());
+          mDate.date(date.getDate());
+          mDate.hour(date.getHours());
+        }
       },
       resolve: {
         selectedEvent: function() {
