@@ -42,20 +42,22 @@
   $scope.select = function(start, end) {
     console.log('select: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
 
+var origStart = angular.copy(start);
     // If in month view, set the times
-    if (start.hour() === 0 && end.hour() === 0) {
-      var date = new Date(start.toDate());
-      start = moment.utc(date);
-      end = moment.utc(date);
-      start.utcOffset(date.getTimezoneOffset()); start.hour(10);
-      end.utcOffset(date.getTimezoneOffset()); end.hour(13);
+    if (start.hour() === 0 && end.hour() === 0 && start._ambigTime && end._ambigTime) {
+      start._ambigTime = false;
+      end._ambigTime = false;
+      start.hour(10);
+      end.hour(start.hour() + 1);
+      end.day(start.day());
     }
 
     var event = {
       title: '',
       start: start, //angular.copy(start),
       end: end, //angular.copy(end),
-      color: '#5484ed' // Default Bold Blue
+      color: '#5484ed', // Default Bold Blue
+      allDay: false
     };
 
     // Making the new event sticky - won't dissapear on lost focus when edit modal opens
