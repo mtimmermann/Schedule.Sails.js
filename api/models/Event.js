@@ -10,6 +10,7 @@
     start: { type: 'string', required: true },
     end: { type: 'string' },
     startTimeStamp: { type: 'date' },
+    startTimeLocal: { type: 'string' },
     color: { type: 'string' },
     textColor: { type: 'string' },
     allDay: { type: 'boolean'}

@@ -40,7 +40,10 @@ var EventController = {
 
     Event.find(findOptions)
     .exec(function(err, data) {
-      if (err) { return res.negotiate(err); }
+      if (err) {
+        sails.log.error('Event.list failed. user['+ req.user.id +']', err);
+        return res.negotiate(err);
+      }
 
       return res.json({
         Items: data,
@@ -65,10 +68,12 @@ var EventController = {
     }
 
     event.user = req.user.id;
-    event.startTimeStamp = event.start;
     Event.create(event)
     .exec(function(err, data) {
-      if (err) { return res.negotiate(err); }
+      if (err) {
+        sails.log.error('Event.create failed. user['+ req.user.id +']', err);
+        return res.negotiate(err);
+      }
 
       return res.json(data);
     });
@@ -91,10 +96,12 @@ var EventController = {
 
     // TODO: Check if auth user matches event user
 
-    event.startTimeStamp = event.start;
     Event.update({ id: event.id, user: req.user.id }, event)
     .exec(function(err, data) {
-      if (err) { return res.negotiate(err); }
+      if (err) {
+        sails.log.error('Event.update failed. user['+ req.user.id +']', err);
+        return res.negotiate(err);
+      }
       if (data.length == 0) {
         return res.send(409, 'Event not found');
       }
@@ -117,9 +124,14 @@ var EventController = {
       return res.send(409, 'id is required');
     }
 
+    // TODO: Check if auth user matches event user
+
     Event.destroy({ user: req.user.id, id: id })
     .exec(function(err, result) {
-      if (err) return res.negotiate(err);
+      if (err) {
+        sails.log.error('Event.destroy failed. user['+ req.user.id +']', err);
+        return res.negotiate(err);
+      }
       if (result.length == 0) {
         return res.send(409, 'Event not found');
       }
