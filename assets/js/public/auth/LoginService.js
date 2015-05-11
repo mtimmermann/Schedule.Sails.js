@@ -1,7 +1,9 @@
 app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
 
-  var toastrOptions = window.myApp.locals.toastrOptions;
-  //toastrOptions.positionClass = 'toast-top-center';
+  var toastrOptions = angular.extend({
+    timeOut: 3000,
+    closeButton: true
+  }, window.myApp.locals.toastrOptions);
 
   return {
  
