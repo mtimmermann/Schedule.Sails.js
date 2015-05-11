@@ -7,20 +7,40 @@
   </head>
   <body>
 <!-- partial ('nav/_nav_generic.ejs') -->
-    <nav class="navbar navbar-default navbar-inverse">
-      <!-- Mechanism for collapse button -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-      <!-- The lines in the image when the nav collapse -->
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-
-      <a class="navbar-brand" href="/#/"> Home</a>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <!--<span class="sr-only">Toggle navigation</span>-->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#/">Home</a>
+      </div>
+      <% if (req.user && req.user.username) { %>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="dropdown">
+            <a href="/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <%= req.user.username %>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/logout">Sign Out</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+      <% } %>
+      </div>
     </nav>
 
     <div class="container-fluid">
       <h1>Internal Server Error</h1>
     </div>
+
+    <script src="/js/dependencies/jquery/jquery.min.js"></script>
+    <script src="/js/dependencies/bootstrap/bootstrap.min.js"></script>
   </body>
 </html>
