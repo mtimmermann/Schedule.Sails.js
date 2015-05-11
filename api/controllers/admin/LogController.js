@@ -40,6 +40,8 @@ var LogController = {
     //sails.config.log.custom.transports.mongodb.query(options, function (err, result) {
     sails.config.log.custom.query(options, function (err, result) {
       if (err) return res.negotiate(err);
+
+      result.count = result.mongodb && result.mongodb.length ? result.mongodb.length : 0;
       return res.json(result);
     });
   }
