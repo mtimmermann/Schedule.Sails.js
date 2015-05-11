@@ -1,4 +1,11 @@
 app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
+
+  var toastrOptions = window.myApp.locals.toastrOptions;
+  //toastrOptions.positionClass = 'toast-top-center';
+  //toastrOptions.onShown = function() {
+  //  console.log('onShown');
+  //};
+
   return {
 
     login: function($scope) {
@@ -13,9 +20,9 @@ app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
       })
       .catch(function onError(resp) {
         if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-          toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+          toastr.error(resp.data, 'Error', toastrOptions);
         } else {
-          toastr.error('Unknown error', 'Error', window.myApp.locals.toastrOptions);
+          toastr.error('Unknown error', 'Error', toastrOptions);
         }
       })
       .finally(function eitherWay(){
