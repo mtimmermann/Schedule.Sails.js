@@ -224,10 +224,16 @@
           end = new Date($scope.selectedEvent.end.format());
         }
 
+        // Date picker model
         $scope.data = {
           start: start,
           end: end
         };
+        // Date picker config
+        $scope.configFunction = function configFunction() {
+          return {startView: 'month'};
+        };
+
         $scope.submit = function() {
           setMomentDate($scope.data.start, $scope.selectedEvent.start);
           setMomentDate($scope.data.end, $scope.selectedEvent.end);

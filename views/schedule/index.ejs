@@ -69,13 +69,13 @@
             <label class="col-md-2">Start</label>
             <div class="dropdown col-md-8">
               {{ data.start | date:'medium' }}
-              <a class="dropdown-toggle" id="dropdown5" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <a class="dropdown-toggle" id="pickerStartDate" role="button" data-toggle="dropdown" data-target="#" href="#">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                 Select Start Date
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                   <datetimepicker data-ng-model="data.start"
-                                  data-datetimepicker-config="{ dropdownSelector: '#dropdown5' }"></datetimepicker>
+                                  data-datetimepicker-config="{ startView: 'hour', minuteStep: 15, dropdownSelector: '#pickerStartDate' }"></datetimepicker>
               </ul>
             </div>
           </div>
@@ -83,13 +83,13 @@
             <label class="col-md-2">End</label>
             <div class="dropdown col-md-8">
               {{ data.end | date:'medium' }}
-              <a class="dropdown-toggle" id="dropdown5" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <a class="dropdown-toggle" id="pickerEndDate" role="button" data-toggle="dropdown" data-target="#" href="#">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                 Select End Date
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                   <datetimepicker data-ng-model="data.end"
-                                  data-datetimepicker-config="{ dropdownSelector: '#dropdown5' }"></datetimepicker>
+                                  data-datetimepicker-config="{ startView: 'hour', minuteStep: 15, dropdownSelector: '#pickerEndDate' }"></datetimepicker>
               </ul>
             </div>
           </div>
