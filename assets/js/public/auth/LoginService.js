@@ -2,12 +2,9 @@ app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
 
   var toastrOptions = window.myApp.locals.toastrOptions;
   //toastrOptions.positionClass = 'toast-top-center';
-  //toastrOptions.onShown = function() {
-  //  console.log('onShown');
-  //};
 
   return {
-
+ 
     login: function($scope) {
       $scope.loginForm.loading = true;
 
