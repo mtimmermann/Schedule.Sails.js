@@ -94,8 +94,6 @@ var EventController = {
       return res.send(409, 'event.id, event.title and event.start are required');
     }
 
-    // TODO: Check if auth user matches event user
-
     Event.update({ id: event.id, user: req.user.id }, event)
     .exec(function(err, data) {
       if (err) {
@@ -123,8 +121,6 @@ var EventController = {
     if (!id) {
       return res.send(409, 'id is required');
     }
-
-    // TODO: Check if auth user matches event user
 
     Event.destroy({ user: req.user.id, id: id })
     .exec(function(err, result) {
