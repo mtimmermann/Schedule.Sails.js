@@ -1,5 +1,7 @@
 ﻿//var mongodb = require('mongodb');
 
+var fromHours = -24 * 7; // Default to a week back (Winston query will default to 24 hours)
+
 /**
  * Log Controller
  */
@@ -28,7 +30,7 @@ var LogController = {
     var fields = typeof req.param('fields') == 'string' ? req.param('fields') : null;
     if (fields) options.fields = fields.split(',');
 
-    var from = req.param('from') ? new Date(req.param('from')) : null;
+    var from = req.param('from') ? new Date(req.param('from')) : new Date().setHours(fromHours);
     if (from) options.from = from;
 
     var until = req.param('until') ? new Date(req.param('until')) : null;
