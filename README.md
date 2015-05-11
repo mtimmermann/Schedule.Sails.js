@@ -16,7 +16,7 @@ Full Calendar v2.1.1	http://fullcalendar.io/
 
 Angular UI-Calendar		http://angular-ui.github.io/ui-calendar/
 
-Includes Visual Studio solution and project files to run and debug with VS 2013 and Node.js tools
+Includes Visual Studio solution and project file to run and debug with VS 2013 and Node.js tools
 
 
 ## Installation ##
