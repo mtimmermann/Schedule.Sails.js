@@ -30,8 +30,14 @@ var UserController = {
    * @param {Object} res
    */
   find: function (req, res) {
-    User.findOne({ id: req.param('id') }, function (err, user) {
+    var userId = req.param('id') || null;
+    if (!userId) {
+      return res.send(409, 'Required id object missing');
+    }
+
+    User.findOne({ id: userId }, function (err, user) {
       if (err) {
+        sails.log.error('UserController.find failed. auth user['+ req.user.id +'] user['+ userId +']', err);
         return res.negotiate(err);
       }
             
@@ -96,6 +102,7 @@ var UserController = {
         Count: count
       });
     }).catch(function(err) {
+      sails.log.error('UserController.list failed. auth user['+ req.user.id +']', err);
       return res.negotiate(err);
     });
   },
@@ -140,6 +147,7 @@ var UserController = {
               return res.send(409, 'Email already is taken');
             }
           }
+          sails.log.error('UserController.warn failed. auth user['+ req.user.id +'] user['+ user.id +']', err);
           return res.negotiate(err);
         }
         if (data.length == 0) {
@@ -148,6 +156,7 @@ var UserController = {
         return res.json(data[0]);
       });
     }).catch(function(err) {
+      sails.log.error('UserController.update failed. auth user['+ req.user.id +'] user['+ user.id +']', err);
       return res.negotiate(err);
     });
   },
@@ -178,7 +187,10 @@ var UserController = {
       // Delete password
       Passport.destroy({ user: userId, protocol: 'local' })
       .exec(function(err, result) {
-        if (err) return res.negotiate(err);
+        if (err) {
+          sails.log.error('UserController.destroy Passport.destroy failed. auth user['+ req.user.id +'] user['+ userId +']', err);
+          return res.negotiate(err);
+        }
 
         User.destroy({ id: userId })
         .exec(function(err2, result) {
@@ -187,6 +199,7 @@ var UserController = {
         });
       });
     }).catch(function(err) {
+      sails.log.error('UserController.destroy failed. auth user['+ req.user.id +'] user['+ userId +']', err);
       return res.negotiate(err);
     });
   },
@@ -217,10 +230,14 @@ var UserController = {
       // Update password
       Passport.update({ user: userId, protocol: 'local' }, { password: password })
       .exec(function(err, data) {
-        if (err) return res.negotiate(err);
+        if (err) {
+          sails.log.error('UserController.password Passport.update failed. auth user['+ req.user.id +'] user['+ userId +']', err);
+          return res.negotiate(err);
+        }
         return res.json({});
       });
     }).catch(function(err) {
+      sails.log.error('UserController.password failed. auth user['+ req.user.id +'] user['+ userId +']', err);
       return res.negotiate(err);
     });
   }

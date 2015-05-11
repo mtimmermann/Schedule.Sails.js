@@ -41,7 +41,7 @@ var EventController = {
     Event.find(findOptions)
     .exec(function(err, data) {
       if (err) {
-        sails.log.error('Event.list failed. user['+ req.user.id +']', err);
+        sails.log.error('EventController.list failed. user['+ req.user.id +']', err);
         return res.negotiate(err);
       }
 
@@ -71,7 +71,7 @@ var EventController = {
     Event.create(event)
     .exec(function(err, data) {
       if (err) {
-        sails.log.error('Event.create failed. user['+ req.user.id +']', err);
+        sails.log.error('EventController.create failed. user['+ req.user.id +']', err);
         return res.negotiate(err);
       }
 
@@ -97,7 +97,7 @@ var EventController = {
     Event.update({ id: event.id, user: req.user.id }, event)
     .exec(function(err, data) {
       if (err) {
-        sails.log.error('Event.update failed. user['+ req.user.id +']', err);
+        sails.log.error('EventController.update failed. user['+ req.user.id +']', err);
         return res.negotiate(err);
       }
       if (data.length == 0) {
@@ -125,7 +125,7 @@ var EventController = {
     Event.destroy({ user: req.user.id, id: id })
     .exec(function(err, result) {
       if (err) {
-        sails.log.error('Event.destroy failed. user['+ req.user.id +']', err);
+        sails.log.error('EventController.destroy failed. user['+ req.user.id +']', err);
         return res.negotiate(err);
       }
       if (result.length == 0) {
