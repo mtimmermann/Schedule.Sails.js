@@ -40,7 +40,7 @@
   // Create an event
   var holdTempEvent = null; // A holder to remove a temporary event on edit cancel
   $scope.select = function(start, end) {
-    //console.log('select: start['+ start.toISOString() +'] end['+ end.toISOString() +']');
+    console.log('select (create event): start['+ start.toISOString() +'] start._ambigZone['+ start._ambigZone +'] start.isUTC()['+ start.isUTC() +'] end['+ end.toISOString() +']');
 
     // If in month view, set the times
     if (start.hour() === 0 && end.hour() === 0 && start._ambigTime && end._ambigTime) {
@@ -71,7 +71,7 @@
 
   // Edit event on eventClick
   $scope.alertOnEventClick = function(date, jsEvent, view) {
-    console.log('select: start['+ date.start.toISOString() +'] end['+ date.end.toISOString() +']');
+    console.log('alertOnEventClick (Edit existing event): start['+ date.start.toISOString() +'] start._ambigZone['+ date.start._ambigZone +'] start.isUTC()['+ date.start.isUTC() +'] end['+ date.end.toISOString() +']');
     openEditModal(date);
   };
 
@@ -214,9 +214,19 @@
       windowClass: 'modal',
       controller: function ($scope, $modalInstance, $log, selectedEvent) {
         $scope.selectedEvent = selectedEvent;
+
+        var start, end = null;
+        if ($scope.selectedEvent.start.isUTC()) {
+          start = new Date(selectedEvent.start.year(), selectedEvent.start.month(), selectedEvent.start.date(), selectedEvent.start.hour(), selectedEvent.start.minute(), 0, 0);
+          end = new Date(selectedEvent.end.year(), selectedEvent.end.month(), selectedEvent.end.date(), selectedEvent.end.hour(), selectedEvent.end.minute(), 0, 0);
+        } else {
+          start = new Date($scope.selectedEvent.start.format());
+          end = new Date($scope.selectedEvent.end.format());
+        }
+
         $scope.data = {
-          start: new Date($scope.selectedEvent.start.format()),
-          end: new Date($scope.selectedEvent.end.format())
+          start: start,
+          end: end
         };
         $scope.submit = function() {
           setMomentDate($scope.data.start, $scope.selectedEvent.start);
