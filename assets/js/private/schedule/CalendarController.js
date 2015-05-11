@@ -227,11 +227,13 @@
         // Date picker model
         $scope.data = {
           start: start,
-          end: end
+          end: end,
+          isEndValid: true
         };
-        // Date picker config
-        $scope.configFunction = function configFunction() {
-          return {startView: 'month'};
+        // Date picker onSetTime callback
+        $scope.onSetTime = function(newDate, oldDate) {
+          $scope.data.isEndValid = $scope.data.start < $scope.data.end;
+          console.log('isEndValid: '+ $scope.data.isEndValid);
         };
 
         $scope.submit = function() {

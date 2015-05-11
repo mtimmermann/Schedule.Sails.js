@@ -75,23 +75,29 @@
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                   <datetimepicker data-ng-model="data.start"
+                                  data-on-set-time="onSetTime(newDate, oldDate)"
                                   data-datetimepicker-config="{ startView: 'hour', minuteStep: 15, dropdownSelector: '#pickerStartDate' }"></datetimepicker>
               </ul>
             </div>
           </div>
           <div class="row">
-            <label class="col-md-2">End</label>
-            <div class="dropdown col-md-8">
+            <label class="col-md-2" ng-class="{'text-danger': !data.isEndValid}">End</label>
+            <div class="dropdown col-md-8" ng-class="{'text-danger': !data.isEndValid}">
               {{ data.end | date:'medium' }}
-              <a class="dropdown-toggle" id="pickerEndDate" role="button" data-toggle="dropdown" data-target="#" href="#">
+              <a class="dropdown-toggle" id="pickerEndDate" role="button" data-toggle="dropdown" ng-class="{'text-danger': !data.isEndValid}" data-target="#" href="#">
                 <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                 Select End Date
               </a>
               <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
                   <datetimepicker data-ng-model="data.end"
+                                  data-on-set-time="onSetTime(newDate, oldDate)"
                                   data-datetimepicker-config="{ startView: 'hour', minuteStep: 15, dropdownSelector: '#pickerEndDate' }"></datetimepicker>
               </ul>
             </div>
+          </div>
+          <div class="row" ng-show="!data.isEndValid">
+            <div class="col-md-2"></div>
+            <div class="col-md-8 text-danger"><b>End Date must be later then the Start Date</b></div>
           </div>
           <div class="row">
             <label class="col-md-2">Color</label>
@@ -116,7 +122,7 @@
         <div class="modal-footer">
           <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
           <button class="btn btn-danger" type="button" ng-hide="!selectedEvent.id" ng-click="delete()">Delete</button>
-          <input type="submit" class="btn primary-btn" ng-disabled="createEventForm.$invalid" value="Save" />
+          <input type="submit" class="btn primary-btn" ng-disabled="createEventForm.$invalid || !data.isEndValid" value="Save" />
         </div>
       </form>
     </script>
