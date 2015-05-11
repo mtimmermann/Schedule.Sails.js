@@ -56,7 +56,7 @@
         <div class="modal-body">
           <div class="row">
             <div class="control-group form-group" ng-class="{'has-error':createEventForm.title.$invalid && createEventForm.title.$dirty}">
-              <label class="col-md-2">Title</label>
+              <label class="col-md-2 top7">Title</label>
               <div class="col-md-6">
                 <input type="text" name="title" class="form-control" ng-model="selectedEvent.title" required />
                 <span class="help-block has-error" ng-if="createEventForm.title.$invalid && createEventForm.title.$dirty">
@@ -65,7 +65,7 @@
               </div>
             </div>
           </div>
-          <div class="row">
+          <div class="row top15">
             <label class="col-md-2">Start</label>
             <div class="dropdown col-md-8">
               {{ data.start | date:'medium' }}
@@ -80,7 +80,7 @@
               </ul>
             </div>
           </div>
-          <div class="row">
+          <div class="row top10">
             <label class="col-md-2" ng-class="{'text-danger': !data.isEndValid}">End</label>
             <div class="dropdown col-md-8" ng-class="{'text-danger': !data.isEndValid}">
               {{ data.end | date:'medium' }}
@@ -99,8 +99,8 @@
             <div class="col-md-2"></div>
             <div class="col-md-8 text-danger"><b>End Date must be later then the Start Date</b></div>
           </div>
-          <div class="row">
-            <label class="col-md-2">Color</label>
+          <div class="row top10">
+            <label class="col-md-2 top7">Color</label>
             <div class="col-md-8">
               <select name="colorpicker-regularfont" class="form-control" ng-model="selectedEvent.color">
                 <option value="#5484ed">Bold blue</option>

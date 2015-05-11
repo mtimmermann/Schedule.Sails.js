@@ -233,7 +233,6 @@
         // Date picker onSetTime callback
         $scope.onSetTime = function(newDate, oldDate) {
           $scope.data.isEndValid = $scope.data.start < $scope.data.end;
-          console.log('isEndValid: '+ $scope.data.isEndValid);
         };
 
         $scope.submit = function() {
