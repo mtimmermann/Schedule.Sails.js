@@ -35,6 +35,7 @@
     <Compile Include="api\models\ScheduleInvite.js" />
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
+    <Compile Include="assets\js\dependencies\angular\directives\calendar.min.js" />
     <Compile Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.js" />
     <Compile Include="assets\js\dependencies\bootstrap\bootstrap.js" />
     <Compile Include="assets\js\dependencies\bootstrap\bootstrap.min.js" />
