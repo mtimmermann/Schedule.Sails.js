@@ -71,6 +71,7 @@
 
   // Edit event on eventClick
   $scope.alertOnEventClick = function(date, jsEvent, view) {
+    console.log('select: start['+ date.start.toISOString() +'] end['+ date.end.toISOString() +']');
     openEditModal(date);
   };
 
