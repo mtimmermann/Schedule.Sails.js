@@ -40,7 +40,7 @@
   // Create an event
   var holdTempEvent = null; // A holder to remove a temporary event on edit cancel
   $scope.select = function(start, end) {
-    console.log('select (create event): start['+ start.toISOString() +'] start._ambigZone['+ start._ambigZone +'] start.isUTC()['+ start.isUTC() +'] end['+ end.toISOString() +']');
+    //console.log('select (create event): start['+ start.toISOString() +'] start._ambigZone['+ start._ambigZone +'] start.isUTC()['+ start.isUTC() +'] end['+ end.toISOString() +']');
 
     // If in month view, set the times
     if (start.hour() === 0 && end.hour() === 0 && start._ambigTime && end._ambigTime) {
@@ -71,19 +71,19 @@
 
   // Edit event on eventClick
   $scope.alertOnEventClick = function(date, jsEvent, view) {
-    console.log('alertOnEventClick (Edit existing event): start['+ date.start.toISOString() +'] start._ambigZone['+ date.start._ambigZone +'] start.isUTC()['+ date.start.isUTC() +'] end['+ date.end.toISOString() +']');
+    //console.log('alertOnEventClick (Edit existing event): start['+ date.start.toISOString() +'] start._ambigZone['+ date.start._ambigZone +'] start.isUTC()['+ date.start.isUTC() +'] end['+ date.end.toISOString() +']');
     openEditModal(date);
   };
 
   // On event drop to another date spot
   $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-    console.log('Event Droped to make dayDelta ' + delta);
+    //console.log('Event Droped to make dayDelta ' + delta);
     saveEvent(event);
   };
 
   // On event time resize
   $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view ){
-    console.log('alertOnResize');
+    //console.log('alertOnResize');
     saveEvent(event);
   };
 

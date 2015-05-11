@@ -119,7 +119,7 @@
     <Compile Include="assets\js\dependencies\angular\directives\angular-toastr.js" />
     <Compile Include="assets\js\dependencies\angular\directives\dirPagination.js" />
     <Compile Include="assets\js\dependencies\angular\directives\dirPagination.min.js" />
-    <Compile Include="assets\js\dependencies\angular\modules\compareTo.module.js" />
+    <Compile Include="assets\js\dependencies\angular\directives\compareTo.module.js" />
     <Compile Include="assets\js\private\admin\UserDeleteController.js" />
     <Compile Include="assets\js\private\admin\UserEditController.js" />
     <Compile Include="assets\js\private\admin\UserListController.js" />
@@ -189,7 +189,6 @@
     <Folder Include="assets\js\dependencies\angular" />
     <Folder Include="assets\js\dependencies\angular\directives" />
     <Folder Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\" />
-    <Folder Include="assets\js\dependencies\angular\modules" />
     <Folder Include="assets\js\dependencies\jquery\" />
     <Folder Include="assets\js\dependencies\fullcalendar\" />
     <Folder Include="assets\js\dependencies\moment\" />

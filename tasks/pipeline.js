@@ -31,7 +31,7 @@ var jsFilesToInject = [
   //'js/dependencies/**/*.js',
   'js/dependencies/*.js',
 
-  'js/dependencies/angular/modules/compareTo.module.js',
+  'js/dependencies/angular/directives/compareTo.module.js',
   'js/dependencies/angular/directives/angular-toastr.js',
 
   'js/public/utils.js',
