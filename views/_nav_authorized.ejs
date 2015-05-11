@@ -1,21 +1,28 @@
-    <nav class="navbar navbar-default navbar-inverse">
-      <!-- Mechanism for collapse button -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-      <!-- The lines in the image when the nav collapse -->
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
-      </button>
-
-      <a class="navbar-brand" href="/#/"> Home</a>
-
-      <!-- This is what the above collapse button points to when the mark-up below is collapsed -->
-      <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-        <!-- This is what "styles" the li's as navbar items -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <!--<div class="container">-->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <!--<span class="sr-only">Toggle navigation</span>-->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#/">Home</a>
+      </div>
+      <% if (req.user && req.user.username) { %>
+      <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav navbar-right">
-          <li>
-            <a href="/logout">Sign Out</a>
+          <li class="dropdown">
+            <a href="/#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+              <%= req.user.username %>
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/logout">Sign Out</a></li>
+            </ul>
           </li>
         </ul>
       </div>
+      <% } %>
+      <!--</div>-->
     </nav>
