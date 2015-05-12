@@ -10,7 +10,7 @@
 
   $scope.saveUser = function() {
     $scope.isLoading = true;
-    userService.updateUser($scope.user)
+    userService.updateUser($scope.user, myApp.locals._csrf)
     .then(function onSuccess(result) {
       toastr.success('User saved', 'Success', window.myApp.locals.toastrOptions);
     })

@@ -10,7 +10,7 @@
 
   $scope.delete = function() {
     $scope.isLoading = true;
-    userService.deleteUser($scope.user.id)
+    userService.deleteUser($scope.user.id, myApp.locals._csrf)
     .then(function onSuccess(result) {
       $scope.listUsers();
     })

@@ -16,16 +16,16 @@ angular.module('UserModule').factory("userService", ['$http', function($http) {
       return $http.get(serviceBase + userId);
     },
 
-    updateUser: function(user) {
-      return $http.put(serviceBase, { user: user });
+    updateUser: function(user, csrf) {
+      return $http.put(serviceBase, { user: user, _csrf: csrf });
     },
 
-    deleteUser: function(userId) {
-      return $http.delete(serviceBase + userId);
+    deleteUser: function(userId, csrf) {
+      return $http.delete(serviceBase + userId +'?_csrf='+ encodeURIComponent(csrf));
     },
 
-    updatePassword: function(userId, password) {
-      return $http.put(serviceBase + 'password', { id: userId, password: password });
+    updatePassword: function(userId, password, csrf) {
+      return $http.put(serviceBase + 'password', { id: userId, password: password, _csrf: csrf });
     },
 
     getRoles: function() {
