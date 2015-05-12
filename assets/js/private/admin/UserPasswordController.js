@@ -22,7 +22,11 @@
     .finally(function eitherWay() {
       $scope.isLoading = false;
     });
-  }
+  };
+
+  $scope.editUser = function() {
+    $location.path('/edit/'+ $scope.user.id);
+  };
 
   function getUser() {
     userService.getUser($routeParams.id)

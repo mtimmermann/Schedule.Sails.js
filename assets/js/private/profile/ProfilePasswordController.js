@@ -22,7 +22,11 @@
     .finally(function eitherWay() {
       $scope.isLoading = false;
     });
-  }
+  };
+
+  $scope.editProfile = function() {
+    $location.path('/profile');
+  };
 
   function getProfile() {
     profileService.getProfile($routeParams.id)
