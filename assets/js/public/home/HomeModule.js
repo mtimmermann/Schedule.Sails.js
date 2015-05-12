@@ -1,1 +1,1 @@
-var app = angular.module('HomeModule', ['toastr', 'compareTo', 'ngSetHiddenInput']);
+var app = angular.module('HomeModule', ['toastr', 'compareTo', 'ngSetHiddenInput', 'ngFocusInput']);

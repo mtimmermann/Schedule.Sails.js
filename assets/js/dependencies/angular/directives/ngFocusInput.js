@@ -17,15 +17,17 @@ angular.module('ngFocusInput').directive('ngFocusInput', function ($timeout) {
 
       // <input type="text" name="title" value="" ng-focus-input="true" />
       //scope.$watch('trigger', function(value) {
-      //  if (value === 'true') {
-      //    $timeout(function() { el[0].focus(); });
+      //  if (value === true) {
+      //    //$timeout(function() {
+      //      el[0].focus();
+      //    //});
       //  }
       //});
 
       scope.$watch(attr['ngModel'], function(newValue, oldValue) {
         // Trigger focus only after input has been initialized with model
-        if ((newValue && !oldValue) || (typeof newValue === 'string' && newValue === '' && typeof oldValue === 'string' && oldValue === '')) {
-          //scope.trigger = 'true';
+        if (newValue === oldValue) {
+          //scope.trigger = true;
           el[0].focus();
         }
       }, true);
