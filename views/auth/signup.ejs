@@ -1,26 +1,26 @@
-    <nav class="navbar navbar-default navbar-inverse">
-      <!-- Mechanism for the collapse button -->
-      <button type="button" class="navbar-toggle" data-toggle="collapse" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed">
-        <!-- The lines in the image when the nav collapse -->
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-
-      <a class="navbar-brand" href="/#"> My App</a>
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <!--<span class="sr-only">Toggle navigation</span>-->
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/#/">Schedule Sails</a>
+      </div>
 
       <!-- Login form -->
       <div class="collapse navbar-collapse" ng-class="!navCollapsed && 'in'">
-<%- partial ('./_login_form.ejs') %>
+<%- partial ('../auth/_login_form') %>
+      </div>
       </div>
     </nav>
 
-    <!-- Signup Form --> 
     <form ng-submit="submitSignupForm()" id="sign-up-form" class="form-signin" name="signup">
       <h2 class="form-signin-heading">Create an account</h2>
       <div class="row">
 
-        <!-- Username -->
         <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.username.$invalid && signup.username.$dirty}">
           <label>User Name</label>
           <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="signupForm.username" ng-maxlength="50" required />
@@ -30,7 +30,6 @@
           </span>
         </div>
 
-        <!-- Email -->
         <div class="control-group form-group col-md-12"
         ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
           <label>Your email address</label>
@@ -41,7 +40,6 @@
           </span>
         </div>
 
-        <!-- Password -->
         <div class="control-group form-group col-md-6" ng-class="{'has-error':signup.password.$error.required && signup.password.$dirty}">
           <label>Choose a password</label>
           <input type="password" class="form-control" placeholder="at least 8 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="8" compare-to="signupForm.confirmPassword" />
@@ -51,7 +49,6 @@
           </span>
         </div>
 
-        <!-- Confirm  Password -->
         <div class="control-group form-group col-md-6" ng-class="{'has-error': signup.confirmation.$dirty && (signup.confirmation.$invalid || signup.password.$error.compareTo) }">
           <label>Re-enter your password</label>
           <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required>
