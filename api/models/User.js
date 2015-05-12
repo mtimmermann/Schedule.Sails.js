@@ -11,6 +11,12 @@ var User = {
 
     // enum -> only accept these values for roles
     role      : { type: 'string', enum: [Roles.siteAdmin, Roles.admin, Roles.user] }
+  },
+
+  toJSON: function() {
+    var obj = this.toObject();
+    delete obj._csrf;
+    return obj;
   }
 };
 

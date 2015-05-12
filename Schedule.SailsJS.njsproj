@@ -37,6 +37,7 @@
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.min.js" />
+    <Compile Include="assets\js\dependencies\angular\directives\ngSetHiddenInput.js" />
     <Compile Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.js" />
     <Compile Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.min.js" />
     <Compile Include="assets\js\dependencies\bootstrap\bootstrap.js" />

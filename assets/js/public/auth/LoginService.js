@@ -7,12 +7,15 @@ app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
 
   return {
  
+    // http://blog.sapiensworks.com/post/2013/06/22/Binding-AngularJs-Model-to-Hidden-Fields.aspx/
+
     login: function($scope) {
       $scope.loginForm.loading = true;
 
       $http.post('/auth/local', {
         identifier: $scope.loginForm.identifier,
-        password: $scope.loginForm.password
+        password: $scope.loginForm.password,
+        _csrf: $scope.loginForm._csrf
       })
       .then(function onSuccess (resp) {
         window.location = '/';
