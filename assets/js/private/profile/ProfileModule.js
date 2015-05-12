@@ -8,7 +8,7 @@ angular.module('ProfileModule').config(function($routeProvider) {
     templateUrl: '/templates/profile/edit.tpl.html',
     controller: 'ProfileEditController'
   })
-  .when('/password/:id', {
+  .when('/password', {
     title: 'Change Password',
     templateUrl: '/templates/profile/password.tpl.html',
     controller: 'ProfilePasswordController'
