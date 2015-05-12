@@ -1,4 +1,4 @@
-﻿angular.module('ProfileModule', ['ngRoute', 'ui.bootstrap', 'toastr', 'compareTo', 'ngFocus']);
+﻿angular.module('ProfileModule', ['ngRoute', 'ui.bootstrap', 'toastr', 'compareTo', 'ngFocusInput']);
 
 angular.module('ProfileModule').config(function($routeProvider) {
 

@@ -1,17 +1,17 @@
 ﻿/**
- * ngFocus
+ * ngFocusInput
  *
  * Angular directive setting focus to an input, since the autofocus attribute
  * only works on a hard page refresh
  *
  * Example usage:
- *   <input type="text" name="title" value="" ng-focus />
+ *   <input type="text" name="title" value="" ng-focus-input />
  */
-angular.module('ngFocus', []);
-angular.module('ngFocus').directive('ngFocus', function ($timeout) {
+angular.module('ngFocusInput', []);
+angular.module('ngFocusInput').directive('ngFocusInput', function ($timeout) {
 
   return {
-    //scope: { trigger: '=ngFocus' },
+    //scope: { trigger: '=ngFocusInput' },
 
     link: function(scope, el, attr) {
 

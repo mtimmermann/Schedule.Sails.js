@@ -36,7 +36,7 @@ var jsFilesToInject = [
 
   'js/dependencies/angular/directives/compareTo.module.js',
   'js/dependencies/angular/directives/angular-toastr.js',
-  'js/dependencies/angular/directives/ngFocus.js',
+  'js/dependencies/angular/directives/ngFocusInput.js',
 
   'js/public/utils.js',
 

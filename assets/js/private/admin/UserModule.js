@@ -1,4 +1,4 @@
-angular.module('UserModule', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'toastr', 'compareTo', 'ngFocus']);
+angular.module('UserModule', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'toastr', 'compareTo', 'ngFocusInput']);
 
 //angular.module('UserModule').config(function($stateProvider, $httpProvider) {
 angular.module('UserModule').config(function($routeProvider) {
