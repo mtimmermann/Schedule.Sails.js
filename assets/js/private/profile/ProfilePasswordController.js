@@ -1,4 +1,4 @@
-﻿angular.module('ProfileModule').controller('ProfilePasswordController', ['$scope', '$rootScope', '$location', '$routeParams', 'profileService', 'toastr', function($scope, $rootScope, $location, $routeParams, userService, toastr) {
+﻿angular.module('ProfileModule').controller('ProfilePasswordController', ['$scope', '$rootScope', '$location', '$routeParams', 'profileService', 'toastr', function($scope, $rootScope, $location, $routeParams, profileService, toastr) {
 
   $scope.model = { password: '', confirmation: '' };
   $scope.user = {};

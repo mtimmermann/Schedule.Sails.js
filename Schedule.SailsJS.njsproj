@@ -34,12 +34,14 @@
     <Compile Include="api\controllers\admin\LogController.js" />
     <Compile Include="api\controllers\admin\ScheduleInviteController.js" />
     <Compile Include="api\controllers\EventController.js" />
+    <Compile Include="api\controllers\ProfileController.js" />
     <Compile Include="api\models\Event.js" />
     <Compile Include="api\models\ScheduleInvite.js" />
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.min.js" />
     <Compile Include="assets\js\dependencies\angular\directives\ngSetHiddenInput.js" />
+    <Compile Include="assets\js\dependencies\angular\directives\ngSetHiddenInput.min.js" />
     <Compile Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.js" />
     <Compile Include="assets\js\dependencies\angular\directives\ui-bootstrap-datetimepicker\datetimepicker.min.js" />
     <Compile Include="assets\js\dependencies\bootstrap\bootstrap.js" />
@@ -53,7 +55,10 @@
     <Compile Include="assets\js\dependencies\moment\moment.min.js" />
     <Compile Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.js" />
     <Compile Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.min.js" />
+    <Compile Include="assets\js\private\profile\ProfileEditController.js" />
     <Compile Include="assets\js\private\profile\ProfileModule.js" />
+    <Compile Include="assets\js\private\profile\ProfilePasswordController.js" />
+    <Compile Include="assets\js\private\profile\ProfileService.js" />
     <Compile Include="assets\js\private\schedule\CalendarController.js" />
     <Compile Include="assets\js\private\schedule\CalendarModule.js" />
     <Compile Include="assets\js\private\schedule\EventService.js" />
@@ -85,6 +90,7 @@
     <Content Include="views\dashboard.ejs" />
     <Content Include="views\home.ejs" />
     <Content Include="views\layout.ejs" />
+    <Content Include="views\profile\index.ejs" />
     <Content Include="views\schedule\index.ejs" />
     <Content Include="views\_footer.ejs" />
     <Content Include="views\_nav_authorized.ejs" />
@@ -226,6 +232,7 @@
     <Folder Include="views\admin" />
     <Folder Include="views\admin\user" />
     <Folder Include="views\auth" />
+    <Folder Include="views\profile\" />
     <Folder Include="views\schedule\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.Common.targets" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />

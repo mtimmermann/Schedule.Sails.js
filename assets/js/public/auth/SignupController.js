@@ -19,9 +19,9 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
         })
         .catch(function onError(resp) {
             if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-                toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+                toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
             } else {
-                toastr.error('Unknown error', 'Error', window.myApp.locals.toastrOptions);
+                toastr.error('Unknown error', 'Error', myApp.locals.toastrOptions);
             }
         })
         .finally(function eitherWay() {

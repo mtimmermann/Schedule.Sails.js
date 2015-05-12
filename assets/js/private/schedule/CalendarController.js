@@ -25,9 +25,9 @@
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error retrieving events', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error retrieving events', 'Error', myApp.locals.toastrOptions);
       }
     })
     .finally(function eitherWay() {
@@ -172,7 +172,7 @@
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
         toastr.error('Error saving event', 'Error', myApp.locals.toastrOptions);
       }
@@ -186,14 +186,14 @@
   function deleteEvent(event) {
     eventService.deleteEvent(event.id, myApp.locals._csrf)
     .then(function onSuccess(result) {
-      toastr.success('Event removed', 'Success', window.myApp.locals.toastrOptions);
+      toastr.success('Event removed', 'Success', myApp.locals.toastrOptions);
       myCalendar1.fullCalendar('removeEvents', [ event._id ] );
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error removing event', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error removing event', 'Error', myApp.locals.toastrOptions);
       }
     })
     .finally(function eitherWay() {

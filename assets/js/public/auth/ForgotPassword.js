@@ -17,13 +17,13 @@ angular.module('ForgotPasswordModule').controller('ForgotPasswordController', ['
     $scope.isLoading = true;
     passwordService.submitEmail($scope.model.email, $scope.model._csrf)
     .then(function onSuccess(result) {
-      toastr.success('Email sent. Please check your email.', 'Success', window.myApp.locals.toastrOptions);
+      toastr.success('Email sent. Please check your email.', 'Success', myApp.locals.toastrOptions);
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error submitting forgotton password', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error submitting forgotton password', 'Error', myApp.locals.toastrOptions);
       }
     })
     .finally(function eitherWay() {

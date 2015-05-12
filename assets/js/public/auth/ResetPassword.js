@@ -23,13 +23,13 @@ angular.module('ResetPasswordModule').controller('ResetPasswordController', ['$s
     $scope.isLoading = true;
     resetPasswordService.changePassword(email, $scope.model.password, id)
     .then(function onSuccess(result) {
-      toastr.success('Password successfully reset.', 'Success', window.myApp.locals.toastrOptions);
+      toastr.success('Password successfully reset.', 'Success', myApp.locals.toastrOptions);
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error resetting password.', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error resetting password.', 'Error', myApp.locals.toastrOptions);
       }
     })
     .finally(function eitherWay() {

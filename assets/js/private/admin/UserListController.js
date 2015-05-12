@@ -5,7 +5,7 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
   $scope.pageSize = 10;
   $scope.filter = '';
   $scope.pagination = { current: 1 };
-  $scope.isFullView = window.myApp.locals.isFullView;
+  $scope.isFullView = myApp.locals.isFullView;
 
   // http://ng-admin.marmelab.com/#/posts/list?sortField=posts_ListView.id&sortDir=ASC
   $scope.datagrid = {
@@ -40,13 +40,13 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
     console.log('sendCalendarInvite -> '+ email);
     userService.sendCalenderInvite(email, myApp.locals._csrf)
     .then(function (result) {
-      toastr.success('Calendar invite sent', 'Success', window.myApp.locals.toastrOptions);
+      toastr.success('Calendar invite sent', 'Success', myApp.locals.toastrOptions);
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error sending calendar invite', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error sending calendar invite', 'Error', myApp.locals.toastrOptions);
       }
     });
   }

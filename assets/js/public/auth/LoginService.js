@@ -3,7 +3,7 @@ app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
   var toastrOptions = angular.extend({
     timeOut: 3000,
     closeButton: true
-  }, window.myApp.locals.toastrOptions);
+  }, myApp.locals.toastrOptions);
 
   return {
  
