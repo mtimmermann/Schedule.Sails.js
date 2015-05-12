@@ -8,7 +8,7 @@
 
   $scope.changePassword = function() {
     $scope.isLoading = true;
-    userService.updatePassword($scope.user.id, $scope.model.password, myApp.locals._csrf)
+    profileService.updatePassword($scope.user.id, $scope.model.password, myApp.locals._csrf)
     .then(function onSuccess(result) {
       toastr.success('Password updated', 'Success', myApp.locals.toastrOptions);
     })

@@ -14,6 +14,10 @@ angular.module('ProfileModule').factory("profileService", ['$http', function($ht
 
     updateProfile: function(user, csrf) {
       return $http.put(serviceBase, { user: user, _csrf: csrf });
+    },
+
+    updatePassword: function(userId, password, csrf) {
+      return $http.put(serviceBase + 'password', { id: userId, password: password, _csrf: csrf });
     }
   }
 

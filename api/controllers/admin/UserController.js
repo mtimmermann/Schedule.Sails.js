@@ -116,9 +116,16 @@ var UserController = {
 
     if (req.session.role !== Roles.siteAdmin) {
       if (user.id !== req.user.id) {
-        sails.log.warn('UserController.update -> Security issue non SiteAdmin ' +
+        sails.log.warn('UserController.update -> Security issue. A non SiteAdmin ' +
         'auth user['+ req.user.id +' '+ req.user.email +']' +
         ' was prevented from updating user['+ user.id +']');
+        return res.forbidden();
+      }
+
+      if (user.role) {
+        sails.log.warn('UserController.update -> Security issue. A non SiteAdmin ' +
+        'auth user['+ req.user.id +' '+ req.user.email +']' +
+        ' was prevented from updating thier user role['+ req.user.role +'] to role['+ user.role +']');
         return res.forbidden();
       }
       delete user.role; // Only SiteAdmin is allowed to change role
@@ -204,7 +211,7 @@ var UserController = {
   /**
    * Update password
    *
-   * POST /adminpanel/users/password
+   * PUT /adminpanel/users/password
    *
    * @param {Object} req
    * @param {Object} res
@@ -214,6 +221,15 @@ var UserController = {
     var password = typeof req.param('password') === 'string' ? req.param('password') : null;
     if (!userId || !password) {
       return res.send(409, 'id and password required');
+    }
+
+    if (req.session.role !== Roles.siteAdmin) {
+      if (userId !== req.user.id) {
+        sails.log.warn('UserController.password -> Security issue. A non SiteAdmin ' +
+        'auth user['+ req.user.id +' '+ req.user.email +']' +
+        ' was prevented from updating password for user['+ userId +']');
+        return res.forbidden();
+      }
     }
 
     Q.all([
