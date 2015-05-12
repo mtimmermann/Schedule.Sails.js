@@ -37,7 +37,7 @@ var ScheduleInviteController = {
   /**
     * Create a user invite and email with an auth url for the calendar
     *
-    * GET /schedule/invite  user's calandar view
+    * POST /schedule/invite  user's calandar view
     *
     * @param {Object} req
     * @param {Object} res

@@ -38,7 +38,7 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
 
   function sendCalendarInvite(email) {
     console.log('sendCalendarInvite -> '+ email);
-    userService.sendCalenderInvite(email)
+    userService.sendCalenderInvite(email, myApp.locals._csrf)
     .then(function (result) {
       toastr.success('Calendar invite sent', 'Success', window.myApp.locals.toastrOptions);
     })

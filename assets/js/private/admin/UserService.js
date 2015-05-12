@@ -32,8 +32,8 @@ angular.module('UserModule').factory("userService", ['$http', function($http) {
       return $http.get('/adminpanel/roles');
     },
 
-    sendCalenderInvite: function(email) {
-      return $http.get('/schedule/invite?email='+ email);
+    sendCalenderInvite: function(email, csrf) {
+      return $http.post('/schedule/invite', { email: email, _csrf: csrf });
     },
 
     getInviteData: function(userId, email) {
