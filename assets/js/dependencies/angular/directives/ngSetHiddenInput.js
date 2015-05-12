@@ -3,7 +3,10 @@
  *
  * Example usage:
  *
- * <input type="hidden" name="someName" value="someValue" ng-model="myForm.someProperty" ng-set-hidden-input />
+ *   <input type="hidden" name="someName" value="someValue" ng-model="someProperty" ng-set-hidden-input />
+ *
+ * This directive works on nested properties, e.g.:
+ *  <input type="hidden" name="someName" value="someValue" ng-model="baseModel.propa.propb.someProperty" ng-set-hidden-input />
  * 
  */
 angular.module('ngSetHiddenInput', []);
