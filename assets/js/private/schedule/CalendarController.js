@@ -158,9 +158,9 @@
   // Create event or update existing event
   function saveEvent(event) {
     var isNew = event.id ? false : true;
-    eventService.saveEvent(event)
+    eventService.saveEvent(event, myApp.locals._csrf)
     .then(function onSuccess(result) {
-      toastr.success('Event saved', 'Success', window.myApp.locals.toastrOptions);
+      toastr.success('Event saved', 'Success', myApp.locals.toastrOptions);
       if (isNew) {
         event.id = result.data.id;
         //$scope.events.push(event);
@@ -174,7 +174,7 @@
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
         toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error saving event', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error saving event', 'Error', myApp.locals.toastrOptions);
       }
     })
     .finally(function eitherWay() {
@@ -184,7 +184,7 @@
 
   // Delete an existing event
   function deleteEvent(event) {
-    eventService.deleteEvent(event.id)
+    eventService.deleteEvent(event.id, myApp.locals._csrf)
     .then(function onSuccess(result) {
       toastr.success('Event removed', 'Success', window.myApp.locals.toastrOptions);
       myCalendar1.fullCalendar('removeEvents', [ event._id ] );

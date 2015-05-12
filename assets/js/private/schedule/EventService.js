@@ -11,7 +11,7 @@
       return $http.get(serviceBase + query);
     },
 
-    saveEvent: function(event) {
+    saveEvent: function(event, csrf) {
       // Always format without timezone
       event.start = event.start.format('YYYY-MM-DD[T]HH:mm:ss');
       if (event.end) event.end = event.end.format('YYYY-MM-DD[T]HH:mm:ss');
@@ -25,14 +25,14 @@
       event.startTimeLocal = startTimeStamp.toString();
 
       if (event.id) {
-        return $http.put(serviceBase, { event: event });
+        return $http.put(serviceBase, { event: event, _csrf: csrf });
       } else {
-        return $http.post(serviceBase, { event: event });
+        return $http.post(serviceBase, { event: event, _csrf: csrf });
       }
     },
 
-    deleteEvent: function(id) {
-      return $http.delete(serviceBase + id);
+    deleteEvent: function(id, csrf) {
+      return $http.delete(serviceBase + id +'?_csrf='+ encodeURIComponent(csrf));
     }
   };
 }]);
