@@ -1,8 +1,8 @@
 ﻿/**
  * ngFocusInput
  *
- * Angular directive setting focus to an input, since the autofocus attribute
- * only works on a hard page refresh
+ * Angular directive setting focus to an input since the autofocus attribute
+ * only works on a hard page refresh or a newly redirected angular route.
  *
  * Example usage:
  *   <input type="text" name="title" value="" ng-focus-input />
