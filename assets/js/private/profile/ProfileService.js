@@ -10,6 +10,10 @@ angular.module('ProfileModule').factory("profileService", ['$http', function($ht
   return {
     getProfile: function() {
       return $http.get(serviceBase);
+    },
+
+    updateProfile: function(user, csrf) {
+      return $http.put(serviceBase, { user: user, _csrf: csrf });
     }
   }
 

@@ -38,10 +38,17 @@ module.exports.policies = {
   },
 
   // UserController - Everthing requires SiteAdmin privledges with the
-  // exception of needing just Admin privledges for the list action
+  // three exceptions, list, update, password. Role security is checked
+  // within these actions.
   'admin/UserController': {
     '*': ['passport', 'isSiteAdmin'],
     'list': ['passport', 'isAdmin'],
+
+    // Role security is peformed in these actions. A user is allowed to
+    // update themself and change thier own password
+    'update': ['passport', 'sessionAuth'],
+    'password': ['passport', 'sessionAuth'],
+
   },
 
   'admin/ScheduleInviteController': {

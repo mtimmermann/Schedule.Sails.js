@@ -54,6 +54,7 @@ module.exports.routes = {
    * ProfileController
    */
   'GET /profile': 'ProfileController.profile',
+  'PUT /profile': 'admin/UserController.update',
 
   /**
    * User Controller - Admin

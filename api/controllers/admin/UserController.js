@@ -114,6 +114,16 @@ var UserController = {
       return res.send(409, 'Required user object missing');
     }
 
+    if (req.session.role !== Roles.siteAdmin) {
+      if (user.id !== req.user.id) {
+        sails.log.warn('UserController.update -> Security issue non SiteAdmin ' +
+        'auth user['+ req.user.id +' '+ req.user.email +']' +
+        ' was prevented from updating user['+ user.id +']');
+        return res.forbidden();
+      }
+      delete user.role; // Only SiteAdmin is allowed to change role
+    }
+
     // Ensure username and email are unique.  Note, the waterline model unique key
     // currently is not case insensitive.
     // http://real-ly-happy.com/multiple-query-model-in-sails-js-with-promises/

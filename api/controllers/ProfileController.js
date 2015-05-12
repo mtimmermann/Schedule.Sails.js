@@ -26,10 +26,9 @@ var ProfileController = {
         sails.log.error('ProfileController.profile User.findOne failed. user['+ req.user.id +']', err);
         return res.negotiate(err);
       }
-            
-      if (!user) {
-        return res.send(404, 'User not found.');
-      }
+      if (!user) return res.send(404, 'User not found.');
+
+      delete user.role;
       return res.json(user);
     });
   }
