@@ -27,9 +27,9 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
         .finally(function eitherWay() {
             $scope.signupForm.loading = false;
         });
-    }
+    };
 
     $scope.submitLoginForm = function () {
         loginService.login($scope);
-    }
+    };
 }]);
