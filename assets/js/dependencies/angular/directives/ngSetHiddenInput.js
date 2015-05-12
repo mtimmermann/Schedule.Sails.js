@@ -15,9 +15,9 @@ angular.module('ngSetHiddenInput').directive('ngSetHiddenInput', function () {
     var model = attr['ngModel'];
 
     // Update on hidden input change
-    scope.$watch(model, function(nv) {
-      if (nv) {
-        el.val(nv);
+    scope.$watch(model, function(newValue) {
+      if (newValue) {
+        el.val(newValue);
       } else {
         init();
       }
