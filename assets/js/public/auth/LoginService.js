@@ -7,8 +7,6 @@ app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
 
   return {
  
-    // http://blog.sapiensworks.com/post/2013/06/22/Binding-AngularJs-Model-to-Hidden-Fields.aspx/
-
     login: function($scope) {
       $scope.loginForm.loading = true;
 
@@ -26,6 +24,7 @@ app.factory('loginService', ['$http', 'toastr', function($http, toastr) {
         } else {
           toastr.error('Unknown error', 'Error', toastrOptions);
         }
+        $scope.loginForm.loginFailed = true;
       })
       .finally(function eitherWay(){
         $scope.loginForm.loading = false;

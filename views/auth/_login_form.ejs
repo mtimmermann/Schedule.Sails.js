@@ -17,4 +17,8 @@
                 <span ng-show="loginForm.loading">Signing in...</span>
               </button>
               <input type="hidden" name="_csrf" value="<%= _csrf %>" ng-model="loginForm._csrf" ng-set-hidden-input />
+
+              <div class="form-group" ng-show="loginForm.loginFailed">
+                <a href="/forgotpassword">Forgot Password?</a>
+              </div>
           </form>
