@@ -15,6 +15,7 @@ angular.module('ngFocusInput').directive('ngFocusInput', function ($timeout) {
 
     link: function(scope, el, attr) {
 
+      // <input type="text" name="title" value="" ng-focus-input="true" />
       //scope.$watch('trigger', function(value) {
       //  if (value === 'true') {
       //    $timeout(function() { el[0].focus(); });

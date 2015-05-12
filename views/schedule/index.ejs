@@ -52,7 +52,7 @@
       <div class="modal-header">
         <h3>Edit: {{selectedEvent.title}}</h3>
       </div>
-      <form ng-submit="submit()" name="createEventForm">
+      <form id="createEventForm" ng-submit="submit()" name="createEventForm">
         <div class="modal-body">
           <div class="row">
             <div class="control-group form-group" ng-class="{'has-error':createEventForm.title.$invalid && createEventForm.title.$dirty}">

@@ -256,6 +256,7 @@
         $modalInstance.rendered.then(function() {
           // Init the jquery simple color picker
           $('select[name="colorpicker-regularfont"]').simplecolorpicker({theme: 'regularfont'});
+          $('#createEventForm input[name="title"]').focus();
         });
         // http://stackoverflow.com/questions/18962536/angular-ui-modal-after-close-event
         $modalInstance.result.then(function() {
