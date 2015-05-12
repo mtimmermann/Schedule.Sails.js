@@ -21,10 +21,7 @@ var UserController = {
   /**
    * Return user by id
    *
-   * Optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!/documentation/concepts/Security/CSRF.html
-   *
-   * * GET /adminpanel/users/<id>
+   * GET /adminpanel/users/<id>
    *
    * @param {Object} req
    * @param {Object} res
@@ -50,10 +47,7 @@ var UserController = {
 
   /**
    * Return list of users if a json request, else return user table view
-   *
-   * Optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!/documentation/concepts/Security/CSRF.html
-   *
+.   *
    * GET /adminpanel/users
    *
    * @param {Object} req
@@ -66,7 +60,6 @@ var UserController = {
         ({
             title: 'My App',
             isFullView: req.session.role === Roles.siteAdmin ? true : false,
-            //bodyAttr: 'ng-app="UserModule" ng-controller="UserListController" ng-cloak',
             bodyAttr: 'ng-app="UserModule" ng-cloak',
             layout: 'layout'
         });
@@ -109,9 +102,6 @@ var UserController = {
 
   /**
    * Save a user
-   *
-   * Optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!/documentation/concepts/Security/CSRF.html
    *
    * POST /adminpanel/users/update
    *
@@ -164,9 +154,6 @@ var UserController = {
   /**
    * Delete a user
    *
-   * Optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!/documentation/concepts/Security/CSRF.html
-   *
    * DELETE /adminpanel/users/destroy
    *
    * @param {Object} req
@@ -206,9 +193,6 @@ var UserController = {
 
   /**
    * Update password
-   *
-   * Optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!/documentation/concepts/Security/CSRF.html
    *
    * POST /adminpanel/users/password
    *

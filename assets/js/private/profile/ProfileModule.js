@@ -4,14 +4,14 @@ angular.module('ProfileModule').config(function($routeProvider) {
 
   $routeProvider
   .when('/', {
-    title: 'Edit',
-    templateUrl: '/templates/admin/user/edit.tpl.html',
-    controller: 'UserEditController'
+    title: 'Edit Profile',
+    templateUrl: '/templates/profile/edit.tpl.html',
+    controller: 'ProfileEditController'
   })
   .when('/password/:id', {
     title: 'Change Password',
-    templateUrl: '/templates/admin/user/password.tpl.html',
-    controller: 'UserPasswordController'
+    templateUrl: '/templates/profile/password.tpl.html',
+    controller: 'ProfilePasswordController'
   })
   .otherwise({
     redirectTo: '/'

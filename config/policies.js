@@ -33,6 +33,10 @@ module.exports.policies = {
     '*': ['passport', 'sessionAuth']
   },
 
+  'ProfileController': {
+    '*': ['passport', 'sessionAuth']
+  },
+
   // UserController - Everthing requires SiteAdmin privledges with the
   // exception of needing just Admin privledges for the list action
   'admin/UserController': {

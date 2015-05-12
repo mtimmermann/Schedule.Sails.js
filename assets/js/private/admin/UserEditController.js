@@ -12,13 +12,13 @@
     $scope.isLoading = true;
     userService.updateUser($scope.user, myApp.locals._csrf)
     .then(function onSuccess(result) {
-      toastr.success('User saved', 'Success', window.myApp.locals.toastrOptions);
+      toastr.success('User saved', 'Success', myApp.locals.toastrOptions);
     })
     .catch(function onError(resp) {
       if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-        toastr.error(resp.data, 'Error', window.myApp.locals.toastrOptions);
+        toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
       } else {
-        toastr.error('Error saving user', 'Error', window.myApp.locals.toastrOptions);
+        toastr.error('Error saving user', 'Error', myApp.locals.toastrOptions);
       }
     })
     .finally(function eitherWay() {

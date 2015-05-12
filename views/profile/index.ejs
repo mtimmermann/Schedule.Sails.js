@@ -1,10 +1,10 @@
-<%- partial ('../../_nav_authorized.ejs') %>
+<%- partial ('../_nav_authorized.ejs') %>
 
   <div class="container-fluid">
     <div data-ng-view="" id="ng-view"></div>
   </div>
 
-<%- partial ('../../_footer.ejs') %>
+<%- partial ('../_footer.ejs') %>
 
   <!--SCRIPTS-->
   <script src="/js/dependencies/sails.io.js"></script>
@@ -17,7 +17,9 @@
   <!--SCRIPTS END-->
   
   <script src="/js/dependencies/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
-  <script src="/js/dependencies/angular/directives/dirPagination.min.js"></script>
   <script src="/js/dependencies/angular/angular-route.min.js"></script>
-  <script src="/js/private/admin/UserModule.js"></script>
-  <script src="/js/private/admin/UserAdmin.js"></script>
+  <script src="/js/private/profile/ProfileModule.js"></script>
+  <script src="/js/private/profile/ProfileService.js"></script>
+  <script src="/js/private/profile/ProfileController.js"></script>
+  <script src="/js/private/profile/ProfileEditController.js"></script>
+  <script src="/js/private/profile/ProfilePasswordController.js"></script>

@@ -307,9 +307,6 @@ var AuthController = {
         <button type="submit">Sign in</button>
       </form>
    *
-   * You could optionally add CSRF-protection as outlined in the documentation:
-   * http://sailsjs.org/#!documentation/config.csrf
-   *
    * A simple example of automatically listing all available providers in a
    * Handlebars template would look like this:
    *

@@ -1,4 +1,4 @@
-﻿angular.module('UserModule').controller('UserPasswordController', ['$scope', '$rootScope', '$location', '$routeParams', 'userService', 'toastr', function($scope, $rootScope, $location, $routeParams, userService, toastr) {
+﻿angular.module('ProfileModule').controller('ProfilePasswordController', ['$scope', '$rootScope', '$location', '$routeParams', 'profileService', 'toastr', function($scope, $rootScope, $location, $routeParams, userService, toastr) {
 
   $scope.model = { password: '', confirmation: '' };
   $scope.user = {};
@@ -24,14 +24,14 @@
     });
   }
 
-  function getUser() {
-    userService.getUser($routeParams.id)
+  function getProfile() {
+    profileService.getProfile($routeParams.id)
     .then(function(result) {
       $scope.user = result.data;
     });
   }
 
   function init() {
-    getUser();
+    getProfile();
   }
 }]);
