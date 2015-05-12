@@ -25,7 +25,7 @@
   };
 
   $scope.editProfile = function() {
-    $location.path('/profile');
+    $location.path('/');
   };
 
   function getProfile() {
