@@ -17,7 +17,7 @@
             <div class="control-group form-group" ng-class="{'has-error':myForm.username.$invalid && myForm.username.$dirty}">
               <label class="col-md-2">User Name</label>
               <div class="col-md-4">
-                <input name="username" ng-model="user.username" type="text" class="form-control" placeholder="User Name" ng-maxlength="50" required />
+                <input name="username" ng-model="user.username" type="text" class="form-control" placeholder="User Name" ng-maxlength="50" autofocus required />
                 <span class="help-block has-error" ng-if="myForm.username.$dirty">
                   <span ng-show="myForm.username.$error.required">User Name is required.</span>
                   <span ng-show="myForm.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
