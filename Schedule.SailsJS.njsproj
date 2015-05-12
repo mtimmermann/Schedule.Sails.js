@@ -27,6 +27,8 @@
     <Content Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker-regularfont.css" />
     <Content Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.css" />
     <Content Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.min.css" />
+    <Content Include="assets\templates\profile\edit.tpl.html" />
+    <Content Include="assets\templates\profile\password.tpl.html" />
     <Content Include="package.json" />
     <Content Include="README.md" />
     <Compile Include="api\controllers\admin\LogController.js" />
@@ -51,6 +53,7 @@
     <Compile Include="assets\js\dependencies\moment\moment.min.js" />
     <Compile Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.js" />
     <Compile Include="assets\js\dependencies\simplecolorpicker\jquery.simplecolorpicker.min.js" />
+    <Compile Include="assets\js\private\profile\ProfileModule.js" />
     <Compile Include="assets\js\private\schedule\CalendarController.js" />
     <Compile Include="assets\js\private\schedule\CalendarModule.js" />
     <Compile Include="assets\js\private\schedule\EventService.js" />
@@ -199,6 +202,7 @@
     <Folder Include="assets\js\dependencies\simplecolorpicker\" />
     <Folder Include="assets\js\private" />
     <Folder Include="assets\js\private\admin" />
+    <Folder Include="assets\js\private\profile\" />
     <Folder Include="assets\js\private\schedule\" />
     <Folder Include="assets\js\public" />
     <Folder Include="assets\js\public\auth" />
@@ -208,6 +212,7 @@
     <Folder Include="assets\templates" />
     <Folder Include="assets\templates\admin" />
     <Folder Include="assets\templates\admin\user" />
+    <Folder Include="assets\templates\profile\" />
     <Folder Include="bin" />
     <Folder Include="config" />
     <Folder Include="config\env" />

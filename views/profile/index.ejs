@@ -1,0 +1,23 @@
+<%- partial ('../../_nav_authorized.ejs') %>
+
+  <div class="container-fluid">
+    <div data-ng-view="" id="ng-view"></div>
+  </div>
+
+<%- partial ('../../_footer.ejs') %>
+
+  <!--SCRIPTS-->
+  <script src="/js/dependencies/sails.io.js"></script>
+  <script src="/js/dependencies/jquery/jquery.min.js"></script>
+  <script src="/js/dependencies/bootstrap/bootstrap.min.js"></script>
+  <script src="/js/dependencies/angular.min.js"></script>
+  <script src="/js/dependencies/angular/directives/compareTo.module.js"></script>
+  <script src="/js/dependencies/angular/directives/angular-toastr.js"></script>
+  <script src="/js/public/utils.js"></script>
+  <!--SCRIPTS END-->
+  
+  <script src="/js/dependencies/bootstrap/ui-bootstrap-tpls-0.13.0.min.js"></script>
+  <script src="/js/dependencies/angular/directives/dirPagination.min.js"></script>
+  <script src="/js/dependencies/angular/angular-route.min.js"></script>
+  <script src="/js/private/admin/UserModule.js"></script>
+  <script src="/js/private/admin/UserAdmin.js"></script>

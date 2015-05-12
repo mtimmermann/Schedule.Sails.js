@@ -1,7 +1,3 @@
-// http://www.angularcode.com/demo-of-a-simple-crud-restful-php-service-used-with-angularjs-and-mysql/
-
-// http://www.sitepoint.com/creating-crud-app-minutes-angulars-resource/
-
 angular.module('UserModule', ['ngRoute', 'angularUtils.directives.dirPagination', 'ui.bootstrap', 'toastr', 'compareTo']);
 
 //angular.module('UserModule').config(function($stateProvider, $httpProvider) {
