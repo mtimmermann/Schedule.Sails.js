@@ -11,7 +11,8 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
         $http.post('/auth/local/register', {
             username: $scope.signupForm.username,
             email: $scope.signupForm.email,
-            password: $scope.signupForm.password
+            password: $scope.signupForm.password,
+            _csrf: $scope.signupForm._csrf
         })
         .then(function onSuccess(resp) {
             window.location = '/';

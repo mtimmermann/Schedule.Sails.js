@@ -1,9 +1,9 @@
-﻿angular.module('ForgotPasswordModule', ['toastr']);
+﻿angular.module('ForgotPasswordModule', ['toastr', 'ngSetHiddenInput']);
 
 angular.module('ForgotPasswordModule').factory("passwordService", ['$http', function($http) {
   return {
-    submitEmail: function(email) {
-      return $http.post('/auth/forgotpassword', { email: email });
+    submitEmail: function(email, csrf) {
+      return $http.post('/auth/forgotpassword', { email: email, _csrf: csrf });
     }
   };
 }]);
@@ -15,7 +15,7 @@ angular.module('ForgotPasswordModule').controller('ForgotPasswordController', ['
 
   $scope.submitEmail = function() {
     $scope.isLoading = true;
-    passwordService.submitEmail($scope.model.email)
+    passwordService.submitEmail($scope.model.email, $scope.model._csrf)
     .then(function onSuccess(result) {
       toastr.success('Email sent. Please check your email.', 'Success', window.myApp.locals.toastrOptions);
     })

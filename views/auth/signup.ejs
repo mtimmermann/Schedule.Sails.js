@@ -71,7 +71,7 @@
         <span ng-show="signupForm.loading">Preparing your new account...</span>
       </button>
 
-      <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" ng-model="signupForm._csrf" ng-set-hidden-input />
     </form>
 
 <%- partial ('../_footer.ejs') %>
