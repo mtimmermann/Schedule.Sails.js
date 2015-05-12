@@ -25,6 +25,10 @@
     });
   };
 
+  $scope.cancel = function () {
+    window.location = '/';
+  };
+
   function getProfile() {
     profileService.getProfile()
     .then(function(result) {
