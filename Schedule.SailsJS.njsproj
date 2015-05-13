@@ -143,8 +143,6 @@
     <Compile Include="assets\js\public\auth\ForgotPassword.js" />
     <Compile Include="assets\js\public\auth\ResetPassword.js" />
     <Compile Include="assets\js\public\auth\Signup.js" />
-    <Compile Include="assets\js\public\home\HomeController.js" />
-    <Compile Include="assets\js\public\home\HomeModule.js" />
     <Content Include="assets\templates\admin\user\delete.tpl.html" />
     <Content Include="assets\templates\admin\user\edit.tpl.html" />
     <Content Include="assets\templates\admin\user\list.tpl.html" />
@@ -212,7 +210,6 @@
     <Folder Include="assets\js\private\schedule\" />
     <Folder Include="assets\js\public" />
     <Folder Include="assets\js\public\auth" />
-    <Folder Include="assets\js\public\home" />
     <Folder Include="assets\styles" />
     <Folder Include="assets\styles\mixins" />
     <Folder Include="assets\templates" />

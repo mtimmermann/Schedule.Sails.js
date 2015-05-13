@@ -17,7 +17,7 @@
       </div>
     </nav>
 
-    <form ng-submit="submitSignupForm()" id="sign-up-form" class="form-signin" name="signup" ng-controller="SignupController">
+    <form ng-submit="submitSignupForm()" id="sign-up-form" class="form-signin" name="signup" ng-controller="SignupController" ng-cloak>
       <h2 class="form-signin-heading">Create an account</h2>
       <div class="row">
 
@@ -84,13 +84,13 @@
     <script src="/js/public/utils.js"></script>
     <!--SCRIPTS END-->
 
+
+    <script src="/js/dependencies/angular/directives/ngSetHiddenInput.js"></script>
     <script type="text/javascript">
       // AngularJS: Multiple controllers, 1 ng-view on the same page, embedded directives
       // https://gist.github.com/thekarel/7041382
       var app = angular.module('myApp', ['toastr', 'ngSetHiddenInput', 'compareTo']);
     </script>
-
-    <script src="/js/dependencies/angular/directives/ngSetHiddenInput.js"></script>
     <script src="/js/public/auth/Login.js"></script>
     <script src="/js/public/auth/Signup.js"></script>
 

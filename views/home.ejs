@@ -27,6 +27,7 @@
     </div>
 
 <%- partial ('./_footer.ejs') %>
+
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
     <script src="/js/dependencies/jquery/jquery.min.js"></script>
@@ -39,6 +40,9 @@
     <!--SCRIPTS END-->
 
     <script src="/js/dependencies/angular/directives/ngSetHiddenInput.js"></script>
-    <script src="/js/public/home/HomeModule.js"></script>
-    <script src="/js/public/auth/LoginService.js"></script>
-    <script src="/js/public/home/HomeController.js"></script>
+    <script type="text/javascript">
+      // AngularJS: Multiple controllers, 1 ng-view on the same page, embedded directives
+      // https://gist.github.com/thekarel/7041382
+      var app = angular.module('myApp', ['toastr', 'ngSetHiddenInput', 'ngFocusInput']);
+    </script>
+    <script src="/js/public/auth/Login.js"></script>

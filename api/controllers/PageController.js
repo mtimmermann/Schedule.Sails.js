@@ -12,7 +12,7 @@ module.exports = {
       return res.view('home',
         {
           title: 'My App',
-          bodyAttr: 'ng-app="HomeModule" ng-controller="HomeController" ng-cloak',
+          bodyAttr: 'ng-app="myApp"',
           layout: 'layout'
         });
     }
@@ -28,7 +28,7 @@ module.exports = {
         return res.view('home',
           {
             title: 'My App',
-            bodyAttr: 'ng-app="HomeModule" ng-controller="HomeController" ng-cloak',
+            bodyAttr: 'ng-app="myApp"',
             layout: 'layout'
           });
       }
