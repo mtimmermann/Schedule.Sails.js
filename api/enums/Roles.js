@@ -2,6 +2,7 @@ var Roles = {
   siteAdmin: 'SiteAdmin',
   admin:     'Admin',
   user:      'User',
+  guest:     'Guest', // Do not map this role, used only for emailed url calendar invites
 
   map: function() {
     return [

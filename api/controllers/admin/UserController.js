@@ -154,7 +154,7 @@ var UserController = {
               return res.send(409, 'Email already is taken');
             }
           }
-          sails.log.error('UserController.warn failed. auth user['+ req.user.id +'] user['+ user.id +']', err);
+          sails.log.error('UserController.update failed. auth user['+ req.user.id +'] user['+ user.id +']', err);
           return res.negotiate(err);
         }
         if (data.length == 0) {
