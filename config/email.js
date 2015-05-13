@@ -17,13 +17,11 @@ module.exports.email = {
     secure: false,
     port: 587,
     auth: {
-      //user: 'outlook.user@outlook.com',
-      //pass: 'password'
-      user: 'bob.dylaniii@hotmail.com',
-      pass: 'Max70well'
+      user: 'outlook.user@outlook.com',
+      pass: 'password'
     }
   },
 
-  senderAddress: 'bob.dylaniii@hotmail.com'
+  senderAddress: 'outlook.user@outlook.com'
 
 };
