@@ -21,7 +21,11 @@ app.controller('LoginController', ['$scope', 'loginService', 'toastr', function(
     closeButton: true
   }, myApp.locals.toastrOptions);
 
+  $scope.loginForm = { loading: false };
+
   $scope.submitLoginForm = function () {
+    $scope.loginForm.loading = true;
+
     loginService.login($scope.loginForm)
     .then(function onSuccess (resp) {
       window.location = '/';
