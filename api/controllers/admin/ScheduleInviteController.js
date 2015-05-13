@@ -115,8 +115,8 @@ var ScheduleInviteController = {
 
         req.session.authenticated = true;
 
-        // Override the session role with limited priveleges
-        req.session.role = Roles.user;
+        // Override the session role with most limited priveleges, only allow calendar access
+        req.session.role = Roles.guest;
 
         return res.redirect('/schedule');
       });

@@ -34,7 +34,7 @@ module.exports.policies = {
   },
 
   'ProfileController': {
-    '*': ['passport', 'sessionAuth']
+    '*': ['passport', 'sessionAuth', 'isNotGuest']
   },
 
   // UserController - Everthing requires SiteAdmin privledges with the
@@ -46,8 +46,8 @@ module.exports.policies = {
 
     // Role security is peformed in these actions. A user is allowed to
     // update themself and change thier own password
-    'update': ['passport', 'sessionAuth'],
-    'password': ['passport', 'sessionAuth'],
+    'update': ['passport', 'sessionAuth', 'isNotGuest'],
+    'password': ['passport', 'sessionAuth', 'isNotGuest'],
 
   },
 

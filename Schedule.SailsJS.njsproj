@@ -37,6 +37,7 @@
     <Compile Include="api\controllers\ProfileController.js" />
     <Compile Include="api\models\Event.js" />
     <Compile Include="api\models\ScheduleInvite.js" />
+    <Compile Include="api\policies\isNotGuest.js" />
     <Compile Include="app.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.js" />
     <Compile Include="assets\js\dependencies\angular\directives\calendar.min.js" />

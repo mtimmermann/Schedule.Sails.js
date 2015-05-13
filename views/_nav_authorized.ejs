@@ -18,7 +18,9 @@
               <span class="caret"></span>
             </a>
             <ul class="dropdown-menu" role="menu">
+              <% if (req.session.role !== 'Guest') { %>
               <li><a href="/profile">Profile</a></li>
+              <% } %>
               <li><a href="/logout">Sign Out</a></li>
             </ul>
           </li>

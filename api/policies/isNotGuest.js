@@ -1,20 +1,20 @@
-var Roles = require('../enums/Roles');
+﻿var Roles = require('../enums/Roles');
 
 /**
- * isAdmin
+ * isNotGuest
  *
  * @module      :: Policy
- * @description :: Policy to allow access to an authenticated user with an admin role
+ * @description :: Policy to denies access to an authenticated user a 'Guest' role
  *                 Assumes that your login action in one of your controllers sets `req.session.authenticated = true;`
  *
  */
-module.exports = function isAdmin (req, res, next) {
+module.exports = function isNotGuest (req, res, next) {
 
   // User is allowed, proceed to the next policy, 
   // or if this is the last policy, the controller
   var role = req.session.role || '';
 
-  if (req.session.authenticated && (role === Roles.admin || role === Roles.siteAdmin)) {
+  if (req.session.role && req.session.role !== Roles.guest) {
     return next();
   }
 
