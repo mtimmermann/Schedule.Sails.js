@@ -89,12 +89,10 @@
 
   // Render Tooltip
   $scope.eventRender = function(event, element, view) { 
-    //console.log('eventRender');
-    var tooltip = event.title +'\n'+ event.start.format();
-    //element.attr({'tooltip': event.title,
-    element.attr({'tooltip': tooltip,
-                  html: true,
-                  'tooltip-append-to-body': true});
+    var tooltip = event.title +'\n'+
+      event.start.format('h:mm:ss a') +'\n to\n'+
+      event.end.format('h:mm:ss a');
+    element.attr({'tooltip': tooltip, 'tooltip-append-to-body': true});
     $compile(element)($scope);
   };
 
