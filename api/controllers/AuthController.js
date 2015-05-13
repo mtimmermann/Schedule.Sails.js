@@ -140,7 +140,17 @@ var AuthController = {
         // Update password
         Passport.update({ user: user.id, protocol: 'local' }, { password: password })
         .exec(function(err, data) {
-          if (err) return res.negotiate(err);
+          if (err) {
+            sails.log.error('AuthControler.postResetPassword user['+ user.id +' '+ user.email +'] id['+ id +']');
+            return res.negotiate(err);
+          }
+
+          // On succesful password reset, remove the current PasswordReset record (fire and forget)
+          PasswordReset.destroy({ id: id })
+          .exec(function(err, data) {
+            if (err) sails.log.error('AuthControler.postResetPassword -> Failed to remove PasswordReset record user['+ user.id +' '+ user.email +'] id['+ id +']');
+          });
+
           return res.json({});
         });
       } else {
