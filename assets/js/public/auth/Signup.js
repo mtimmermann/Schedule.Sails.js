@@ -10,12 +10,12 @@ app.factory('signupService', ['$http', function($http) {
 // Signup Controller
 app.controller('SignupController', ['$scope', '$http', 'signupService', 'toastr', function($scope, $http, signupService, toastr) {
 
-    // Setup loading state
-    $scope.signupForm = { loading: false }
+    // Setup pending state
+    $scope.signupForm = { pending: false }
 
     $scope.submitSignupForm = function() {
 
-      $scope.signupForm.loading = true;
+      $scope.signupForm.pending = true;
 
       signupService.signup($scope.signupForm.username, $scope.signupForm.email, $scope.signupForm.password, $scope.signupForm._csrf)
       .then(function onSuccess(resp) {
@@ -29,7 +29,7 @@ app.controller('SignupController', ['$scope', '$http', 'signupService', 'toastr'
         }
       })
       .finally(function eitherWay() {
-        $scope.signupForm.loading = false;
+        $scope.signupForm.pending = false;
       });
     };
 
