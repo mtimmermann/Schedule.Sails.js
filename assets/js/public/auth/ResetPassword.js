@@ -1,15 +1,15 @@
-﻿var app = angular.module('ResetPasswordModule', ['toastr', 'compareTo']);
-
-angular.module('ResetPasswordModule').factory("resetPasswordService", ['$http', function($http) {
+﻿// ResetPassword Service
+app.factory("resetPasswordService", ['$http', function($http) {
   return {
-    changePassword: function(email, password, id) {
-      return $http.post('/auth/resetpassword', { email: email, password: password, id: id });
+    changePassword: function(email, password, id, csrf) {
+      return $http.post('/auth/resetpassword', { email: email, password: password, id: id, _csrf: csrf });
     }
   };
 }]);
 
-//angular.module('ResetPasswordModule').controller('ResetPasswordController', ['$scope', '$location', 'resetPasswordService', 'toastr', function($scope, $location, resetPasswordService, toastr) {
-angular.module('ResetPasswordModule').controller('ResetPasswordController', ['$scope', 'resetPasswordService', 'loginService', 'toastr', function($scope, resetPasswordService, loginService, toastr) {
+// ResetPassword Controller
+//app.controller('ResetPasswordController', ['$scope', '$location', 'resetPasswordService', 'toastr', function($scope, $location, resetPasswordService, toastr) {
+app.controller('ResetPasswordController', ['$scope', 'resetPasswordService', 'loginService', 'toastr', function($scope, resetPasswordService, loginService, toastr) {
 
   $scope.model = { password: '' };
   $scope.isLoading = false;
@@ -21,7 +21,7 @@ angular.module('ResetPasswordModule').controller('ResetPasswordController', ['$s
 
   $scope.changePassword = function() {
     $scope.isLoading = true;
-    resetPasswordService.changePassword(email, $scope.model.password, id)
+    resetPasswordService.changePassword(email, $scope.model.password, id, $scope.model._csrf)
     .then(function onSuccess(result) {
       toastr.success('Password successfully reset.', 'Success', myApp.locals.toastrOptions);
     })

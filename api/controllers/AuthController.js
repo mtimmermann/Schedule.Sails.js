@@ -111,7 +111,7 @@ var AuthController = {
       req.session.authenticated = false;
     }
 
-    res.view('auth/resetpassword', { title: 'Reset Password', bodyAttr: 'ng-app="ResetPasswordModule" ng-controller="ResetPasswordController" ng-cloak', layout: 'layout' });
+    res.view('auth/resetpassword', { title: 'Reset Password', bodyAttr: 'ng-app="myApp"', layout: 'layout' });
   },
 
   /**
