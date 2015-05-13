@@ -4,7 +4,7 @@
   });
 }]);
 
-angular.module('UserModule').factory("userService", ['$http', function($http) {
+angular.module('UserModule').factory('userService', ['$http', function($http) {
   var serviceBase = '/adminpanel/users/';
 
   return {

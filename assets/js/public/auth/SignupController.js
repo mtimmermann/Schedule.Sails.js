@@ -29,7 +29,7 @@ angular.module('SignupModule').controller('SignupController', ['$scope', '$http'
         });
     };
 
-    $scope.submitLoginForm = function () {
-        loginService.login($scope);
-    };
+    //$scope.submitLoginForm = function () {
+    //    loginService.login($scope);
+    //};
 }]);

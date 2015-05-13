@@ -40,7 +40,7 @@ var AuthController = {
     if (req.session.authenticated) {
       return res.redirect('/');
     }
-    res.view('auth/forgotpassword', { title: 'Sign Up', bodyAttr: 'ng-app="ForgotPasswordModule" ng-controller="ForgotPasswordController" ng-cloak', layout: 'layout' });
+    res.view('auth/forgotpassword', { title: 'Sign Up', bodyAttr: 'ng-app="myApp"', layout: 'layout' });
   },
 
   /**

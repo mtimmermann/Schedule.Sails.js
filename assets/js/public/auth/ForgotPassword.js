@@ -1,6 +1,5 @@
-﻿var app = angular.module('ForgotPasswordModule', ['toastr', 'ngSetHiddenInput']);
-
-angular.module('ForgotPasswordModule').factory("passwordService", ['$http', function($http) {
+﻿// Password Service
+app.factory("passwordService", ['$http', function($http) {
   return {
     submitEmail: function(email, csrf) {
       return $http.post('/auth/forgotpassword', { email: email, _csrf: csrf });
@@ -8,7 +7,8 @@ angular.module('ForgotPasswordModule').factory("passwordService", ['$http', func
   };
 }]);
 
-angular.module('ForgotPasswordModule').controller('ForgotPasswordController', ['$scope', 'passwordService', 'loginService', 'toastr', function($scope, passwordService, loginService, toastr) {
+// ForgotPassword Controller
+app.controller('ForgotPasswordController', ['$scope', 'passwordService', 'toastr', function($scope, passwordService, toastr) {
 
   $scope.model = { email: '' };
   $scope.isLoading = false;
@@ -31,8 +31,5 @@ angular.module('ForgotPasswordModule').controller('ForgotPasswordController', ['
     });
   };
 
-  $scope.submitLoginForm = function () {
-      loginService.login($scope);
-  };
 }]);
 

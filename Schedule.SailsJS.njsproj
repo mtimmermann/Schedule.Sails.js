@@ -63,6 +63,7 @@
     <Compile Include="assets\js\private\schedule\CalendarController.js" />
     <Compile Include="assets\js\private\schedule\CalendarModule.js" />
     <Compile Include="assets\js\private\schedule\EventService.js" />
+    <Compile Include="assets\js\public\auth\Login.js" />
     <Compile Include="Gruntfile.js" />
     <Content Include="assets\robots.txt" />
     <Content Include="assets\favicon.ico" />
@@ -140,7 +141,6 @@
     <Compile Include="assets\js\private\admin\UserPasswordController.js" />
     <Compile Include="assets\js\private\admin\UserService.js" />
     <Compile Include="assets\js\public\auth\ForgotPassword.js" />
-    <Compile Include="assets\js\public\auth\LoginService.js" />
     <Compile Include="assets\js\public\auth\ResetPassword.js" />
     <Compile Include="assets\js\public\auth\SignupController.js" />
     <Compile Include="assets\js\public\auth\SignupModule.js" />
