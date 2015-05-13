@@ -15,6 +15,8 @@ var EventController = {
    * @param {Object} res
    */
   list: function(req, res) {
+    if (req.param('json') === 'true' && !req.wantsJSON)
+      req.wantsJSON = true;
 
     if (!req.wantsJSON) {
       return res.view('schedule/index', {
