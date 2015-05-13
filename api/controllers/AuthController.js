@@ -24,7 +24,8 @@ var AuthController = {
     if (req.session.authenticated) {
       return res.redirect('/');
     }
-    res.view('auth/signup', { title: 'Sign Up', bodyAttr: 'ng-app="SignupModule" ng-controller="SignupController" ng-cloak', layout: 'layout' });
+    //res.view('auth/signup', { title: 'Sign Up', bodyAttr: 'ng-app="SignupModule" ng-controller="SignupController" ng-cloak', layout: 'layout' });
+    res.view('auth/signup', { title: 'Sign Up', bodyAttr: 'ng-app="myApp"', layout: 'layout' });
   },
 
   /**
@@ -40,7 +41,7 @@ var AuthController = {
     if (req.session.authenticated) {
       return res.redirect('/');
     }
-    res.view('auth/forgotpassword', { title: 'Sign Up', bodyAttr: 'ng-app="myApp"', layout: 'layout' });
+    res.view('auth/forgotpassword', { title: 'Forgot Password', bodyAttr: 'ng-app="myApp"', layout: 'layout' });
   },
 
   /**

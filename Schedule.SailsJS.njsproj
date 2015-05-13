@@ -142,8 +142,7 @@
     <Compile Include="assets\js\private\admin\UserService.js" />
     <Compile Include="assets\js\public\auth\ForgotPassword.js" />
     <Compile Include="assets\js\public\auth\ResetPassword.js" />
-    <Compile Include="assets\js\public\auth\SignupController.js" />
-    <Compile Include="assets\js\public\auth\SignupModule.js" />
+    <Compile Include="assets\js\public\auth\Signup.js" />
     <Compile Include="assets\js\public\home\HomeController.js" />
     <Compile Include="assets\js\public\home\HomeModule.js" />
     <Content Include="assets\templates\admin\user\delete.tpl.html" />
