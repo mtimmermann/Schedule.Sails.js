@@ -23,7 +23,7 @@
 
         <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.username.$invalid && signup.username.$dirty}">
           <label>User Name</label>
-          <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="signupForm.username" ng-maxlength="50" autofocus required />
+          <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="model.username" ng-maxlength="50" autofocus required />
           <span class="help-block has-error" ng-if="dirtyAndErrors(signup.username)">
             <span ng-show="signup.username.$error.required">User Name is required.</span>
             <span ng-show="signup.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
@@ -33,7 +33,7 @@
         <div class="control-group form-group col-md-12"
         ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
           <label>Your email address</label>
-          <input type="email" class="form-control" placeholder="john.doe@domain.com" name="email" ng-model="signupForm.email" required />
+          <input type="email" class="form-control" placeholder="john.doe@domain.com" name="email" ng-model="model.email" required />
           <span class="help-block has-error" ng-if="dirtyAndErrors(signup.email)">
             <span ng-show="signup.email.$error.required">Email address is required.</span>
             <span ng-show="signup.email.$error.email">Not a valid email address.</span>
@@ -42,7 +42,7 @@
 
         <div class="control-group form-group col-md-6" ng-class="{'has-error':signup.password.$error.required && signup.password.$dirty}">
           <label>Choose a password</label>
-          <input type="password" class="form-control" placeholder="at least 8 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="8" />
+          <input type="password" class="form-control" placeholder="at least 8 characters" name="password" ng-model="model.password" id="password" required ng-minlength="8" />
           <span class="help-block has-error" ng-if="dirtyAndErrors(signup.password)">
             <span ng-show="signup.password.$error.required">Password is required.</span>
             <span ng-show="signup.password.$error.minlength">Password must be at least 8 characters.</span>
@@ -51,7 +51,7 @@
 
         <div class="control-group form-group col-md-6" ng-class="{'has-error': signup.confirmation.$dirty && (signup.confirmation.$invalid || signup.password.$error.compareTo) }">
           <label>Re-enter your password</label>
-          <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required compare-to="signupForm.password">
+          <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="model.confirmPassword" required compare-to="model.password">
           <span class="help-block has-error" ng-if="dirtyAndErrors(signup.confirmation)">
             <span ng-show="signup.confirmation.$error.compareTo">Password must match.</span>
             <span ng-show="signup.confirmation.$error.required">Confirmation password is required.</span>
@@ -63,12 +63,12 @@
 
       <!-- Disable signup button until the form has no errors -->
       <button class="btn btn-primary btn-lg btn-block" type="submit" ng-disabled="signup.$invalid">
-        <span ng-show="!signupForm.pending">Create Account</span>
-        <span class="fa fa-spinner" ng-show="signupForm.pending" ></span>
-        <span ng-show="signupForm.pending">Preparing your new account...</span>
+        <span ng-show="!model.pending">Create Account</span>
+        <span class="fa fa-spinner" ng-show="model.pending" ></span>
+        <span ng-show="model.pending">Preparing your new account...</span>
       </button>
 
-      <input type="hidden" name="_csrf" value="<%= _csrf %>" ng-model="signupForm._csrf" ng-set-hidden-input />
+      <input type="hidden" name="_csrf" value="<%= _csrf %>" ng-model="model._csrf" ng-set-hidden-input />
     </form>
 
 <%- partial ('../_footer.ejs') %>
