@@ -94,7 +94,8 @@ var UserController = {
     ]).spread(function (count, data) {
       return res.json({
         Items: data,
-        Count: count
+        Count: data.length,
+        Total: count
       });
     }).catch(function(err) {
       sails.log.error('UserController.list failed. auth user['+ req.user.id +']', err);

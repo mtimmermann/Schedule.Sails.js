@@ -99,7 +99,7 @@ angular.module('UserModule').controller('UserListController', ['$scope', 'userSe
     userService.getUsers(pageNumber, $scope.pageSize, $scope.datagrid.field, $scope.datagrid.sortDir, $scope.filter)
     .then(function (result) {
       $scope.users = result.data.Items;
-      $scope.totalUsers = result.data.Count;
+      $scope.totalUsers = result.data.Total;
     });
   };
 }]);
