@@ -41,7 +41,14 @@ module.exports.session = {
   * session store that can be shared across multiple Sails.js servers        *
   ***************************************************************************/
 
-  // adapter: 'redis',
+  // redis://redistogo:7a4f9e8776ba71e48db75f2fb19d0eae@hammerjaw.redistogo.com:9567/
+  adapter: 'redis',
+
+  host: 'hammerjaw.redistogo.com',
+  port: '9567',
+  //ttl: '',
+  db: 'redistogo',
+  pass: '7a4f9e8776ba71e48db75f2fb19d0eae',
 
   /***************************************************************************
   *                                                                          *
