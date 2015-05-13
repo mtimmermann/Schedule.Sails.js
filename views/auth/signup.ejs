@@ -24,7 +24,7 @@
         <div class="control-group form-group col-md-12" ng-class="{'has-error':signup.username.$invalid && signup.username.$dirty}">
           <label>User Name</label>
           <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="signupForm.username" ng-maxlength="50" autofocus required />
-          <span class="help-block has-error" ng-if="signup.username.$dirty &&(signup.username.$error.required || signup.username.$error.maxlength)">
+          <span class="help-block has-error" ng-if="dirtyAndErrors(signup.username)">
             <span ng-show="signup.username.$error.required">User Name is required.</span>
             <span ng-show="signup.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
           </span>
@@ -34,7 +34,7 @@
         ng-class="{'has-error':signup.email.$invalid && signup.email.$dirty}">
           <label>Your email address</label>
           <input type="email" class="form-control" placeholder="john.doe@domain.com" name="email" ng-model="signupForm.email" required />
-          <span class="help-block has-error" ng-if="signup.email.$dirty">
+          <span class="help-block has-error" ng-if="dirtyAndErrors(signup.email)">
             <span ng-show="signup.email.$error.required">Email address is required.</span>
             <span ng-show="signup.email.$error.email">Not a valid email address.</span>
           </span>
@@ -42,8 +42,8 @@
 
         <div class="control-group form-group col-md-6" ng-class="{'has-error':signup.password.$error.required && signup.password.$dirty}">
           <label>Choose a password</label>
-          <input type="password" class="form-control" placeholder="at least 8 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="8" compare-to="signupForm.confirmPassword" />
-          <span class="help-block has-error" ng-if="signup.password.$dirty">
+          <input type="password" class="form-control" placeholder="at least 8 characters" name="password" ng-model="signupForm.password" id="password" required ng-minlength="8" />
+          <span class="help-block has-error" ng-if="dirtyAndErrors(signup.password)">
             <span ng-show="signup.password.$error.required">Password is required.</span>
             <span ng-show="signup.password.$error.minlength">Password must be at least 8 characters.</span>
           </span>
@@ -51,9 +51,9 @@
 
         <div class="control-group form-group col-md-6" ng-class="{'has-error': signup.confirmation.$dirty && (signup.confirmation.$invalid || signup.password.$error.compareTo) }">
           <label>Re-enter your password</label>
-          <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required>
-          <span class="help-block has-error" ng-if="signup.confirmation.$dirty">
-            <span ng-show="signup.password.$error.compareTo">Password must match.</span>
+          <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="signupForm.confirmPassword" required compare-to="signupForm.password">
+          <span class="help-block has-error" ng-if="dirtyAndErrors(signup.confirmation)">
+            <span ng-show="signup.confirmation.$error.compareTo">Password must match.</span>
             <span ng-show="signup.confirmation.$error.required">Confirmation password is required.</span>
           </span>
         </div>

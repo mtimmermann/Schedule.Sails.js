@@ -15,22 +15,25 @@ app.controller('SignupController', ['$scope', '$http', 'signupService', 'toastr'
 
     $scope.submitSignupForm = function() {
 
-        $scope.signupForm.loading = true;
+      $scope.signupForm.loading = true;
 
-        signupService.signup($scope.signupForm.username, $scope.signupForm.email, $scope.signupForm.password, $scope.signupForm._csrf)
-        .then(function onSuccess(resp) {
-            window.location = '/';
-        })
-        .catch(function onError(resp) {
-            if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
-                toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
-            } else {
-                toastr.error('Unknown error', 'Error', myApp.locals.toastrOptions);
-            }
-        })
-        .finally(function eitherWay() {
-            $scope.signupForm.loading = false;
-        });
+      signupService.signup($scope.signupForm.username, $scope.signupForm.email, $scope.signupForm.password, $scope.signupForm._csrf)
+      .then(function onSuccess(resp) {
+        window.location = '/';
+      })
+      .catch(function onError(resp) {
+        if (resp.status === 409 && typeof resp.data === 'string' && resp.data.length > 0) {
+          toastr.error(resp.data, 'Error', myApp.locals.toastrOptions);
+        } else {
+          toastr.error('Unknown error', 'Error', myApp.locals.toastrOptions);
+        }
+      })
+      .finally(function eitherWay() {
+        $scope.signupForm.loading = false;
+      });
     };
 
+    $scope.dirtyAndErrors = function(input) {
+      return (input.$dirty && Object.keys(input.$error).length > 0);
+    };
 }]);
