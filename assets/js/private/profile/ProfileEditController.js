@@ -11,6 +11,7 @@
     $scope.isLoading = true;
     profileService.updateProfile($scope.user, myApp.locals._csrf)
     .then(function onSuccess(result) {
+      $('#navUsername').text($scope.user.username); // Cheap way to update nav username, consider pub/sub w/ ng
       toastr.success('User saved', 'Success', myApp.locals.toastrOptions);
     })
     .catch(function onError(resp) {
