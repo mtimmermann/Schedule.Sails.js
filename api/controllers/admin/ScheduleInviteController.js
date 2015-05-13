@@ -9,6 +9,24 @@ var transporter = null; // Reusable nodemailer transporter object using SMTP tra
 var ScheduleInviteController = {
 
   /**
+   * Return a list of all ScheduleInvite records
+   * SiteAdmin Role Only
+   *
+   * GET /schedule/invite/
+   *
+   * @param {Object} req
+   * @param {Object} res
+   */
+  list: function(req, res) {
+    ScheduleInvite.find()
+    .exec(function(err, data) {
+      if (err) return res.negotiate(error);
+
+      return res.json(data);
+    });
+  },
+
+  /**
    * Return an event by User ID and Email
    *
    * GET /schedule/invite/find

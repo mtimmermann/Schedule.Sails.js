@@ -53,6 +53,7 @@ module.exports.policies = {
 
   'admin/ScheduleInviteController': {
     '*': ['passport', 'isAdmin'],
+    'list': ['passport', 'isSiteAdmin'],
     'authInvite': ['passport']
   },
 
