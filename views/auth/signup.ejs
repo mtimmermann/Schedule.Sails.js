@@ -23,7 +23,7 @@
 
         <div class="control-group form-group col-md-12" ng-class="{'has-error':signupForm.username.$invalid && signupForm.username.$dirty}">
           <label>User Name</label>
-          <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="model.username" ng-maxlength="50" autofocus required />
+          <input type="text" class="form-control" placeholder="User Name" name="username" ng-model="model.username" ng-maxlength="50" required ng-focus-input />
           <span class="help-block has-error" ng-if="signupForm.username.$dirty && signupForm.username.$invalid">
             <span ng-show="signupForm.username.$error.required">User Name is required.</span>
             <span ng-show="signupForm.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
@@ -88,7 +88,7 @@
     <script type="text/javascript">
       // AngularJS: Multiple controllers, 1 ng-view on the same page, embedded directives
       // https://gist.github.com/thekarel/7041382
-      var app = angular.module('myApp', ['toastr', 'ngSetHiddenInput', 'compareTo']);
+      var app = angular.module('myApp', ['toastr', 'ngSetHiddenInput', 'compareTo', 'ngFocusInput']);
     </script>
     <script src="/js/public/auth/Login.js"></script>
     <script src="/js/public/auth/Signup.js"></script>
