@@ -33,7 +33,4 @@ app.controller('SignupController', ['$scope', '$http', 'signupService', 'toastr'
       });
     };
 
-    $scope.dirtyAndErrors = function(input) {
-      return (input.$dirty && Object.keys(input.$error).length > 0);
-    };
 }]);
