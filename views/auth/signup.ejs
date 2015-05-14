@@ -52,7 +52,7 @@
         <div class="control-group form-group col-md-6" ng-class="{'has-error': signupForm.confirmation.$dirty && (signupForm.confirmation.$invalid || signupForm.password.$error.compareTo) }">
           <label>Re-enter your password</label>
           <input type="password" class="form-control" placeholder="one more time" name="confirmation" ng-model="model.confirmPassword" required compare-to="model.password">
-          <span class="help-block has-error"><!-- ng-dirty-and-errors="signupForm.confirmation">-->
+          <span class="help-block has-error">
             <span ng-show="signupForm.confirmation.$error.compareTo">Password must match.</span>
             <span ng-show="signupForm.confirmation.$error.required">Confirmation password is required.</span>
           </span>

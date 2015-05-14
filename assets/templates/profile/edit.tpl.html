@@ -13,18 +13,18 @@
               <label class="col-md-2">User Name</label>
               <div class="col-md-4">
                 <input name="username" ng-model="user.username" type="text" class="form-control" placeholder="User Name" ng-maxlength="50" required ng-focus-input />
-                <span class="help-block has-error" ng-if="myForm.username.$dirty">
+                <span class="help-block has-error" ng-if="myForm.username.$dirty && myForm.username.$invalid">
                   <span ng-show="myForm.username.$error.required">User Name is required.</span>
                   <span ng-show="myForm.username.$error.maxlength">The User Name cannot be more than 50 characters.</span>
                 </span>
               </div>
             </div>
 
-            <div class="control-group form-group" ng-class="{'has-error':myForm.email.$invalid && myForm.email.$dirty}">
+            <div class="control-group form-group" ng-class="{'has-error':myForm.email.$invalid && myForm.email.$dirty && !emailHasFocus}">
               <label class="col-md-2">Email</label>
               <div class="col-md-4">
-                <input name="email" ng-model="user.email" type="email" class="form-control" placeholder="Email" required />
-                <span class="help-block has-error" ng-if="myForm.email.$dirty">
+                <input name="email" ng-model="user.email" type="email" class="form-control" placeholder="Email" required ng-focus="emailHasFocus=true" ng-blur="emailHasFocus=false" />
+                <span class="help-block has-error" ng-if="myForm.email.$dirty && myForm.email.$invalid && !emailHasFocus">
                   <span ng-show="myForm.email.$error.required">Email address is required.</span>
                   <span ng-show="myForm.email.$error.email">Not a valid email address.</span>
                 </span>
